@@ -19,7 +19,7 @@ module.exports = {
           400: 'rgb(var(--tw-clr-primary-400) / <alpha-value>)',
           500: 'rgb(var(--tw-clr-primary-500) / <alpha-value>)',
         },
-        dark: '#222222',
+        dark: 'rgb(34, 35, 43)',
       },
       keyframes: {
         flicker: {
@@ -44,10 +44,21 @@ module.exports = {
             transform: 'rotate(-0.5deg)',
           },
         },
+        gradient: {
+          '0%, 100%': {
+            'background-size': '400% 400%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
         tilt: 'tilt 10s infinite linear',
+        gradient: 'gradient-xy 5s ease infinite',
       },
     },
   },
