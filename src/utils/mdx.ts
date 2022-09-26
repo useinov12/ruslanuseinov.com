@@ -37,7 +37,7 @@ export async function getArticleFromSlug(slug:string) {
       content,
       frontmatter: {
         slug,
-        excerpt: data.excerpt,
+        description: data.description,
         title: data.title,
         publishedAt: data.publishedAt,
         readingTime: readingTime(source).text,
@@ -49,13 +49,15 @@ export async function getArticleFromSlug(slug:string) {
 export async function getAllArticles() {
     const articles = fs.readdirSync(POSTS_PATH)
 
-    return articles.reduce((allArticles:any, articleSlug) => {
+    const collection:PostSummary[] =  articles.reduce((allArticles:any, articleSlug) => {
       // get parsed data from mdx files in the "blog" dir
-      const source = fs.readFileSync(
+      const source:any = fs.readFileSync(
         path.join(process.cwd(), '/src/content/blog', articleSlug),
         'utf-8'
       )
       const { data } = matter(source)
+
+      console.log(data)
   
       return [
         {
@@ -66,4 +68,18 @@ export async function getAllArticles() {
         ...allArticles,
       ]
     }, [])
+
+    return collection
+}
+
+export type PostSummary = {
+    title: string;
+    publishedAt: string;
+    description: string;
+    cover_image: string;
+    slug: string;
+    readingTime: string;
+    data: {
+        [key: string]: any;
+    }
 }
