@@ -10,6 +10,10 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import { serialize } from 'next-mdx-remote/serialize';
 import { getSlug, getArticleFromSlug } from '../../utils/mdx';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import Layout from '../../components/layout/Layout';
+import Link from 'next/link';
+import { BiTimeFive, BiArrowBack } from 'react-icons/bi';
+import clsx from 'clsx'
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -22,26 +26,41 @@ const components = {
   TestComponent: dynamic(() => import('../../components/TestComponent')),
   Image,
   Head,
-  p: (props: any) => <p style={{ color: 'green' }}>{props.children}</p>,
+  h1: (props: any) => <h1 className="text-white my-2">{props.children}</h1>,
+  h2: (props: any) => <h2 className="text-white my-2">{props.children}</h2>,
+  h3: (props: any) => <h3 className="text-white my-1">{props.children}</h3>,
+  p: (props: any) => <p className="text-white my-1">{props.children}</p>,
 };
 
 const PostPage: React.FC<GetStaticPropsReturn> = ({ frontmatter, source }) => {
   return (
-    <React.Fragment>
-      <Head>
-        <title>{frontmatter.title ?? 'My blog'}</title>
-      </Head>
-      <div className="article-container">
-        <h1 className="article-title">{frontmatter.title}</h1>
-        <p className="publish-date">
-          {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
-          {frontmatter.readingTime}
-        </p>
-        <div className="content">
+    <Layout>
+      <div className="text-white flex flex-col justify-center max-w-prose m-auto p-2">
+        <Link href="/blog">
+          <h3 className={clsx(
+            'inline-flex items-center gap-1 cursor-pointer',
+            'group my-6 text-gray-300 hover:text-white'
+          )}>
+            <BiArrowBack className={clsx(
+              'text-md scale-100 group-hover:translate-x-[-4px] active:translate-x-0 ',
+              'transition-all, duration-75',
+            )}/>
+            <span>Back to Blog</span>
+          </h3>
+        </Link>
+        <h1 className="text-4xl">{frontmatter.title}</h1>
+        <div className="inline-flex items-center gap-1">
+          <span>
+            {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
+          </span>
+          <BiTimeFive className="text-lg" />
+          <span>{frontmatter.readingTime}</span>
+        </div>
+        <div className="">
           <MDXRemote {...source} components={components} />
         </div>
       </div>
-    </React.Fragment>
+    </Layout>
   );
 };
 
