@@ -1,8 +1,6 @@
 import React from 'react';
+import clsx from 'clsx';
 import dayjs from 'dayjs';
-import Head from 'next/head';
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import rehypeSlug from 'rehype-slug';
 import { MDXRemote } from 'next-mdx-remote';
 import rehypeHighlight from 'rehype-highlight';
@@ -13,51 +11,43 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Layout from '../../components/layout/Layout';
 import Link from 'next/link';
 import { BiTimeFive, BiArrowBack } from 'react-icons/bi';
-import clsx from 'clsx'
+import Accent from '../../components/Accent';
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
-const components = {
-  // It also works with dynamically-imported components, which is especially
-  // useful for conditionally loading components for certain routes.
-  // See the notes in README.md for more details.
-  TestComponent: dynamic(() => import('../../components/TestComponent')),
-  Image,
-  Head,
-  h1: (props: any) => <h1 className="text-white my-2">{props.children}</h1>,
-  h2: (props: any) => <h2 className="text-white my-2">{props.children}</h2>,
-  h3: (props: any) => <h3 className="text-white my-1">{props.children}</h3>,
-  p: (props: any) => <p className="text-white my-1">{props.children}</p>,
-};
+import MDXComponents from '../../components/MDXComponents';
 
 const PostPage: React.FC<GetStaticPropsReturn> = ({ frontmatter, source }) => {
   return (
     <Layout>
       <div className="text-white flex flex-col justify-center max-w-prose m-auto p-2">
         <Link href="/blog">
-          <h3 className={clsx(
-            'inline-flex items-center gap-1 cursor-pointer',
-            'group my-6 text-gray-300 hover:text-white'
-          )}>
-            <BiArrowBack className={clsx(
-              'text-md scale-100 group-hover:translate-x-[-4px] active:translate-x-0 ',
-              'transition-all, duration-75',
-            )}/>
+          <h3
+            className={clsx(
+              'inline-flex items-center gap-1 cursor-pointer',
+              'group my-6 text-gray-300 hover:text-white'
+            )}
+          >
+            <BiArrowBack
+              className={clsx(
+                'text-md scale-100 group-hover:translate-x-[-4px] active:translate-x-0 ',
+                'transition-all, duration-75'
+              )}
+            />
             <span>Back to Blog</span>
           </h3>
         </Link>
-        <h1 className="text-4xl">{frontmatter.title}</h1>
-        <div className="inline-flex items-center gap-1">
-          <span>
-            {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
+        <h1 className="text-4xl my-2">{frontmatter.title}</h1>
+        <div className="inline-flex items-center gap-8 my-2">
+          <div className="inline-flex gap-1 items-center">
+            <BiTimeFive className="text-xl" />
+            <Accent className="text-lg">{frontmatter.readingTime}</Accent>
+          </div>
+          <span className="text-lg">
+            {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')}
           </span>
-          <BiTimeFive className="text-lg" />
-          <span>{frontmatter.readingTime}</span>
         </div>
+        <div className="w-full h-[2px] bg-gray-500 rounded" />
         <div className="">
-          <MDXRemote {...source} components={components} />
+          <MDXRemote {...source} components={MDXComponents} />
         </div>
       </div>
     </Layout>
@@ -71,7 +61,6 @@ export async function getStaticProps({
 }: {
   params: { slug: string };
 }) {
-  //fetch the particular file based on the slug
   const { content, frontmatter } = await getArticleFromSlug(slug);
 
   const mdxSource = await serialize(content, {
@@ -105,7 +94,6 @@ export async function getStaticPaths() {
   // getting all paths of each article as an array of
   // objects with their unique slugs
   const paths = (await getSlug()).map((slug) => ({ params: { slug } }));
-  console.log('paths', paths);
 
   return {
     paths,
