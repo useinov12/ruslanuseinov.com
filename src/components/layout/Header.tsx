@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Accent from './Accent';
+import Accent from '../Accent';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 
@@ -19,25 +19,31 @@ const Header = () => {
 
   const router = useRouter();
   React.useEffect(() => {
-    if(isOpen)setIsOpen(false);
+    if (isOpen) setIsOpen(false);
   }, [router.pathname]);
 
   return (
     <nav
       className={clsx(
         'bg-dark text-white sticky top-0 z-50 transition-shadow border border-transparent',
-        !onTop && 'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50  border-b-gray-600 ',
+        !onTop &&
+          'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50  border-b-gray-600 ',
         'transition-all',
-        'relative'
+        'relative overflow-x-hidden'
       )}
     >
       <div className="h-2 w-full bg-primary-400" />
       <div className="flex items-center justify-between md:justify-around p-5 md:p-8">
-        <h3 className="font-mono">Ruslan Useinov</h3>
+        <Link href={'/'}>
+          <h3 className="font-mono cursor-pointer">Ruslan Useinov</h3>
+        </Link>
 
         <ul className={'hidden md:flex'}>
           {links.map(({ text, path }) => (
-            <li className="mx-2 text-lg hover:text-primary-400 transition-all duration-100 hover:cursor-pointer">
+            <li
+              key={text}
+              className="mx-2 text-lg hover:text-primary-400 transition-all duration-100 hover:cursor-pointer"
+            >
               <h4 className="font-normal">
                 <Link href={path}>{text}</Link>
               </h4>
@@ -68,7 +74,10 @@ const Header = () => {
         <div className="flex items-center justify-center">
           <ul className={'md:hidden flex flex-col'}>
             {links.map(({ text, path }) => (
-              <li className="mx-2 hover:text-primary-400 transition-all duration-100 hover:cursor-pointer">
+              <li
+                key={text}
+                className="mx-2 hover:text-primary-400 transition-all duration-100 hover:cursor-pointer"
+              >
                 <h1 className="font-mono text-4xl my-2 ">
                   <Link href={path}>{text}</Link>
                 </h1>

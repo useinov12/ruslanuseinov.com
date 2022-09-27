@@ -5,12 +5,12 @@ import clsx from 'clsx';
 import { getAllArticles } from '../utils/mdx';
 import Layout from '../components/layout/Layout';
 import { PostSummary } from '../utils/mdx';
-import Accent from '../components/layout/Accent';
+import Accent from '../components/Accent';
 
 const BlogPage: React.FC<{ posts: PostSummary[] }> = ({ posts }) => {
   return (
     <Layout>
-      <main className="bg-dark text-white w-full min-h-screen h-full p-4 ">
+      <main className="bg-dark text-white w-full min-h-screen h-full p-4 overflow-x-hidden">
         <h1 className="my-6">Blog</h1>
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {posts.map((frontMatter) => {
@@ -19,7 +19,7 @@ const BlogPage: React.FC<{ posts: PostSummary[] }> = ({ posts }) => {
                 <div
                   className={clsx(
                     'w-full rounded-md border-2 border-gray-300 hover:border-primary-500',
-                    'scale-100 hover:scale-[1.02] active:scale-[0.97] motion-safe:transform-gpu',
+                    'scale-100 hover:scale-[1.02] active:scale-[0.98] motion-safe:transform-gpu',
                     'transition duration-100',
                     'motion-reduce:hover:scale-100',
                     'animate-shadow',
