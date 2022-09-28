@@ -44,21 +44,22 @@ module.exports = {
             transform: 'rotate(-0.5deg)',
           },
         },
-        gradient: {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'left center',
+        "shimmer": {
+          "0%": {
+            "transform": "translateX(-100%)",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "70%": {
+            "transform": "translateX(20%)",
           },
-        },
+          "100%": {
+            "transform": "translateX(100%)",
+          },
+        }
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
         tilt: 'tilt 10s infinite linear',
-        gradient: 'gradient-xy 5s ease infinite',
+        shimmer: 'shimmer 4s infinite linear',
       },
     },
   },
