@@ -10,7 +10,6 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { SiGithub, SiTwitter } from 'react-icons/si';
 
 const Home: NextPage = () => {
-
   return (
     <Layout>
       <Head>
@@ -20,28 +19,35 @@ const Home: NextPage = () => {
       </Head>
 
       <main
-        className="
-        flex flex-col items-center justify-center min-h-[80vh] p-4
-        bg-dark text-white  font-medium relative"
+        className={clsx(
+          'flex flex-col justify-center max-w-screen-lg m-auto p-2', 
+          'w-screen min-h-[80vh]',
+          'bg-dark text-white  font-medium relative',
+        )}
       >
-        <div className="">
-          <Accent className="text-4xl font-bold text-gradient-to-tr from-primary-500 via-primary-400 to-white">
+        <div className="p-2 lg:p-0">
+          <Accent
+            className={clsx(
+              'text-4xl md:text-6xl',
+              'font-bold text-gradient-to-tr from-primary-500 via-primary-400 to-white'
+            )}
+          >
             <span>Front End Developer</span>
           </Accent>
-          <p className="text-lg">
+          <p className="text-xl md:text-2xl my-3">
             I love to create beautiful and performant web with delightful user
             experiences
           </p>
           <div className="flex">
-            <Button>Read Blog</Button>
-            <Button>About</Button>
+            <Button className={clsx('text-xl')}>Read Blog</Button>
+            <Button className={clsx('text-xl')}>About</Button>
           </div>
-          <div className="flex">
-            {linkList.map(({text, path}) => (
+          <div className="flex flex-wrap w-full">
+            {linkList.map(({ text, path }) => (
               <UnstyledLink
                 href={path}
                 className={clsx(
-                  'mr-4 inline-flex items-center gap-1 ',
+                  'mr-4 my-2 inline-flex items-center gap-1 ',
                   'text-gray-300 hover:text-white',
                   'focus:outline-none',
                   'transition-colors',
@@ -65,22 +71,22 @@ export default Home;
 
 const linkList = [
   {
-    path:'/',
-    text:[
+    path: '/',
+    text: [
       <IoNewspaperSharp className="text-2xl " />,
       <span className="text-lg">Resume</span>,
     ],
   },
   {
-    path:'/',
-    text:[
+    path: '/',
+    text: [
       <SiTwitter className="text-2xl" />,
       <span className="text-lg">@ruslan_us</span>,
     ],
   },
   {
-    path:'/',
-    text:[
+    path: '/',
+    text: [
       <SiGithub className="text-2xl" />,
       <span className="text-lg">useinov_12</span>,
     ],
