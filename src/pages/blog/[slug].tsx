@@ -6,14 +6,14 @@ import { MDXRemote } from 'next-mdx-remote';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeCodeTitles from 'rehype-code-titles';
 import { serialize } from 'next-mdx-remote/serialize';
-import { getSlug, getArticleFromSlug } from '../../utils/mdx';
+import { getSlug, getPostFromSlug } from '../../utils/mdx';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Layout from '../../components/layout/Layout';
 import Link from 'next/link';
 import { BiTimeFive, BiArrowBack } from 'react-icons/bi';
 import Accent from '../../components/Accent';
 
-import MDXComponents from '../../components/MDXComponents';
+import MDXComponents from '../../components/content/MDXComponents';
 
 const PostPage: React.FC<GetStaticPropsReturn> = ({ frontmatter, source }) => {
   return (
@@ -61,7 +61,7 @@ export async function getStaticProps({
 }: {
   params: { slug: string };
 }) {
-  const { content, frontmatter } = await getArticleFromSlug(slug);
+  const { content, frontmatter } = await getPostFromSlug(slug);
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
@@ -93,7 +93,7 @@ type GetStaticPropsReturn = Awaited<ReturnType<typeof getStaticProps>>['props'];
 export async function getStaticPaths() {
   // getting all paths of each article as an array of
   // objects with their unique slugs
-  const paths = (await getSlug()).map((slug) => ({ params: { slug } }));
+  const paths = (await getSlug('blog')).map((slug) => ({ params: { slug } }));
 
   return {
     paths,
