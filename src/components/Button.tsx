@@ -10,7 +10,7 @@ const Button: React.FC<{
     <div
       className={clsx(
         'bg-white',
-        'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-400 hover:to-white',
+        'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-white',
         'p-[2px] mr-2 my-2 rounded-md flex justify-center items-center',
         'hover:border-primary-500 transition-all duration-200',
         'scale-100 hover:scale-[1.02] active:scale-[0.97] motion-safe:transform-gpu',

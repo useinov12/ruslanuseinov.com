@@ -8,8 +8,8 @@ export default function Accent({ children, className }: AccentType) {
     <span
       className={clsx(
         className,
-        'transition-colors',
-        'text-transparent bg-clip-text bg-gradient-to-tr from-primary-500  via-primary-400 to-white'
+        'transition-colors z-20',
+        'text-transparent bg-clip-text bg-gradient-to-tr from-primary-500 via-primary-500 to-white',
       )}
     >
       {children}
