@@ -15,7 +15,25 @@ import Accent from '../../components/Accent';
 
 import MDXComponents from '../../components/content/MDXComponents';
 
+
+type Toc = {
+  text:string;
+  id:number
+}
+
 const PostPage: React.FC<GetStaticPropsReturn> = ({ frontmatter, source }) => {
+
+  const [tableOfContent, setTableOfContent] = React.useState<Toc>()
+
+  React.useEffect(()=>{
+    const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3')
+
+
+    console.log(headings)
+    
+  },[frontmatter.slug])
+
+
   return (
     <Layout>
       <div className="text-white flex flex-col justify-center max-w-prose m-auto p-2">

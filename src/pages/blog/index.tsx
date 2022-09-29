@@ -6,15 +6,18 @@ import { PostSummary } from '../../utils/mdx';
 import PostCard from '../../components/content/PostCard';
 
 const BlogPage: React.FC<{ posts: PostSummary[] }> = ({ posts }) => {
+  // console.log(posts)
   return (
     <Layout>
       <main className="bg-dark text-white max-w-screen-lg m-auto p-2 min-h-screen h-full overflow-x-hidden ">
         <h1 className="my-6">Blog</h1>
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {posts.map( postSummary => {
+          {posts.map((postSummary) => {
             return (
-              <Link href={`/blog/${postSummary.slug}`} passHref>
-                <PostCard postSummary={postSummary}/>
+              <Link href={`/blog/${postSummary.slug}`} passHref key={postSummary.slug}>
+                <a>
+                  <PostCard postSummary={postSummary} />
+                </a>
               </Link>
             );
           })}
@@ -27,7 +30,7 @@ export default BlogPage;
 
 export async function getStaticProps() {
   // const articles = await getAllArticles();
-  const articles:PostSummary[] = await getAllPosts('blog');
+  const articles: PostSummary[] = await getAllPosts('blog');
 
   articles
     .map((article) => article.data)
