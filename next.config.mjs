@@ -1,5 +1,5 @@
 import { env } from "./src/env/server.mjs";
-
+import { withContentlayer } from 'next-contentlayer'
 /**
  * Don't be scared of the generics here.
  * All they do is to give us autocompletion when using this.
@@ -12,7 +12,17 @@ function defineNextConfig(config) {
   return config;
 }
 
-export default defineNextConfig({
+// export default defineNextConfig({
+//   reactStrictMode: true,
+//   swcMinify: true,
+//   // Next.js i18n docs: https://nextjs.org/docs/advanced-features/i18n-routing
+//   i18n: {
+//     locales: ["en"],
+//     defaultLocale: "en",
+//   },
+// });
+
+export default withContentlayer({
   reactStrictMode: true,
   swcMinify: true,
   // Next.js i18n docs: https://nextjs.org/docs/advanced-features/i18n-routing
@@ -20,4 +30,4 @@ export default defineNextConfig({
     locales: ["en"],
     defaultLocale: "en",
   },
-});
+})
