@@ -1,13 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import rehypeSlug from 'rehype-slug';
-import { MDXRemote } from 'next-mdx-remote';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeCodeTitles from 'rehype-code-titles';
-import { serialize } from 'next-mdx-remote/serialize';
-import { getSlug, getPostFromSlug } from '../../utils/mdx';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Layout from '../../components/layout/Layout';
 import Link from 'next/link';
 import { BiTimeFive, BiArrowBack } from 'react-icons/bi';
@@ -18,7 +11,6 @@ import MDXComponents from '../../components/content/MDXComponents';
 import { allPosts, type Post } from 'contentlayer/generated';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import readingTime from 'reading-time';
 
 export const getStaticPaths = () => {
   return {
@@ -31,18 +23,18 @@ export const getStaticPaths = () => {
   };
 };
 
-export const getStaticProps = ({ params }: { params: any }) => {
-  const post = allPosts.find((post) => post.slug === params?.slug)!;
-  const time = readingTime(post?.body.raw).text;
+export const getStaticProps: GetStaticProps = ({ params }) => {
+  const post: Post = allPosts.find((post) => post.slug === params?.slug)!;
   return {
     props: {
       post,
-      time,
     },
   };
 };
 
-const PostPage: React.FC<{ post: any; time: string }> = ({ post, time }) => {
+const PostPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  post,
+}) => {
   const MDXContent = useMDXComponent(post.body.code);
   return (
     <Layout>
@@ -60,14 +52,14 @@ const PostPage: React.FC<{ post: any; time: string }> = ({ post, time }) => {
                 'transition-all, duration-75'
               )}
             />
-            <span>Back to Library</span>
+            <span> Back to Library </span>
           </h3>
         </Link>
         <h1 className="text-4xl my-2">{post.title}</h1>
         <div className="inline-flex items-center gap-8 my-2">
           <div className="inline-flex gap-1 items-center">
             <BiTimeFive className="text-xl" />
-            <Accent className="text-lg">{time}</Accent>
+            <Accent className="text-lg">{post.readingTime}</Accent>
           </div>
           <span className="text-lg">
             {dayjs(post.publishedAt).format('MMMM D, YYYY')}

@@ -1,4 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import readingTime from 'reading-time';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -13,14 +14,14 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
-    publishedAt : {
-        type:'string',
-        required:'true'
+    publishedAt: {
+      type: 'string',
+      required: 'true',
     },
-    description:{
-        type:'string',
-        required:'true'
-    }
+    description: {
+      type: 'string',
+      required: 'true',
+    },
   },
   computedFields: {
     slug: {
@@ -29,6 +30,10 @@ export const Post = defineDocumentType(() => ({
         post._raw.sourceFileName
           // hello-world.mdx => hello-world
           .replace(/\.mdx$/, ''),
+    },
+    readingTime: {
+      type: 'string',
+      resolve: (doc) => readingTime(doc.body.raw).text,
     },
   },
 }));

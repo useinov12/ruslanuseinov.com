@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Layout from '../../components/layout/Layout';
 import PostCard from '../../components/content/PostCard';
 import { allPosts, type Post } from 'contentlayer/generated';
-import readingTime from 'reading-time';
 
 export async function getStaticProps() {
   const posts = allPosts
@@ -19,7 +18,7 @@ export async function getStaticProps() {
         description: post.description,
         cover_image: '',
         slug: post.slug,
-        readingTime: readingTime(post?.body.raw).text,
+        readingTime: post.readingTime
       };
     });
 

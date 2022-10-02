@@ -11,7 +11,6 @@ import MDXComponents from '../../components/content/MDXComponents';
 import { allPosts, type Post } from 'contentlayer/generated';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import readingTime from 'reading-time';
 
 export const getStaticPaths = () => {
   return {
@@ -24,23 +23,18 @@ export const getStaticPaths = () => {
   };
 };
 
-export const getStaticProps = ({ params }: { params: any }) => {
-  const post = allPosts.find((post) => post.slug === params?.slug)!;
-  const time = readingTime(post?.body.raw).text;
+export const getStaticProps: GetStaticProps = ({ params }) => {
+  const post:Post = allPosts.find((post) => post.slug === params?.slug)!;
   return {
     props: {
       post,
-      time,
     },
   };
 };
 
-type Toc = {
-  text: string;
-  id: number;
-};
-
-const PostPage: React.FC<{ post: any; time: string }> = ({ post, time }) => {
+const PostPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  post,
+}) => {
   const MDXContent = useMDXComponent(post.body.code);
 
   return (
@@ -66,7 +60,7 @@ const PostPage: React.FC<{ post: any; time: string }> = ({ post, time }) => {
         <div className="inline-flex items-center gap-8 my-2">
           <div className="inline-flex gap-1 items-center">
             <BiTimeFive className="text-xl" />
-            <Accent className="text-lg">{time}</Accent>
+            <Accent className="text-lg">{post.readingTime}</Accent>
           </div>
           <span className="text-lg">
             {dayjs(post.publishedAt).format('MMMM D, YYYY')}
