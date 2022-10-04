@@ -8,7 +8,9 @@ const Layout: React.FC<{
   return (
     <>
       <Header />
-      <div className="">{children}</div>
+      <div className="bg-dark text-white max-w-screen-lg m-auto p-2 min-h-screen h-full">
+        {children}
+      </div>
     </>
   );
 };
