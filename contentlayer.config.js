@@ -1,14 +1,14 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import readingTime from 'reading-time';
+import rehypePrismPlus from 'rehype-prism-plus'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeSlug from 'rehype-slug'
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   contentType: 'mdx',
-  // Location of Post source files (relative to `contentDirPath`)
   filePathPattern: '*/*.mdx',
-  // At the time of writing, we also have to define the `fields`
-  // option to prevent an error on generation. We'll discuss
-  // this option later. For now, we'll add an empty object.
   fields: {
     title: {
       type: 'string',
@@ -39,7 +39,16 @@ export const Post = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  // Location of source files for all defined documentTypes
-  contentDirPath: './src/content',
+  contentDirPath: 'content',
   documentTypes: [Post],
+
+  mdx: {
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeAutolinkHeadings,
+      rehypeHighlight,
+      [rehypePrismPlus, { ignoreMissing: true,}],
+    ],
+  },
+
 });
