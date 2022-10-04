@@ -1,15 +1,20 @@
 import React from 'react';
+import {
+  NextPage,
+  type GetStaticProps,
+  type InferGetStaticPropsType,
+} from 'next';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import Layout from '../../components/layout/Layout';
 import Link from 'next/link';
 import { BiTimeFive, BiArrowBack } from 'react-icons/bi';
 import Accent from '../../components/Accent';
+import TableOfContents from 'src/components/TableOfContent';
 
 import MDXComponents from '../../components/content/MDXComponents';
 
 import { allPosts, type Post } from 'contentlayer/generated';
-import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 export const getStaticPaths = () => {
@@ -24,7 +29,7 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
-  const post:Post = allPosts.find((post) => post.slug === params?.slug)!;
+  const post: Post = allPosts.find((post) => post.slug === params?.slug)!;
   return {
     props: {
       post,
@@ -32,7 +37,7 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
   };
 };
 
-const PostPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
 }) => {
   const MDXContent = useMDXComponent(post.body.code);
@@ -66,10 +71,27 @@ const PostPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             {dayjs(post.publishedAt).format('MMMM D, YYYY')}
           </span>
         </div>
-        <div className="w-full h-[2px] bg-gray-500 rounded" />
-        <div className="">
-          <MDXContent components={MDXComponents} />
-        </div>
+        <div className="w-full h-[2px] my-4 bg-gray-500 rounded" />
+        <section
+          className={clsx(
+            'flex flex-col-reverse justify-between',
+            'md:flex-row'
+          )}
+        >
+          <article
+            className={clsx(
+              'pt-10 pb-8 pr-2 prose text-white',
+              'prose-slate prose-lg prose-ul:pl-14 prose-strong:font-medium',
+              'prose-headings:font-medium prose-headings:text-white prose-headings:uppercase '
+            )}
+          >
+            <MDXContent components={MDXComponents} />
+          </article>
+
+          <aside className="py-7 sticky top-16 self-start">
+            <TableOfContents post={post} />
+          </aside>
+        </section>
       </div>
     </Layout>
   );
