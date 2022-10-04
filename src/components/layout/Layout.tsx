@@ -8,7 +8,7 @@ const Layout: React.FC<{
   return (
     <>
       <Header />
-      <div className="overflow-x-hidden">{children}</div>
+      <div className="">{children}</div>
     </>
   );
 };
