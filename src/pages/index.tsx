@@ -20,24 +20,26 @@ const Home: NextPage = () => {
 
       <main
         className={clsx(
-          'flex flex-col justify-center max-w-screen-lg m-auto p-2', 
+          'flex flex-col justify-center max-w-screen-lg m-auto p-2',
           'w-screen min-h-[80vh]',
-          'bg-dark text-white  font-medium relative',
+          'bg-dark text-white  font-medium relative'
         )}
       >
         <div className="p-2 lg:p-0">
           <Accent
             className={clsx(
               'text-4xl md:text-6xl',
-              'font-bold text-gradient-to-tr from-primary-500 via-primary-400 to-white'
+              'font-bold text-gradient-to-tr from-primary-500 via-blue-500 to-primary-400',
+              'cursor-default'
             )}
           >
             <span>Front End Developer</span>
           </Accent>
-          <p className="text-xl md:text-2xl my-3">
+          <p className="text-xl md:text-2xl my-3 cursor-default">
             I love to create beautiful and performant web with delightful user
             experiences
           </p>
+          <div className="w-full h-1 my-4 bg-gray-300 rounded-lg" />
           <div className="flex">
             <Button className={clsx('text-xl')}>Read Blog</Button>
             <Button className={clsx('text-xl')}>About</Button>

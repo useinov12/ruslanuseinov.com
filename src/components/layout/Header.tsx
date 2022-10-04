@@ -86,14 +86,18 @@ const Header = () => {
             onClick={() => setIsOpen((p) => !p)}
             className="w-8 h-4 flex flex-col justify-between"
           >
-            <div className={clsx(
-              'w-full h-1 bg-white rounded transition-all',
-              isOpen ? 'translate-y-3 rotate-45' : '-translate-y-0'
-            )} />
-            <div className={clsx(
-              'w-full h-1 bg-white rounded transition-all',
-              isOpen ? 'translate-y-0 -rotate-45' : 'translate-y-1'
-            )} />
+            <div
+              className={clsx(
+                'w-full h-1 bg-white rounded transition-all',
+                isOpen ? 'translate-y-3 rotate-45' : '-translate-y-0'
+              )}
+            />
+            <div
+              className={clsx(
+                'w-full h-1 bg-white rounded transition-all',
+                isOpen ? 'translate-y-0 -rotate-45' : 'translate-y-1'
+              )}
+            />
           </button>
         </div>
       </div>

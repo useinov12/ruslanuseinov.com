@@ -65,7 +65,7 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 'transition-all duration-75'
               )}
             />
-            <span> Back to Library </span>
+            <span>Back to Library </span>
           </h3>
         </Link>
         <h1 className="text-4xl my-2">{post.title}</h1>

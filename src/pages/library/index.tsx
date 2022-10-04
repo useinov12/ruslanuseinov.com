@@ -7,23 +7,14 @@ import {
 import Layout from '../../components/layout/Layout';
 import Link from 'next/link';
 import PostCard from '../../components/content/PostCard';
+import Accent from 'src/components/Accent';
 
 import { allPosts, type Post } from 'contentlayer/generated';
 
 export async function getStaticProps() {
-  const posts = allPosts
-    .filter((post) => new RegExp(/^(library\/)/).exec(post._id))
-    .map((post) => {
-      return {
-        title: post.title,
-        publishedAt: post.publishedAt,
-        description: post.description,
-        cover_image: '',
-        slug: post.slug,
-        readingTime: post.readingTime
-      };
-    });
-
+  const posts = allPosts.filter((post) =>
+    new RegExp(/^(library\/)/).exec(post._id)
+  );
   return {
     props: {
       posts: posts,
@@ -31,12 +22,16 @@ export async function getStaticProps() {
   };
 }
 
-const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
-
+const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  posts,
+}) => {
   return (
     <Layout>
-      <main className="bg-dark text-white max-w-screen-lg m-auto p-2 min-h-screen h-full overflow-x-hidden ">
-        <h1 className="my-6">Collection of code snippets</h1>
+      <main>
+        <h1 className="my-4">
+          <Accent>Collection of code snippets</Accent>
+        </h1>
+        <div className="w-full h-1 my-4 bg-gray-300 rounded-lg" />
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {posts.map((postSummary) => {
             return (
