@@ -79,8 +79,8 @@ const AboutPage = () => {
         <section className=" my-2 flex flex-col justify-center  items-center">
           <h2>Favorite Tech Stack</h2>
           <ul className="inline-flex gap-2">
-            {techStack.map((Icon) => (
-              <li className="list-none py-2">
+            {techStack.map((Icon, i) => (
+              <li className="list-none py-2" key={i} >
                 <Icon
                   className={clsx(
                     'h-8 w-8 md:h-10 md:w-10',
@@ -96,8 +96,8 @@ const AboutPage = () => {
         <section className="my-2 flex flex-col justify-center  items-center">
           <h2>Contacts</h2>
           <ul className="inline-flex gap-2">
-            {contacts.map((Icon) => (
-              <li className="list-none py-2">
+            {contacts.map((Icon, i) => (
+              <li className="list-none py-2" key={i}>
                 <Icon
                   className={clsx(
                     'h-8 w-8 md:h-10 md:w-10',
