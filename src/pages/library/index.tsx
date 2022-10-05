@@ -29,9 +29,12 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <Layout>
       <main>
         <h1 className="my-4">
-          <Accent>Collection of code snippets</Accent>
+          <Accent>Library</Accent>
         </h1>
-        <div className="w-full h-1 my-4 bg-gray-300 rounded-lg" />
+        <h6 className="font-semibold text-xl text-gray-300">
+          Collection of code snippets
+        </h6>
+        <div className="w-full h-[1px] mb-8 mt-4 bg-gray-300 rounded-lg" />
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {posts.map((postSummary) => {
             return (

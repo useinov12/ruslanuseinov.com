@@ -7,7 +7,8 @@ import Button from '../components/Button';
 import UnstyledLink from '../components/UnstyledLink';
 
 import { IoNewspaperSharp } from 'react-icons/io5';
-import { SiGithub, SiTwitter } from 'react-icons/si';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
           <Accent
             className={clsx(
               'text-4xl md:text-6xl',
-              'font-bold text-gradient-to-tr from-primary-500 via-blue-500 to-primary-400',
+              'font-bold text-gradient-to-tr from-indigo-400 via-primary-500 to-primary-400',
               'cursor-default'
             )}
           >
@@ -41,8 +42,12 @@ const Home: NextPage = () => {
           </p>
           <div className="w-full h-1 my-4 bg-gray-300 rounded-lg" />
           <div className="flex">
-            <Button className={clsx('text-xl')}>Read Blog</Button>
-            <Button className={clsx('text-xl')}>About</Button>
+            <Link href="/blog">
+              <Button className={clsx('text-xl')}>Read Blog</Button>
+            </Link>
+            <Link href="/about">
+              <Button className={clsx('text-xl')}>About</Button>
+            </Link>
           </div>
           <div className="flex flex-wrap w-full">
             {linkList.map(({ text, path }) => (
@@ -80,17 +85,17 @@ const linkList = [
     ],
   },
   {
-    path: '/',
+    path: 'https://www.linkedin.com/in/ruslan-useinov-330b5a23a',
     text: [
-      <SiTwitter className="text-2xl" />,
-      <span className="text-lg">@ruslan_us</span>,
+      <SiLinkedin className="text-2xl" />,
+      <span className="text-lg">LinkedIn</span>,
     ],
   },
   {
-    path: '/',
+    path: 'https://github.com/useinov12',
     text: [
       <SiGithub className="text-2xl" />,
-      <span className="text-lg">useinov_12</span>,
+      <span className="text-lg">github.com/useinov12</span>,
     ],
   },
 ];
