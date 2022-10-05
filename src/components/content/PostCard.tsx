@@ -13,7 +13,7 @@ const PostCard: React.FC<{
   return (
     <div
       className={clsx(
-        'bg-white',
+        'bg-gray-300',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
         'p-[2px] mr-2 my-2 flex justify-center items-center',
         'hover:border-primary-500 transition-all duration-200',
@@ -21,7 +21,8 @@ const PostCard: React.FC<{
         'transition duration-25',
         'motion-reduce:hover:scale-100',
 
-        'w-full h-full min-h-[10rem]  md:min-h-[14rem] min-w-[18rem] rounded-md',
+        'w-full h-full min-h-[10rem] min-w-[18rem] rounded-md',
+        coverImage && 'min-h-[20rem]',
         'scale-100 hover:scale-[1.01] active:scale-[0.99] motion-safe:transform-gpu',
         'transition duration-100',
         'motion-reduce:hover:scale-100',
@@ -32,28 +33,35 @@ const PostCard: React.FC<{
         'group'
       )}
     >
-      <div className={clsx('py-1 rounded-md bg-dark w-full h-full')}>
+      <div
+        className={clsx(
+          'rounded-md bg-dark w-full h-full relative',
+          'overflow-hidden'
+        )}
+      >
         {coverImage && (
           <div
             className={clsx(
-              'w-full h-2/4 border-b border-b-white',
-              'group-hover:border-b-primary-500'
+              'w-full h-2/4 border-b-2 border-b-white',
+              'group-hover:border-b-primary-500 p-1',
+              'overflow-hidden',
+              'relative'
             )}
           >
             <Image
               src={coverImage}
               alt={title}
-              width={500}
-              height={270}
+              layout={'fill'}
+              objectFit={'cover'}
               className=""
             />
           </div>
         )}
-        <div className="p-2">
-          <h3 className="font-mono">{title}</h3>
-          <Accent className="my-2 font-medium">{readingTime}</Accent>
-          <p className="py-2">{description}</p>
-          <p className="">
+        <div className={clsx('p-2 flex flex-col', 'h-full')}>
+          <h4 className="font-mono">{title}</h4>
+          <Accent className="my-2 font-medium text-lg">{readingTime}</Accent>
+          <p className="py-2 text-gray-300">{description}</p>
+          <p className="fixed bottom-0 right-0 px-4 py-2">
             <Accent>{dayjs(publishedAt).format('MMMM D, YYYY')} </Accent>
           </p>
         </div>
