@@ -3,7 +3,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 
-const Header = () => {
+const Header:React.FC  = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
   const [onTop, setOnTop] = React.useState(true);
@@ -34,12 +34,13 @@ const Header = () => {
         'transition-shadow border border-transparent',
         'transition-all relative overflow-x-hidden',
         !onTop &&
-          'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border-b-gray-600 '
+          'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border-b-gray-300',
+        isOpen && 'overflow-y-hidden'
       )}
     >
       <div
         className={clsx(
-          'h-2 w-full bg-primary-500 border-t border-b border-primary-500',
+          'h-3 w-full bg-primary-500 border-t border-b border-primary-500',
           'relative',
           'before:absolute before:inset-0',
           'before:-translate-x-full',
@@ -53,13 +54,14 @@ const Header = () => {
           <h3
             className={clsx(
               'font-mono cursor-pointer transition-all text-xl sm:text-2xl ',
-              'hover:text-transparent bg-clip-text bg-gradient-to-tr from-primary-500  via-primary-400 to-white'
+              'hover:text-transparent bg-clip-text bg-gradient-to-tr from-primary-500  via-primary-500 to-primary-400'
             )}
           >
             Ruslan Useinov
           </h3>
         </Link>
 
+        {/* DESKTOP NAV */}
         <ul className={'hidden md:flex'}>
           {links.map(({ text, path }) => (
             <li
@@ -81,7 +83,8 @@ const Header = () => {
           ))}
         </ul>
 
-        <div className="md:hidden z-50">
+        {/* MOBILE NAV */}
+        <div className="z-50 md:hidden md:z-0 ">
           <button
             onClick={() => setIsOpen((p) => !p)}
             className="w-8 h-4 flex flex-col justify-between"
@@ -107,7 +110,7 @@ const Header = () => {
           'fixed inset-0 w-screen h-screen  z-40 overflow-y-hidden',
           'flex items-center justify-start px-8 transition-all duration-150',
           isOpen
-            ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 '
+            ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 scroll-y-none '
             : 'pointer-events-none opacity-0'
         )}
       >
@@ -117,7 +120,7 @@ const Header = () => {
               <li
                 key={text}
                 className={clsx(
-                  'mx-2 hover:text-primary-400 transition-all',
+                  'mx-2 hover:text-primary-500 transition-all',
                   'duration-100 hover:cursor-pointer'
                 )}
               >
