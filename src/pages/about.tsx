@@ -41,7 +41,7 @@ const AboutPage = () => {
       <div className="flex flex-col-reverse md:flex-row justify-between ">
         <section className="py-1 font-semibold text-lg">
           <p className="py-1">
-            Hi! I'm Ruslan. I started learning web development in 2021.
+            Hi! I&apos;m Ruslan. I started learning web development in 2021.
           </p>
           <p className="py-2">
             I have always been interested in how the Internet works, but I never
@@ -50,7 +50,7 @@ const AboutPage = () => {
           </p>
           <p className="py-2">
             At the time I start realizing that I want to have a career, but I
-            didn't have any idea in what field.
+            didn&apos;t have any idea in what field.
           </p>
           <p className="py-2">
             And my practice with Javascript leads me to dive deeper into web
