@@ -50,22 +50,26 @@ const Home: NextPage = () => {
             </Link>
           </div>
           <div className="flex flex-wrap w-full">
-            {linkList.map(({ text, path }) => (
-              <UnstyledLink
-                href={path}
-                className={clsx(
-                  'mr-4 my-2 inline-flex items-center gap-1 ',
-                  'text-gray-300 hover:text-white',
-                  'focus:outline-none',
-                  'transition-colors',
-                  'cursor-alias'
-                )}
-                onClick={() => {
-                  /*  */
-                }}
-              >
-                {text}
-              </UnstyledLink>
+            {linkList.map(({ text, path, Icon }) => (
+              <li key={text} className='list-none'>
+                <UnstyledLink
+                  href={path}
+                  className={clsx(
+                    'mr-4 my-2 inline-flex items-center gap-1 ',
+                    'text-gray-300 hover:text-white',
+                    'focus:outline-none',
+                    'transition-colors',
+                    'cursor-alias',
+                    'flex align-baseline'
+                  )}
+                  onClick={() => {
+                    /*  */
+                  }}
+                >
+                  <Icon className='text-3xl' />
+                  <span className="text-2xl">{text}</span>
+                </UnstyledLink>
+              </li>
             ))}
           </div>
         </div>
@@ -79,23 +83,17 @@ export default Home;
 const linkList = [
   {
     path: '/',
-    text: [
-      <IoNewspaperSharp className="text-2xl " />,
-      <span className="text-lg">Resume</span>,
-    ],
+    text: 'Resume',
+    Icon:IoNewspaperSharp
   },
   {
     path: 'https://www.linkedin.com/in/ruslan-useinov-330b5a23a',
-    text: [
-      <SiLinkedin className="text-2xl" />,
-      <span className="text-lg">LinkedIn</span>,
-    ],
+    text: 'LinkedIn',
+    Icon:SiLinkedin
   },
   {
     path: 'https://github.com/useinov12',
-    text: [
-      <SiGithub className="text-2xl" />,
-      <span className="text-lg">github.com/useinov12</span>,
-    ],
+    text:'github.com/useinov12',
+    Icon:SiGithub
   },
 ];
