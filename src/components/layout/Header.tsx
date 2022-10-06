@@ -3,7 +3,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 
-const Header:React.FC  = () => {
+const Header: React.FC = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
   const [onTop, setOnTop] = React.useState(true);
@@ -32,7 +32,8 @@ const Header:React.FC  = () => {
       className={clsx(
         'bg-dark text-white sticky top-0 z-50',
         'transition-shadow border border-transparent',
-        'transition-all relative overflow-x-hidden',
+        'transition-all overflow-x-hidden',
+        'relative',
         !onTop &&
           'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border-b-gray-300',
         isOpen && 'overflow-y-hidden'
@@ -84,7 +85,7 @@ const Header:React.FC  = () => {
         </ul>
 
         {/* MOBILE NAV */}
-        <div className="z-50 md:hidden md:z-0 ">
+        <div className={clsx('z-50 md:hidden md:z-0', isOpen && 'h-screen')}>
           <button
             onClick={() => setIsOpen((p) => !p)}
             className="w-8 h-4 flex flex-col justify-between"
@@ -107,7 +108,7 @@ const Header:React.FC  = () => {
 
       <div
         className={clsx(
-          'fixed inset-0 w-screen h-screen  z-40 overflow-y-hidden',
+          'absolute inset-0 w-screen h-screen  z-40 overflow-y-hidden',
           'flex items-center justify-start px-8 transition-all duration-150',
           isOpen
             ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 scroll-y-none '
