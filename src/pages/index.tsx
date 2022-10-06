@@ -21,8 +21,8 @@ const Home: NextPage = () => {
 
       <main
         className={clsx(
-          'flex flex-col justify-center max-w-screen-lg m-auto p-2',
-          'w-screen min-h-[80vh]',
+          'flex flex-col justify-center  m-auto p-2',
+          'w-full min-h-[80vh]',
           'bg-dark text-white  font-medium relative'
         )}
       >
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
           </div>
           <div className="flex flex-wrap w-full">
             {linkList.map(({ text, path, Icon }) => (
-              <li key={text} className='list-none'>
+              <li key={text} className="list-none">
                 <UnstyledLink
                   href={path}
                   className={clsx(
@@ -60,13 +60,13 @@ const Home: NextPage = () => {
                     'focus:outline-none',
                     'transition-colors',
                     'cursor-alias',
-                    'flex align-baseline'
+                    'flex'
                   )}
                   onClick={() => {
                     /*  */
                   }}
                 >
-                  <Icon className='text-3xl' />
+                  <Icon className="text-3xl" />
                   <span className="text-2xl">{text}</span>
                 </UnstyledLink>
               </li>
@@ -84,16 +84,16 @@ const linkList = [
   {
     path: '/',
     text: 'Resume',
-    Icon:IoNewspaperSharp
+    Icon: IoNewspaperSharp,
   },
   {
     path: 'https://www.linkedin.com/in/ruslan-useinov-330b5a23a',
     text: 'LinkedIn',
-    Icon:SiLinkedin
+    Icon: SiLinkedin,
   },
   {
     path: 'https://github.com/useinov12',
-    text:'github.com/useinov12',
-    Icon:SiGithub
+    text: 'github.com/useinov12',
+    Icon: SiGithub,
   },
 ];
