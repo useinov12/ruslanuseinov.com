@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 
 const Button: React.FC<{

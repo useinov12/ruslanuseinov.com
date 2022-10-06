@@ -1,16 +1,16 @@
 import clsx from 'clsx';
 import React from 'react';
 import GithubSlugger from 'github-slugger';
-import { allPosts, type Post } from 'contentlayer/generated';
+import {type Post } from 'contentlayer/generated';
 
 const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
   const headingLines = post.body.raw
     .split('\n')
-    .filter((line: any) => line.match(/^###*\s/));
+    .filter((line: string) => line.match(/^#*\s/));
 
   const headings = headingLines.map( (raw: any) => {
-    const text = raw.replace(/^###*\s/, '').trim();
-    const level = raw.slice(0, 3) === '###' ? 3 : 2;
+    const text = raw.replace(/^#*\s/, '').trim();
+    const level = raw.slice(0, 3) === '#' ? 3 : 2;
     const slugger = new GithubSlugger();
 
     return {
@@ -31,7 +31,7 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
             key={index}
             type="button"
             className={clsx(
-              `${heading.id === activeId ? 'text-primary-400' : 'text-gray-300'}`,
+              `${heading.id === activeId ? 'text-primary-500' : 'text-gray-300'}`,
               `${heading.level === 2 ? '' : 'hidden'} `,
               `mb-3 sm:text-md md:text-lg`,
               'whitespace-nowrap'
