@@ -56,7 +56,7 @@ const PostCard: React.FC<{
               className={clsx(
                 'scale-100 motion-reduce:hover:scale-100 ',
                 'group-hover:scale-[1.02]',
-                'transition duration-25',
+                'transition duration-25'
               )}
             />
           </div>
