@@ -44,7 +44,7 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <Layout>
-      <div className="text-white flex flex-col justify-center max-w-prose m-auto p-2">
+      <div className="text-white flex flex-col justify-center m-auto p-2">
         <Link href="/blog">
           <h3
             className={clsx(
