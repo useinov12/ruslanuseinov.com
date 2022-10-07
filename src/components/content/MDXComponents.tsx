@@ -8,7 +8,7 @@ const MDXComponents = {
   Image,
   Head,
   Footer,
-  a:(props:any)=> <a href={props.href} target='_blank'>{props.children}</a>
+  a:(props:any)=> <a href={props.href} target='_blank' rel="noreferrer" >{props.children}</a>
 };
 
 export default MDXComponents;
