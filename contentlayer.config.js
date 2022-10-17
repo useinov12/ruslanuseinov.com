@@ -1,9 +1,11 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import readingTime from 'reading-time';
-import rehypePrismPlus from 'rehype-prism-plus'
-import rehypeHighlight from 'rehype-highlight'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeSlug from 'rehype-slug'
+import rehypePrismPlus from 'rehype-prism-plus';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+import rehypeCodeTitles from 'rehype-code-titles';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -47,12 +49,13 @@ export default makeSource({
   documentTypes: [Post],
 
   mdx: {
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
+      rehypeCodeTitles,
       rehypeAutolinkHeadings,
       rehypeHighlight,
-      [rehypePrismPlus, { ignoreMissing: true,}],
+      [rehypePrismPlus, { ignoreMissing: true }],
     ],
   },
-
 });
