@@ -2,12 +2,32 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
+// Modify your tailwind.config.js
+const disabledCss = {
+  'code::before': false,
+  'code::after': false,
+  'blockquote p:first-of-type::before': false,
+  'blockquote p:last-of-type::after': false,
+  pre: false,
+  code: false,
+  'pre code': false,
+  'code::before': false,
+  'code::after': false,
+};
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
+      typography: {
+        DEFAULT: { css: disabledCss },
+        sm: { css: disabledCss },
+        lg: { css: disabledCss },
+        xl: { css: disabledCss },
+        '2xl': { css: disabledCss },
+      },
       fontFamily: {
         primary: ['Inter', ...fontFamily.sans],
       },
@@ -44,17 +64,17 @@ module.exports = {
             transform: 'rotate(-0.5deg)',
           },
         },
-        "shimmer": {
-          "0%": {
-            "transform": "translateX(-100%)",
+        shimmer: {
+          '0%': {
+            transform: 'translateX(-100%)',
           },
-          "70%": {
-            "transform": "translateX(20%)",
+          '70%': {
+            transform: 'translateX(20%)',
           },
-          "100%": {
-            "transform": "translateX(100%)",
+          '100%': {
+            transform: 'translateX(100%)',
           },
-        }
+        },
       },
       animation: {
         flicker: 'flicker 3s linear infinite',

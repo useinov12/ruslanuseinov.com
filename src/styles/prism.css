@@ -5,8 +5,18 @@
  * https://github.com/PrismJS/prism-themes
  */
 
+
+
+
 pre {
   overflow-x: auto;
+  background-color: rgb(17, 16, 26);
+  padding: 1rem;
+  /* border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem; */
+  border-radius: .25rem;
+
+  margin-bottom: 1rem;
 }
 
 /* Code title styles */
