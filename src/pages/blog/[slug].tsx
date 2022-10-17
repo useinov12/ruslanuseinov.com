@@ -81,8 +81,14 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <article
             className={clsx(
               'pt-10 pb-8 pr-2 prose text-white',
-              'prose-slate prose-lg prose-ul:pl-14 prose-strong:font-medium',
-              'prose-headings:font-medium prose-headings:text-white prose-headings:uppercase '
+              'prose-lg prose-ul:pl-14 prose-strong:font-medium',
+              'prose-headings:font-medium prose-headings:text-white',
+              'prose-blockquote:text-white',
+              'prose-strong:text-white',
+              'md:w-9/12',
+              'prose-code:text-white',
+              'prose-a:text-white',
+              'prose-a:text-primary-500'
             )}
           >
             <MDXContent components={MDXComponents} />
