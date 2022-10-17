@@ -6,11 +6,10 @@ import { type Post } from 'contentlayer/generated';
 const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
   const headingLines = post.body.raw
     .split('\n')
-    .filter((line: string) => line.match(/^##\s/));
+    .filter((line: string) => line.match(/^##*\s/));
 
   const headings = headingLines.map((raw: any) => {
-    console.log(raw)
-    const text = raw.replace(/^##\s/, '').trim();
+    const text = raw.replace(/^#*\s/, '').trim();
     const level = raw.slice(0, 3) === '#' ? 3 : 2;
     const slugger = new GithubSlugger();
 
@@ -24,7 +23,7 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
   const [activeId, setActiveId] = React.useState<string>();
 
   return (
-    <div className=" flex flex-col items-start mt-4 mb-0 ml-4 cursor-pointer ">
+    <div className=" flex flex-col items-start mt-4 mb-0 ml-4 cursor-pointer  ">
       <h3 className="mb-4 font-mono text-xl">Table of Content</h3>
       {headings.map((heading, index) => {
         return (
