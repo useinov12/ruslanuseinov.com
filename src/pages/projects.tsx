@@ -36,7 +36,7 @@ const ProjectPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <Accent>Projects</Accent>
         </h1>
         <h6 className="font-semibold text-xl text-gray-300" data-fade="2">
-          Showcase of my works on frontend development
+          Showcase of my works
         </h6>
         <div className="w-full h-[1px] mb-8 mt-4 bg-gray-300 rounded-lg" data-fade="3"/>
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-fade="4">

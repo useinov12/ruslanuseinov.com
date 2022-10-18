@@ -1,0 +1,39 @@
+---
+title: 'Absolute imports Next JS'
+publishedAt: '2022-04-16'
+description: 'Set up absolute import for your project'
+coverImage: ''
+---
+
+## Absolute imports
+
+> To remove visual clutter of relative paths.
+
+Instead of using relative import paths in each components
+
+```javascript showLineNumbers
+import User from '../../components/User';
+```
+
+Use absolute imports
+
+```javascript showLineNumbers
+import User from '@/components/User';
+```
+
+## tsconfig.json
+
+Add **baseUrl** and **paths** options to your config file.
+
+```json:tsconfig.json {3-6} showLineNumbers
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    }
+  }
+}
+```
+
+Now you can use **'@/'** as prefix to path with **src** as your base folder.
