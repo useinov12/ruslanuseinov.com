@@ -45,11 +45,11 @@ body {
   }
 
   ::selection {
-    background: rgba(var(--tw-clr-primary-300) / 0.3);
+    background: rgba(var(--tw-clr-primary-500) / 0.3);
   }
 
   .cursor-newtab {
-    cursor: url('/images/new-tab.png') 10 10, pointer;
+    /* cursor: url('/images/new-tab.png') 10 10, pointer; */
   }
 
   /* #region  /**=========== Default Typography =========== */
@@ -103,7 +103,7 @@ body {
 @layer utilities {
   .animated-underline {
     background-image: linear-gradient(#33333300, #33333300),
-      linear-gradient(to right, var(--clr-primary-300), var(--clr-primary-400));
+      linear-gradient(to right, var(--clr-primary-500), var(--clr-primary-400));
     background-size: 100% 2px, 0 2px;
     background-position: 100% 100%, 0 100%;
     background-repeat: no-repeat;

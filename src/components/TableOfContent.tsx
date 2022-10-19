@@ -23,7 +23,7 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
   const [activeId, setActiveId] = React.useState<string>();
 
   return (
-    <div className=" flex flex-col items-start mt-4 mb-0 ml-4 cursor-pointer  ">
+    <div className="flex flex-col items-start mt-4 mb-0 ml-4 cursor-pointer">
       <h3 className="mb-4 font-mono text-xl">Table of Content</h3>
       {headings.map((heading, index) => {
         return (
@@ -31,12 +31,14 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
             key={index}
             type="button"
             className={clsx(
-              `${
-                heading.id === activeId ? 'text-primary-500' : 'text-gray-300'
-              }`,
-              `${heading.level === 2 ? '' : 'hidden'} `,
-              `mb-3 sm:text-md md:text-lg`,
-              'whitespace-nowrap'
+              `w-full mb-1`,
+              'text-left text-gray-300 pl-2',
+              'sm:text-md md:text-lg font-mono',
+              'whitespace-nowrap',
+              heading.id === activeId
+                ? 'border-l-4 border-primary-500 bg-primary-500/20'
+                : ' border-l-4 border-transparent'
+              // heading.level === 2 ? '' : 'hidden'
             )}
             onClick={(e) => {
               e.preventDefault();
