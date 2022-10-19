@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import Link from 'next/link';
-import dayjs from 'dayjs';
 import clsx from 'clsx';
 
 import Accent from '../components/Accent';
