@@ -50,7 +50,7 @@ const Header: React.FC = () => {
           'before:from-transparent before:via-white before:to-transparent'
         )}
       />
-      <div className="flex items-center justify-between max-w-screen-lg mx-auto px-6 md:px-2 py-4 ">
+      <div className="flex items-center justify-between max-w-screen-lg mx-auto px-6 md:px-0 py-4 ">
         <Link href={'/'}>
           <h3
             className={clsx(
