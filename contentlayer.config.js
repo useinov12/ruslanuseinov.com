@@ -6,6 +6,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import rehypeCodeTitles from 'rehype-code-titles';
+import rehypeAccessibleEmojis from 'rehype-accessible-emojis';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -54,6 +55,7 @@ export default makeSource({
       rehypeSlug,
       rehypeCodeTitles,
       rehypeAutolinkHeadings,
+      rehypeAccessibleEmojis,
       rehypeHighlight,
       [rehypePrismPlus, { ignoreMissing: true }],
     ],
