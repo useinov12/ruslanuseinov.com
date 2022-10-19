@@ -34,6 +34,7 @@ const PostContent: React.FC<{
             'prose-lg prose-ul:pl-14 prose-strong:font-medium',
             'prose-headings:font-medium prose-headings:text-white',
             'prose-blockquote:text-white',
+            'prose-blockquote:border-l-primary-500',
             'prose-strong:text-white',
             'md:w-9/12',
             'prose-code:text-white',
