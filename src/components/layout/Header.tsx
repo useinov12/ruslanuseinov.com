@@ -33,7 +33,7 @@ const Header: React.FC = () => {
         'bg-dark text-white sticky top-0 z-50',
         'transition-shadow border border-transparent',
         'transition-all overflow-x-hidden',
-        'relative',
+        'relative overflow-y-hidden',
         !onTop &&
           'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border-b-gray-300',
         isOpen && 'overflow-y-hidden'
