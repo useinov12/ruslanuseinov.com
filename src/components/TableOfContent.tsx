@@ -35,6 +35,7 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
               'text-left text-gray-300 pl-2',
               'sm:text-md md:text-lg font-mono',
               'whitespace-nowrap',
+              'hover:bg-primary-500/20',
               heading.id === activeId
                 ? 'border-l-4 border-primary-500 bg-primary-500/20'
                 : ' border-l-4 border-transparent'
