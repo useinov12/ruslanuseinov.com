@@ -17,7 +17,8 @@ const Layout: React.FC<{
           className={clsx(
             'relatve',
             'max-w-screen-lg',
-            'm-auto min-h-[90vh] h-full',
+            'm-auto h-full',
+            'min-h-[90vh]',
             'bg-dark text-white',
             'px-3 lg:px-0'
           )}
