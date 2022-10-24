@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
+import logo from '../../../public/favicon/logo-2.png';
+import Image from 'next/image';
 
 const Header: React.FC = () => {
   const router = useRouter();
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isMobileNavOpen, setMobileNavOpen] = React.useState(false);
   const [onTop, setOnTop] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState('/');
 
@@ -20,12 +22,12 @@ const Header: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
-    if (isOpen) setIsOpen(false);
-  }, [router.pathname]);
+    if (isMobileNavOpen) setMobileNavOpen(false);
+  }, [router.asPath]);
 
   React.useEffect(() => {
-    setCurrentPage(router.pathname);
-  }, [router.pathname]);
+    setCurrentPage(router.asPath);
+  }, [router.asPath]);
 
   return (
     <nav
@@ -35,13 +37,13 @@ const Header: React.FC = () => {
         'transition-all overflow-x-hidden',
         'relative overflow-y-hidden',
         !onTop &&
-          'bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border-b-gray-300',
-        isOpen && 'overflow-y-hidden'
+          'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-50 ',
+        isMobileNavOpen && 'overflow-y-hidden'
       )}
     >
       <div
         className={clsx(
-          'h-3 w-full bg-primary-500 border-t border-b border-primary-500',
+          'h-1 w-full bg-primary-500',
           'relative',
           'before:absolute before:inset-0',
           'before:-translate-x-full',
@@ -50,18 +52,15 @@ const Header: React.FC = () => {
           'before:from-transparent before:via-white before:to-transparent'
         )}
       />
-      <div className="flex items-center justify-between max-w-screen-lg mx-auto px-6 md:px-0 py-4 ">
+      <div className="flex items-center justify-between max-w-screen-lg mx-auto px-6 lg:px-0 py-4 ">
         <Link href={'/'}>
-          <h3
-            className={clsx(
-              'font-mono cursor-pointer transition-all text-xl sm:text-2xl ',
-              'hover:text-transparent bg-clip-text bg-gradient-to-tr from-primary-500  via-primary-500 to-primary-400'
-            )}
-          >
-            Ruslan Useinov
-          </h3>
+          <Image
+            src={logo}
+            width={70}
+            height={70}
+            className={clsx(' cursor-pointer transition-all')}
+          />
         </Link>
-
         {/* DESKTOP NAV */}
         <ul className={'hidden md:flex'}>
           {links.map(({ text, path }) => (
@@ -85,32 +84,42 @@ const Header: React.FC = () => {
         </ul>
 
         {/* MOBILE NAV */}
-        <div className={clsx('z-50 md:hidden md:z-0', isOpen && 'h-screen')}>
+        <div
+          className={clsx(
+            'z-50 md:hidden md:z-0',
+            isMobileNavOpen && 'h-screen'
+          )}
+        >
+          
           <button
-            onClick={() => setIsOpen((p) => !p)}
-            className="w-8 h-4 flex flex-col justify-between"
+            onClick={() => setMobileNavOpen((p) => !p)}
+            className={clsx(
+              'w-8 h-4 flex flex-col justify-between',
+              isMobileNavOpen && 'translate-y-6'
+            )}
           >
             <div
               className={clsx(
                 'w-full h-1 bg-white rounded transition-all',
-                isOpen ? 'translate-y-3 rotate-45' : '-translate-y-0'
+                isMobileNavOpen ? 'translate-y-3 rotate-45' : '-translate-y-0'
               )}
             />
             <div
               className={clsx(
                 'w-full h-1 bg-white rounded transition-all',
-                isOpen ? 'translate-y-0 -rotate-45' : 'translate-y-1'
+                isMobileNavOpen ? 'translate-y-0 -rotate-45' : 'translate-y-1'
               )}
             />
           </button>
         </div>
       </div>
+      
 
       <div
         className={clsx(
           'absolute inset-0 w-screen h-screen  z-40 overflow-y-hidden',
           'flex items-center justify-start px-8 transition-all duration-150',
-          isOpen
+          isMobileNavOpen
             ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 scroll-y-none '
             : 'pointer-events-none opacity-0'
         )}
