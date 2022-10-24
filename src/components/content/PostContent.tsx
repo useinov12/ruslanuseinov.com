@@ -31,15 +31,18 @@ const PostContent: React.FC<{
         <article
           className={clsx(
             'pt-10 pb-8 pr-2 prose text-white',
-            'prose-lg prose-ul:pl-14 prose-strong:font-medium',
+            'prose-md prose-ul:pl-7 prose-strong:font-medium',
             'prose-headings:font-medium prose-headings:text-white',
+            'prose-p:my-2',
+            'prose-blockquote:m-0',
             'prose-blockquote:text-white',
             'prose-blockquote:border-l-primary-500',
             'prose-strong:text-white',
             'md:w-9/12',
             'prose-code:text-white',
             'prose-a:text-white',
-            'prose-a:text-primary-500'
+            'prose-a:text-primary-500',
+            'prose-li:m-0'
           )}
         >
           <MDXContent components={MDXComponents} />

@@ -79,7 +79,7 @@ module.exports = {
       animation: {
         flicker: 'flicker 3s linear infinite',
         tilt: 'tilt 10s infinite linear',
-        shimmer: 'shimmer 4s infinite linear',
+        shimmer: 'shimmer 650ms ease-out',
       },
     },
   },

@@ -17,7 +17,7 @@ const PostCard: React.FC<{
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
         'p-[2px] mr-2 my-2 flex justify-center items-center',
         'hover:border-primary-500 transition-all duration-200',
-        'scale-100 hover:scale-[1.02] active:scale-[0.97] motion-safe:transform-gpu',
+        'scale-100 hover:scale-[1.005] active:scale-[0.995] motion-safe:transform-gpu',
         'transition duration-25',
         'motion-reduce:hover:scale-100',
 
@@ -63,10 +63,12 @@ const PostCard: React.FC<{
         )}
         <div className={clsx('p-2 flex flex-col', 'h-full')}>
           <h4 className="font-mono">{title}</h4>
-          <Accent className="my-2 font-medium text-lg">{readingTime}</Accent>
+          <p className="my-2 font-medium text-lg text-primary-500">
+            {readingTime}
+          </p>
           <p className="py-2 text-gray-300">{description}</p>
-          <p className="fixed bottom-0 right-0 px-4 py-2">
-            <Accent>{dayjs(publishedAt).format('MMMM D, YYYY')} </Accent>
+          <p className="fixed bottom-0 right-0 px-4 py-2 text-primary-500">
+            {dayjs(publishedAt).format('MMMM D, YYYY')}
           </p>
         </div>
       </div>
