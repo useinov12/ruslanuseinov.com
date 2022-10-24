@@ -10,6 +10,7 @@ import { allPosts, type Post } from 'contentlayer/generated';
 import Accent from 'src/components/Accent';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
+import Seo from 'src/components/Seo';
 export async function getStaticProps() {
   const posts = allPosts.filter((post) =>
     new RegExp(/^(blog\/)/).exec(post._id)
@@ -27,9 +28,10 @@ const BlogPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const isLoaded = useLoaded();
   return (
     <Layout>
+      <Seo/>
       <main className={clsx(isLoaded && 'fade-in-start')}>
-        <h1 className="my-4" data-fade="1">
-          <Accent>Blog</Accent>
+        <h1 className="my-4 font-mono text-primary-500" data-fade="1">
+          Blog
         </h1>
         <h6 className="font-semibold text-xl text-gray-300" data-fade="2">
           For patterns, tutorials and my setups
