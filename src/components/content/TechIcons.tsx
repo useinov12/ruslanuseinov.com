@@ -18,7 +18,8 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
-import contentlayerimg from '../../../public/assets/contentlayerimg.png';
+// import contentlayerimg from '../../../public/assets/contentlayerimg.png';
+import contentlayerimg from './contentlayerimg.png';
 import Image from 'next/image';
 
 import Tooltip from '../Tooltip';
