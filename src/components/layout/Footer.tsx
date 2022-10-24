@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import UnstyledLink from '../UnstyledLink';
+import Accent from '../Accent';
+import Tooltip from '../Tooltip';
 
 const Footer: React.FC = () => {
   return (
@@ -28,16 +30,28 @@ const Footer: React.FC = () => {
           </UnstyledLink>
         </li>
         <li>
-          <UnstyledLink
-            href="/"
-            className={clsx(
-              'text-gray-300 hover:text-white',
-              'focus:outline-none',
-              'transition-colors'
-            )}
+          <Tooltip
+            interactive
+            hideOnClick={false}
+            content={
+              <div className="text-lg font-bold">
+                <p id="email-tooltip-text-footer">Click to copy</p>
+                <Accent className="font-bold">me@ruslan-useinov.com</Accent>
+              </div>
+            }
           >
-            <h4>Email</h4>
-          </UnstyledLink>
+            <h4
+              className="cursor-pointer text-gray-300 hover:text-white"
+              onClick={() =>
+                copyToClipboard({
+                  text: 'me@ruslan-useinov.com',
+                  id: 'email-tooltip-text-footer',
+                })
+              }
+            >
+              Email
+            </h4>
+          </Tooltip>
         </li>
         <li>
           <UnstyledLink
@@ -45,7 +59,6 @@ const Footer: React.FC = () => {
             className={clsx(
               'text-gray-300 hover:text-white',
               'focus:outline-none',
-              'transition-colors',
               'cursor-alias'
             )}
           >
@@ -58,7 +71,6 @@ const Footer: React.FC = () => {
             className={clsx(
               'text-gray-300 hover:text-white',
               'focus:outline-none',
-              'transition-colors',
               'cursor-alias'
             )}
           >
@@ -80,3 +92,27 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+function copyToClipboard({ text, id }: { text: string; id: string }) {
+  const htmlMessage = document.querySelector(`#${id}`);
+  const initialMessage = htmlMessage?.textContent!;
+
+  navigator.clipboard.writeText(text).then(
+    () => {
+      if (htmlMessage) {
+        htmlMessage.textContent = 'Copied!';
+        setTimeout(() => {
+          htmlMessage.textContent = initialMessage;
+        }, 1500);
+      }
+    },
+    () => {
+      if (htmlMessage) {
+        htmlMessage.textContent = 'Something happened... try to copy again';
+        setTimeout(() => {
+          htmlMessage.textContent = initialMessage;
+        }, 1500);
+      }
+    }
+  );
+}

@@ -7,6 +7,8 @@ import superjson from "superjson";
 import type { AppRouter } from "../server/router";
 import "../styles/globals.css";
 import "../styles/prism.css";
+import "../styles/fonts.css";
+import 'react-tippy/dist/tippy.css'
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
