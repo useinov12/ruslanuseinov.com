@@ -96,7 +96,7 @@ export default Footer;
 
 function copyToClipboard({ text, id }: { text: string; id: string }) {
   const htmlMessage = document.querySelector(`#${id}`);
-  const initialMessage = htmlMessage?.textContent!;
+  const initialMessage:string |null = htmlMessage!.textContent;
 
   navigator.clipboard.writeText(text).then(
     () => {
