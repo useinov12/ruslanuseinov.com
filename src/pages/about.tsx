@@ -6,13 +6,30 @@ import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
 import TechStack from 'src/components/TechStack';
 import Contacts from 'src/components/Contacts';
-import Seo from 'src/components/Seo';
+import { NextSeo } from 'next-seo';
 
 const AboutPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      {/* <Seo/>s */}
+      <NextSeo
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://ruslan-useinov.com',
+          siteName: 'ruslan-useinov.com',
+          images: [
+            {
+              url: 'https://ruslan-useinov.com/favicon/og-about.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Og Image Alt',
+              type: 'image/jpg',
+            },
+          ],
+        }}
+        twitter={{ cardType: 'summary_large_image' }}
+      />
       <main className={clsx(isLoaded && 'fade-in-start')}>
         <h1 className="mb-8 mt-4 font-mono text-primary-500" data-fade="1">
           About

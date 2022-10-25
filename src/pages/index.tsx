@@ -11,10 +11,30 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
 
+import { NextSeo } from 'next-seo';
+
 const Home: NextPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
+      <NextSeo
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://ruslan-useinov.com',
+          siteName: 'ruslan-useinov.com',
+          images: [
+            {
+              url: 'https://ruslan-useinov.com/favicon/og-default.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Og Image Alt',
+              type: 'image/jpg',
+            },
+          ],
+        }}
+        twitter={{ cardType: 'summary_large_image' }}
+      />
       <main
         className={clsx(
           'max-w-screen-lg',
