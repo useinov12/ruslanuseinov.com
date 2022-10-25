@@ -1,5 +1,5 @@
 export default {
-  title: 'Ruslan Useinov',
+  title: 'Ruslan Useinov - Personal Blog',
   description:
   'An online portfolio and blog by Ruslan Useinov. Showcase of my projects, and some of my notes about website development.',
   openGraph: {
@@ -19,8 +19,8 @@ export default {
     ],
   },
   twitter: {
-    handle: '@handle',
-    site: '@site',
+    // handle: '@handle',
+    // site: '@site',
     cardType: 'summary_large_image',
   },
 };
