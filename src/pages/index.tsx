@@ -10,7 +10,6 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
-import Seo from 'src/components/Seo';
 
 import SEO from '../../next-seo.config';
 import { DefaultSeo } from 'next-seo';
@@ -19,7 +18,12 @@ const Home: NextPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      <DefaultSeo {...SEO}/>
+      <DefaultSeo 
+        {
+          ...SEO, 
+          title: 'Ruslan Useinov - Home page'
+        }
+      />
       <main
         className={clsx(
           'max-w-screen-lg',

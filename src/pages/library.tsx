@@ -31,7 +31,7 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const isLoaded = useLoaded();
   return (
     <Layout>
-      <Seo/>
+      {/* <Seo/> */}
       <main className={clsx(isLoaded && 'fade-in-start')}>
         <h1 className="my-4 font-mono text-primary-500" data-fade="1">
           Library

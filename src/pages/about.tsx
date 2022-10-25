@@ -12,7 +12,7 @@ const AboutPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      <Seo/>
+      {/* <Seo/>s */}
       <main className={clsx(isLoaded && 'fade-in-start')}>
         <h1 className="mb-8 mt-4 font-mono text-primary-500" data-fade="1">
           About
