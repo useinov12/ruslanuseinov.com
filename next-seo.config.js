@@ -1,8 +1,8 @@
 export default {
+  title: 'Ruslan Useinov',
+  description:
+  'An online portfolio and blog by Ruslan Useinov. Showcase of my projects, and some of my notes about website development.',
   openGraph: {
-    title: 'Ruslan Useinov',
-    description:
-    'An online portfolio and blog by Ruslan Useinov. Showcase of my projects, and some of my notes about website development.',
     type: 'website',
     locale: 'en_IE',
     url: 'https://ruslan-useinov.com',
