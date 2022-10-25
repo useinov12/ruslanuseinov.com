@@ -45,7 +45,7 @@ export default function Seo(props: SeoProps) {
       <meta property="og:site_name" content={meta.siteName} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:title" content={meta.title} />
-      <meta name="image" property="og:image" content={`https://ruslan-useinov.com/favicon/og.png`} />
+      <meta name="image" property="og:image" content={`https://ruslan-useinov.com/favicon/og.jpg`} />
 
       {/* Favicons */}
       <meta name="msapplication-TileColor" content="#ffffff" />
