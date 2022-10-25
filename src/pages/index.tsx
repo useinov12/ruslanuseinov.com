@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           url: 'https://ruslan-useinov.com/',
           siteName: 'ruslan-useinov.com',
           images:[{
-            url: 'https://ruslan-useinov.com/favicon/og.jpg',
+            url: '/favicon/og.jpg',
             width: 800,
             height: 600,
             alt: 'Og Image Alt',
