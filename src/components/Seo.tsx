@@ -30,14 +30,12 @@ export default function Seo(props: SeoProps) {
     ? `${props.templateTitle} | ${meta.siteName}`
     : meta.title;
 
-
   return (
     <Head>
       <title>{meta.title}</title>
       <meta name="robots" content={meta.robots} />
       <meta content={meta.description} name="description" />
       <meta property="og:url" content={`${meta.url}${router.asPath}`} />
-      {/* <meta property="og:image" content={`${meta.url}/favicon/og.png`} /> */}
       <link rel="canonical" href={`${meta.url}${router.asPath}`} />
 
       {/* Open Graph */}
@@ -45,7 +43,7 @@ export default function Seo(props: SeoProps) {
       <meta property="og:site_name" content={meta.siteName} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:title" content={meta.title} />
-      <meta name="image" property="og:image" content={`https://ruslan-useinov.com/favicon/og.jpg`} />
+      <meta name="image" property="og:image" content={`${meta.url}/favicon/og-1.jpg`} />
 
       {/* Favicons */}
       <meta name="msapplication-TileColor" content="#ffffff" />
