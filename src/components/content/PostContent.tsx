@@ -48,7 +48,7 @@ const PostContent: React.FC<{
           <MDXContent components={MDXComponents} />
         </article>
 
-        <aside className="py-7 sticky top-16 self-start md:w-3/12">
+        <aside className="py-7 lg:sticky top-16 self-start md:w-3/12">
           <TableOfContents post={post} />
         </aside>
       </section>
