@@ -11,14 +11,10 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
 
-import SEO from '../../next-seo.config';
-import { DefaultSeo } from 'next-seo';
-
 const Home: NextPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      <DefaultSeo/>
       <main
         className={clsx(
           'max-w-screen-lg',
