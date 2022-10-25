@@ -10,7 +10,7 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
-import Seo from 'src/components/Seo';
+// import Seo from 'src/components/Seo';
 
 import { DefaultSeo } from 'next-seo';
 
@@ -21,7 +21,20 @@ const Home: NextPage = () => {
       {/* <Seo/> */}
       <DefaultSeo
         title="Ruslan Useinov"
-        description="An online portfolio and blog by Ruslan Useinov. Showcase of my projects, and some of my notes about website development."
+        description="An online portfolio and blog by Ruslan Useinov."
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://ruslan-useinov.com/',
+          siteName: 'ruslan-useinov.com',
+          images:[{
+            url: 'https://ruslan-useinov.com/favicon/og.jpg',
+            width: 800,
+            height: 600,
+            alt: 'Og Image Alt',
+            type: 'image/jpeg',
+          }]
+        }}
       />
       <main
         className={clsx(
