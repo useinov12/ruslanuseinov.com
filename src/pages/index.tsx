@@ -10,32 +10,16 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
-// import Seo from 'src/components/Seo';
+import Seo from 'src/components/Seo';
 
+import SEO from '../../next-seo.config';
 import { DefaultSeo } from 'next-seo';
 
 const Home: NextPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      {/* <Seo/> */}
-      <DefaultSeo
-        title="Ruslan Useinov"
-        description="An online portfolio and blog by Ruslan Useinov."
-        openGraph={{
-          type: 'website',
-          locale: 'en_IE',
-          url: 'https://ruslan-useinov.com/',
-          siteName: 'ruslan-useinov.com',
-          images:[{
-            url: '/favicon/og.jpg',
-            width: 1200,
-            height: 630,
-            alt: 'Og Image Alt',
-            type: 'image/jpg',
-          }]
-        }}
-      />
+      <DefaultSeo {...SEO}/>
       <main
         className={clsx(
           'max-w-screen-lg',
