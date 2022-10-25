@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-// import { openGraph } from '@/lib/helper';
-
 const defaultMeta = {
   title: 'Ruslan Useinov',
   siteName: 'ruslan-useinov.com',
@@ -32,16 +30,6 @@ export default function Seo(props: SeoProps) {
     ? `${props.templateTitle} | ${meta.siteName}`
     : meta.title;
 
-  // Use siteName if there is templateTitle
-  // but show full title if there is none
-
-  /* meta.image = openGraph({
-    description: meta.description,
-    siteName: props.templateTitle ? meta.siteName : meta.title,
-    templateTitle: props.templateTitle,
-    banner: props.banner,
-    isBlog: props.isBlog,
-  }); */
 
   return (
     <Head>
@@ -49,14 +37,15 @@ export default function Seo(props: SeoProps) {
         <meta name="robots" content={meta.robots} />
         <meta content={meta.description} name="description" />
         <meta property="og:url" content={`${meta.url}${router.asPath}`} />
+        {/* <meta property="og:image" content={`${meta.url}/favicon/og.png`} /> */}
         <link rel="canonical" href={`${meta.url}${router.asPath}`} />
 
         {/* Open Graph */}
-        {/* <meta property="og:type" content={meta.type} />
+        <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content={meta.siteName} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
-        <meta name="image" property="og:image" content={meta.image} /> */}
+        <meta name="image" property="og:image" content={`${meta.url}/favicon/og.png`} />
 
         {/* Favicons */}
         <meta name="msapplication-TileColor" content="#ffffff" />
