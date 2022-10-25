@@ -35,11 +35,11 @@ const ProjectPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           siteName: 'ruslan-useinov.com',
           images: [
             {
-              url: 'https://ruslan-useinov.com/favicon/og-projects.jpg',
+              url: 'https://ruslan-useinov.com/favicon/og-projects.png',
               width: 1200,
               height: 630,
               alt: 'Og Image Alt',
-              type: 'image/jpg',
+              type: 'image/png',
             },
           ],
         }}

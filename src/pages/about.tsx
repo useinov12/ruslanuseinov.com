@@ -20,11 +20,11 @@ const AboutPage = () => {
           siteName: 'ruslan-useinov.com',
           images: [
             {
-              url: 'https://ruslan-useinov.com/favicon/og-about.jpg',
+              url: 'https://ruslan-useinov.com/favicon/og-about.png',
               width: 1200,
               height: 630,
               alt: 'Og Image Alt',
-              type: 'image/jpg',
+              type: 'image/png',
             },
           ],
         }}

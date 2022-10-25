@@ -10,11 +10,11 @@ export default {
     robots: 'follow, index',
     images: [
       {
-        url: 'https://ruslan-useinov.com/favicon/og-default.jpg',
+        url: 'https://ruslan-useinov.com/favicon/og-default.png',
         width: 1200,
         height: 630,
         alt: 'Og Image Alt',
-        type: 'image/jpg',
+        type: 'image/png',
       },
     ],
   },
