@@ -18,12 +18,7 @@ const Home: NextPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      <DefaultSeo 
-        {
-          ...SEO, 
-          title: 'Ruslan Useinov - Home page'
-        }
-      />
+      <DefaultSeo/>
       <main
         className={clsx(
           'max-w-screen-lg',
