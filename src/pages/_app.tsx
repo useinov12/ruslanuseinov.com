@@ -8,6 +8,7 @@ import type { AppRouter } from "../server/router";
 import "../styles/globals.css";
 import "../styles/prism.css";
 import 'react-tippy/dist/tippy.css'
+import '../../next-seo.config'
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;

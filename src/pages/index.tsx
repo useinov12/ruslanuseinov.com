@@ -12,17 +12,17 @@ import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
 import Seo from 'src/components/Seo';
 
+import { DefaultSeo } from 'next-seo';
+
 const Home: NextPage = () => {
   const isLoaded = useLoaded();
   return (
     <Layout>
-      <Seo/>
-      {/* <Head>
-        <title>RuslanUseinov</title>
-        <meta name="description" content="Ruslan Useinov persoanl blog about web developement" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head> */}
-
+      {/* <Seo/> */}
+      <DefaultSeo
+        title="Ruslan Useinov"
+        description="An online portfolio and blog by Ruslan Useinov. Showcase of my projects, and some of my notes about website development."
+      />
       <main
         className={clsx(
           'max-w-screen-lg',
