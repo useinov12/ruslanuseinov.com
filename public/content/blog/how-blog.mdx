@@ -1,0 +1,187 @@
+---
+title: 'How I build my Blog'
+publishedAt: '2022-10-22'
+description: 'Personal website with blog using Next JS and Contentlayer SDK'
+coverImage: ''
+---
+
+The simple way to build blog in Next Js with local mdx content is to use Contentlayer.
+
+## Tech Stack
+
+<blockquote className="with-icons">
+  <div className="not-prose mt-2 text-4xl">
+    <TechIcons techs={['nextjs', 'tailwindcss', 'contentlayer']} />
+  </div>
+</blockquote>
+
+**Why Next Js**
+
+Next js provide you with best structure for React project.\
+Makes develpement easy and fun.
+
+**Why ContentLayer**
+
+No need to manualy read, parse and style mdx files.
+Saves you from importing 4-5 libraries for only parsing and reading mdx.\
+Unlike other popular solutions, Contentlayer manage all mdx parsing under the hood.
+
+**Why Tailwind CSS**
+
+With Tailwind utility classes styling seamless and fast ⚡
+
+## Contentlayer
+
+
+Contentlayer aims to create a pleasant developer experience.\
+Instead of using multiple third-party packages like `glob`, `path`, and `gray-matter`.
+Also, there is a plugin to use with Next JS!\
+Things you will need to setup:
+
+- `withContentlayer` wraper in `next.config.js`
+
+```javascript:next.config.js showLineNumbers
+const { withContentlayer } = require("next-contentlayer")
+
+const nextConfig = {}
+
+module.exports = withContentlayer(nextConfig)
+```
+
+- Schema for document type in `contentlayer.config.js`\
+  Here you will define all properties for your document type, required fields and source directory, plugins for styles, etc.
+
+```javascript:contentlayer.config.js showLineNumbers
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+
+const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `**/*.md`,  // specify md/mdx and subfolders if any
+  fields: { // define metadata fields
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true }
+  },
+}))
+
+export default makeSource({
+  contentDirPath: 'posts', //Directory with the Markdown files
+  documentTypes: [Post],
+  mdx:{
+    remarkPlugins:[], //mdx styles plugin
+    rehypePlugins:[], //mdx styles plugin
+  }
+})
+```
+Once everything is configured and the server is running, Contentlayer will generate `json` files
+from defined Documents.
+You will be able to import and consume them from `contentlayer/generated`
+and pass individual post to `useMDXComponent` hook like so:
+
+```typescript:[slug].tsx showLineNumbers
+import Layout from '@/components/layout/Layout';
+import { allPosts, type Post } from 'contentlayer/generated';
+import MDXComponents from '@/components/MDXComponents'
+
+export const getStaticPaths = () => {
+  return {
+    paths: allPosts.map((post) => ({
+      params: {
+        slug: post.slug,
+      },
+    })),
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = ({ params }) => {
+  const post: Post = allPosts.find((post) => post.slug === params?.slug)!;
+  return {
+    props: {
+      post,
+    },
+  };
+};
+
+const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  post,
+}) => {
+  const MDXContent = useMDXComponent(post.body.code);
+
+  return (
+    <Layout>
+      <h1>{post.title}</h1>
+      <article
+          className='pt-10 pb-8 pr-2 prose',
+          // porse is tailwind typography plugin for
+          // HTML that rendered from uncontrolled sources like mdx
+          // https://tailwindcss.com/docs/typography-plugin
+        >
+          <MDXContent components={MDXComponents} />
+        </article>
+    </Layout>
+  );
+};
+```
+
+### Table of Content
+
+Reading articles is much better if there is navigation!
+
+To set up a [Table of Content](https://github.com/useinov12/ruslanuseinov.com/blob/main/src/components/content/PostContent.tsx),
+you will need to fetch all its headings from the post.
+I made this by using ContentLayer post's raw data and
+[github-slugger](https://www.npmjs.com/package/github-slugger) library
+
+```typescript showLineNumbers
+const headingLines = post.body.raw
+  .split('\n')
+  .filter((line: string) => line.match(/^##*\s/));
+
+const headings = headingLines.map((raw: any) => {
+  const text = raw.replace(/^#*\s/, '').trim();
+  const level = raw.slice(0, 3) === '#' ? 3 : 2;
+  const slugger = new GithubSlugger();
+
+  return {
+    text,
+    level,
+    id: slugger.slug(text),
+  };
+});
+```
+
+### React in MDX files
+
+To use React components in MDX, we can pass them to `MDXContent` as props
+
+```typescript:MDXComponents showLineNumbers
+import Head from 'next/head';
+import Footer from '../layout/Footer';
+import Carousel from './Carousel';
+
+const MDXComponents = {
+  Head,
+  Footer,
+  a:(props:any)=> <a href={props.href} target='_blank' rel="noreferrer" >{props.children}</a>,
+  Carousel
+};
+
+export default MDXComponents;
+```
+
+```javascript:Post.jsx showLineNumbers
+import MDXComponents from './MDXComponents';
+import { useMDXComponent } from 'next-contentlayer/hooks';
+
+const Post = ({post}) => {
+  const MDXContent = useMDXComponent(post.body.code);
+  return (
+    <MDXContent components={MDXComponents} />
+  )
+}
+```
+
+### References
+- [Contentlayer documentation](https://www.contentlayer.dev/)
+- [Delba's blog](https://delba.dev/blog/next-blog-structured-mdx-content-with-contentlayer)
+- [Daw-Chih's blog](https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer)
