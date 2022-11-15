@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import logo from '../../../public/favicon/logo-2.png';
 import Image from 'next/image';
 
 const Header: React.FC = () => {
@@ -55,9 +54,9 @@ const Header: React.FC = () => {
       <div className="flex items-center justify-between max-w-screen-lg mx-auto px-6 lg:px-0 py-4 ">
         <Link href={'/'}>
           <Image
-            src={logo}
-            width={70}
-            height={70}
+            src={'/favicon/logo-2.png'}
+            width={55}
+            height={55}
             className={clsx(' cursor-pointer transition-all')}
           />
         </Link>
