@@ -18,8 +18,6 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
-// import contentlayerimg from '../../../public/assets/contentlayerimg.png';
-import contentlayerimg from './contentlayerimg.png';
 import Image from 'next/image';
 
 import Tooltip from '../Tooltip';
@@ -48,7 +46,7 @@ const TechIcons = ({ className, techs }: TechIconsProps) => {
               )}
             >
               {current.name === 'ContentLayer' ? (
-                <Image src={contentlayerimg} height={35} width={35} />
+                <Image src={'/assets/contentlayerimg.png'} height={35} width={35} />
               ) : (
                 <current.icon />
               )}
