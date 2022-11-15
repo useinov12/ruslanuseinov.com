@@ -45,7 +45,7 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
               e.preventDefault();
               document.querySelector(`#${heading.id}`)?.scrollIntoView({
                 behavior: 'smooth',
-                block: 'start',
+                block: 'center',
                 inline: 'nearest',
               });
               setActiveId(heading.id);
