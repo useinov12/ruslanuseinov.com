@@ -26,29 +26,23 @@ const PostContent: React.FC<{
       <div className="w-full h-1 my-4 bg-gray-300 rounded-lg" />
 
       <section
-        className={clsx('flex flex-col-reverse justify-between', 'md:flex-row')}
+        className={clsx('flex flex-col-reverse justify-between', 'md:flex-row ')}
       >
         <article
           className={clsx(
-            'pt-10 pb-8 pr-2 prose text-white',
-            'prose-md prose-ul:pl-7 prose-strong:font-medium',
-            'prose-headings:font-medium prose-headings:text-white',
-            'prose-p:my-2',
-            'prose-blockquote:m-0',
-            'prose-blockquote:text-white',
-            'prose-blockquote:border-l-primary-500',
-            'prose-strong:text-white',
-            'md:w-9/12',
-            'prose-code:text-white',
-            'prose-a:text-white',
+            'pt-10 pb-8 pr-2 prose-lg prose-invert ',
+            'prose-blockquote:border-4 prose-blockquote:border-transparent',
+            'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
+            'prose-code:text-primary-500',
+            'prose-li:list-disc',
             'prose-a:text-primary-500',
-            'prose-li:m-0'
+            'md:w-8/12'
           )}
         >
           <MDXContent components={MDXComponents} />
         </article>
 
-        <aside className="py-7 lg:sticky top-16 self-start md:w-3/12">
+        <aside className="py-7 lg:sticky top-16 self-start md:w-4/12">
           <TableOfContents post={post} />
         </aside>
       </section>
