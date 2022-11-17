@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         )}
       >
         <div className="p-2 lg:p-0" data-fade="1">
-          <h1 className="text-4xl md:text-6xl tracking-tight font-extrabold drop-shadow-2xl">
+          <h1 className="text-4xl md:text-6xl tracking-tight font-extrabold">
              {theme === 'light' ? 'Front End Developer' : <Accent>Front End Developer</Accent>}
           </h1>
           <p className="text-xl md:text-xl my-3 cursor-default" data-fade="2">
