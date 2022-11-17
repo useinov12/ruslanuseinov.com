@@ -8,7 +8,7 @@ export const ThemeContext = React.createContext<{
     handleTheme:()=>void
 }>({
     theme:'light',
-    handleTheme: ()=>{}
+    handleTheme: ()=>1
 });
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
