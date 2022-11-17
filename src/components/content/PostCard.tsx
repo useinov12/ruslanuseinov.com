@@ -29,7 +29,7 @@ const PostCard: React.FC<{
         theme === 'light' ? 'bg-dark/70' : 'bg-white',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
 
-        coverImage ? 'min-h-[20rem]' : 'min-h-[13rem]',
+        coverImage ? 'min-h-[22rem]' : 'min-h-[13rem]',
         'w-full h-full min-w-[15rem] rounded-md'
       )}
     >
@@ -69,7 +69,7 @@ const PostCard: React.FC<{
             {readingTime}
           </p>
           <p className="py-2 drop-shadow">{description}</p>
-          <p className="right-0 px-4 py-2 text-primary-500">
+          <p className="self-end px-3 text-primary-500">
             {dayjs(publishedAt).format('MMMM D, YYYY')}
           </p>
         </div>
