@@ -9,8 +9,10 @@ import {
 
 import UnstyledLink from './UnstyledLink';
 import Tooltip from './Tooltip';
+import { ThemeContext } from 'src/context/ThemeProvider';
 
 const TechStack = () => {
+  const { theme } = React.useContext(ThemeContext);
   return (
     <ul className="flex space-x-2 md:space-x-4 my-2">
       {stacks.map((tech) => (
@@ -19,7 +21,9 @@ const TechStack = () => {
             key={tech.id}
             className={clsx(
               'h-10 w-10 md:h-12 md:w-12',
-              'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
+              theme === 'light'
+                ? 'text-gray-800 hover:text-primary-500'
+                : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
               'transition-colors'
             )}
           />
