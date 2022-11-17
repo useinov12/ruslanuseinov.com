@@ -5,7 +5,7 @@ description: 'Personal website with blog using Next JS and Contentlayer SDK'
 coverImage: ''
 ---
 
-The simple way to build blog in Next Js with local mdx content is to use Contentlayer.
+**The simple way to build blog in Next Js with local mdx content is to use Contentlayer.**
 
 ## Tech Stack
 
@@ -17,8 +17,9 @@ The simple way to build blog in Next Js with local mdx content is to use Content
 
 **Why Next Js**
 
-Next js provide you with best structure for React project.\
-Makes develpement easy and fun.
+Next JS has a great structure for React project.\
+Makes develpement intuitive and fun.
+I'm using [create t3 app](https://init.tips/) 
 
 **Why ContentLayer**
 
@@ -31,7 +32,6 @@ Unlike other popular solutions, Contentlayer manage all mdx parsing under the ho
 With Tailwind utility classes styling seamless and fast ⚡
 
 ## Contentlayer
-
 
 Contentlayer aims to create a pleasant developer experience.\
 Instead of using multiple third-party packages like `glob`, `path`, and `gray-matter`.
@@ -72,6 +72,7 @@ export default makeSource({
   }
 })
 ```
+
 Once everything is configured and the server is running, Contentlayer will generate `json` files
 from defined Documents.
 You will be able to import and consume them from `contentlayer/generated`
@@ -123,6 +124,51 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 ```
 
+You also can get posts metadata using same generated object:
+```typescript:Blog.tsx showLineNumbers
+import React from 'react';
+import {
+  type GetStaticProps,
+  type InferGetStaticPropsType,
+  NextPage,
+} from 'next';
+
+export async function getStaticProps() {
+  const posts = allPosts.filter((post) =>
+    new RegExp(/^(blog\/)/).exec(post._id)
+  );
+  return {
+    props: {
+      posts: posts,
+    },
+  };
+}
+
+const BlogPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  posts,
+}) => {
+
+  reutrn (
+    <ul>
+      {posts.map((postSummary) => {
+        return (
+          <Link
+            href={`/blog/${postSummary.slug}`}
+            passHref
+            key={postSummary.slug}
+          >
+            <a>
+              <PostCard postSummary={postSummary} />
+            </a>
+          </Link>
+        );
+      })}
+    </ul>
+  )
+
+}
+```
+
 ### Table of Content
 
 Reading articles is much better if there is navigation!
@@ -154,7 +200,7 @@ const headings = headingLines.map((raw: any) => {
 
 To use React components in MDX, we can pass them to `MDXContent` as props
 
-```typescript:MDXComponents showLineNumbers
+```typescript:MDXComponents.tsx showLineNumbers
 import Head from 'next/head';
 import Footer from '../layout/Footer';
 import Carousel from './Carousel';
@@ -169,11 +215,11 @@ const MDXComponents = {
 export default MDXComponents;
 ```
 
-```javascript:Post.jsx showLineNumbers
+```javascript:Post.tsx showLineNumbers
 import MDXComponents from './MDXComponents';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-const Post = ({post}) => {
+const Post = ({post}:{post:Post}) => {
   const MDXContent = useMDXComponent(post.body.code);
   return (
     <MDXContent components={MDXComponents} />
@@ -182,6 +228,7 @@ const Post = ({post}) => {
 ```
 
 ### References
+
 - [Contentlayer documentation](https://www.contentlayer.dev/)
 - [Delba's blog](https://delba.dev/blog/next-blog-structured-mdx-content-with-contentlayer)
 - [Daw-Chih's blog](https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer)
