@@ -21,6 +21,7 @@ import {
 import Image from 'next/image';
 
 import Tooltip from '../Tooltip';
+import { ThemeContext } from 'src/context/ThemeProvider';
 
 export type TechListType = keyof typeof techList;
 
@@ -29,6 +30,7 @@ export type TechIconsProps = {
 } & React.ComponentPropsWithoutRef<'ul'>;
 
 const TechIcons = ({ className, techs }: TechIconsProps) => {
+  const { theme } = React.useContext(ThemeContext);
   return (
     <ul className={clsx(className, 'flex gap-2')}>
       {techs.map((tech) => {
@@ -40,13 +42,18 @@ const TechIcons = ({ className, techs }: TechIconsProps) => {
           <Tooltip key={current.name} content={<p>{current.name}</p>}>
             <li
               className={clsx(
-                // 'h-20 w-20',
-                'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
-                'transition-colors'
+                'transition-colors',
+                theme === 'light'
+                  ? 'text-gray-800 hover:text-primary-500'
+                  : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300'
               )}
             >
               {current.name === 'ContentLayer' ? (
-                <Image src={'/assets/contentlayerimg.png'} height={35} width={35} />
+                <Image
+                  src={'/assets/contentlayerimg.png'}
+                  height={35}
+                  width={35}
+                />
               ) : (
                 <current.icon />
               )}

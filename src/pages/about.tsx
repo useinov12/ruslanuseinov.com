@@ -7,35 +7,30 @@ import useLoaded from 'src/hooks/useLoaded';
 import TechStack from 'src/components/TechStack';
 import Contacts from 'src/components/Contacts';
 import { NextSeo } from 'next-seo';
+import { ThemeContext } from 'src/context/ThemeProvider';
 
 const AboutPage = () => {
   const isLoaded = useLoaded();
+  const { theme } = React.useContext(ThemeContext);
   return (
     <Layout>
-      <NextSeo
-        openGraph={{
-          type: 'website',
-          locale: 'en_IE',
-          url: 'https://ruslan-useinov.com',
-          siteName: 'ruslan-useinov.com',
-          images: [
-            {
-              url: 'https://ruslan-useinov.com/favicon/og-about.png',
-              width: 1200,
-              height: 630,
-              alt: 'Og Image Alt',
-              type: 'image/png',
-            },
-          ],
-        }}
-        twitter={{ cardType: 'summary_large_image' }}
-      />
+      <NextSeo openGraph={openGraph} twitter={twitter} />
+
       <main className={clsx(isLoaded && 'fade-in-start')}>
-        <h1 className="mb-8 mt-4 font-mono text-primary-500" data-fade="1">
+        <h1
+          className={clsx(
+            'my-4 text-primary-500"',
+            theme === 'light' ? 'text-gray-800' : 'text-primary-500"'
+          )}
+          data-fade="1"
+        >
           About
         </h1>
         <div
-          className="w-full h-[1px] mb-8 mt-8 bg-gray-300 rounded-lg"
+          className={clsx(
+            'w-full h-[1px] mb-8 mt-4 rounded-lg',
+            theme === 'light' ? 'bg-gray-800' : 'bg-gray-300'
+          )}
           data-fade="2"
         />
         <section
@@ -51,8 +46,9 @@ const AboutPage = () => {
           </div>
           <div
             className={clsx(
-              'w-[100px] h-[100px] md:w-[200px] md:h-[200px] relative rounded-full',
-              'border-4 border-gray-50'
+              'w-[100px] h-[100px] md:w-[150px] md:h-[150px] relative rounded-full',
+              'border-4',
+              theme === 'light' ? 'border-gray-800' : 'border-gray-50'
             )}
           >
             <Image
@@ -68,8 +64,8 @@ const AboutPage = () => {
           className="flex flex-col-reverse md:flex-row justify-between "
           data-fade="4"
         >
-          <section className="py-1 font-normal text-lg md:flex md:flex-col md:items-center">
-            <p className="py-1  md:w-3/4">
+          <section className="py-1 font-normal text-lg md:flex md:flex-col md:items-center tracking-tight">
+            <p className="py-2  md:w-3/4">
               Hi! I&apos;m Ruslan. I started learning web development in 2021.
             </p>
             <p className="py-2 md:w-3/4">
@@ -87,7 +83,7 @@ const AboutPage = () => {
               and I&apos;m motivated to learn as much as possible.
             </p>
             <p className=" py-2 md:w-3/4">
-              Right now I want to master my skills and be as fluent as possible
+              Right now, I want to master my skills and be as fluent as possible
               with modern frameworks and then invest more time in UI to learn
               how to design interfaces quick, effective, and scalable.
             </p>
@@ -122,3 +118,20 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
+const openGraph = {
+  type: 'website',
+  locale: 'en_IE',
+  url: 'https://ruslan-useinov.com',
+  siteName: 'ruslan-useinov.com',
+  images: [
+    {
+      url: 'https://ruslan-useinov.com/favicon/og-about.png',
+      width: 1200,
+      height: 630,
+      alt: 'Og Image Alt',
+      type: 'image/png',
+    },
+  ],
+};
+const twitter = { cardType: 'summary_large_image' };

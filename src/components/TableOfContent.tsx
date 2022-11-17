@@ -4,6 +4,8 @@ import GithubSlugger from 'github-slugger';
 import { type Post } from 'contentlayer/generated';
 
 const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
+  const [activeId, setActiveId] = React.useState<string>();
+
   const headingLines = post.body.raw
     .split('\n')
     .filter((line: string) => line.match(/^##*\s/));
@@ -20,11 +22,9 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
     };
   });
 
-  const [activeId, setActiveId] = React.useState<string>();
-
   return (
     <div className="flex flex-col items-start mt-4 mb-0 lg:ml-4 cursor-pointer">
-      <h3 className="mb-4 font-mono text-xl">Table of Content</h3>
+      <h3 className="mb-4 font-mono text-md">Page Content</h3>
       {headings.map((heading, index) => {
         return (
           <button
@@ -32,8 +32,8 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
             type="button"
             className={clsx(
               `w-full mb-1`,
-              'text-left text-gray-300 pl-2',
-              'sm:text-md md:text-lg font-mono',
+              'text-left pl-2',
+              'sm:text-sm font-mono',
               'whitespace-nowrap',
               'hover:bg-primary-500/20',
               heading.id === activeId

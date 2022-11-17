@@ -41,12 +41,12 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <Layout>
-      <div className="text-white flex flex-col justify-center m-auto p-2">
+      <div className=" flex flex-col justify-center m-auto p-2">
         <Link href="/blog">
           <h3
             className={clsx(
               'inline-flex items-center gap-1 cursor-pointer',
-              'group my-6 text-gray-300 hover:text-white'
+              'group my-6'
             )}
           >
             <BiArrowBack
@@ -58,7 +58,7 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <span>Back to Blog</span>
           </h3>
         </Link>
-            <PostContent post={post} MDXContent={MDXContent}/>
+           <PostContent post={post} MDXContent={MDXContent}/>
       </div>
     </Layout>
   );

@@ -4,39 +4,40 @@ import Accent from '../Accent';
 import dayjs from 'dayjs';
 import { type Post } from 'contentlayer/generated';
 import Image from 'next/image';
+import { ThemeContext } from 'src/context/ThemeProvider';
 
 const PostCard: React.FC<{
   postSummary: Post;
 }> = ({
   postSummary: { title, readingTime, description, publishedAt, coverImage },
 }) => {
+  const { theme } = React.useContext(ThemeContext);
   return (
     <div
       className={clsx(
-        'bg-gray-300',
-        'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
-        'p-[2px] mr-2 my-2 flex justify-center items-center',
-        'hover:border-primary-500 transition-all duration-200',
-        'scale-100 hover:scale-[1.005] active:scale-[0.995] motion-safe:transform-gpu',
-        'transition duration-25',
-        'motion-reduce:hover:scale-100',
-
-        'w-full h-full min-h-[10rem] min-w-[18rem] rounded-md',
-        coverImage && 'min-h-[20rem]',
-        'scale-100 hover:scale-[1.01] active:scale-[0.99] motion-safe:transform-gpu',
-        'transition duration-100',
-        'motion-reduce:hover:scale-100',
-        'animate-shadow',
+        'group',
         'cursor-pointer',
-        'flex flex-col justify-between',
         'overflow-hidden',
-        'group'
+        'transition duration-25',
+        'hover:border-primary-500',
+        'flex flex-col justify-between',
+        'p-[2px]',
+
+        'drop-shadow hover:drop-shadow-xl',
+        'motion-reduce:hover:scale-100 motion-safe:transform-gpu',
+        'scale-100 hover:scale-[1.005] active:scale-[0.995] ',
+        theme === 'light' ? 'bg-dark/70' : 'bg-white',
+        'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
+
+        coverImage && 'min-h-[23rem]',
+        'w-full h-full min-h-[13rem] min-w-[18rem] rounded-md',
       )}
     >
       <div
         className={clsx(
-          'rounded-md bg-dark w-full h-full relative',
-          'overflow-hidden'
+          'overflow-hidden',
+          'rounded-md w-full h-full relative',
+          theme === 'light' ? 'bg-gray-100' : 'bg-dark'
         )}
       >
         {coverImage && (
@@ -55,18 +56,19 @@ const PostCard: React.FC<{
               objectFit={'cover'}
               className={clsx(
                 'scale-100 motion-reduce:hover:scale-100 ',
-                'group-hover:scale-[1.02]',
-                'transition duration-25'
+                'group-hover:scale-[1.01]',
+                'transition duration-25',
+                'drop-shadow'
               )}
             />
           </div>
         )}
-        <div className={clsx('p-2 flex flex-col', 'h-full')}>
-          <h4 className="font-mono">{title}</h4>
-          <p className="my-2 font-medium text-lg text-primary-500">
+        <div className="p-2 flex flex-col h-full">
+          <h4 className="font-mono drop-shadow">{title}</h4>
+          <p className="my-2 font-medium text-md text-primary-500">
             {readingTime}
           </p>
-          <p className="py-2 text-gray-300">{description}</p>
+          <p className="py-2 drop-shadow">{description}</p>
           <p className="fixed bottom-0 right-0 px-4 py-2 text-primary-500">
             {dayjs(publishedAt).format('MMMM D, YYYY')}
           </p>

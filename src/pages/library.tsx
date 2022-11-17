@@ -12,6 +12,7 @@ import { allPosts, type Post } from 'contentlayer/generated';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
 import { NextSeo } from 'next-seo';
+import { ThemeContext } from 'src/context/ThemeProvider';
 
 export async function getStaticProps() {
   const posts = allPosts.filter((post) =>
@@ -28,35 +29,28 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
 }) => {
   const isLoaded = useLoaded();
+  const { theme } = React.useContext(ThemeContext);
   return (
     <Layout>
-      <NextSeo
-        openGraph={{
-          type: 'website',
-          locale: 'en_IE',
-          url: 'https://ruslan-useinov.com',
-          siteName: 'ruslan-useinov.com',
-          images: [
-            {
-              url: 'https://ruslan-useinov.com/favicon/og-library.png',
-              width: 1200,
-              height: 630,
-              alt: 'Og Image Alt',
-              type: 'image/png',
-            },
-          ],
-        }}
-        twitter={{ cardType: 'summary_large_image' }}
-      />
+      <NextSeo openGraph={openGraph} twitter={twitter} />
       <main className={clsx(isLoaded && 'fade-in-start')}>
-        <h1 className="my-4 font-mono text-primary-500" data-fade="1">
+        <h1
+          className={clsx(
+            'my-4 text-primary-500"',
+            theme === 'light' ? 'text-gray-800' : 'text-primary-500"'
+          )}
+          data-fade="1"
+        >
           Library
         </h1>
-        <h6 className="font-semibold text-xl text-gray-300" data-fade="2">
+        <h6 className="font-semibold text-xl" data-fade="2">
           Collection of code snippets
         </h6>
         <div
-          className="w-full h-[1px] mb-8 mt-4 bg-gray-300 rounded-lg"
+          className={clsx(
+            'w-full h-[1px] mb-8 mt-4 rounded-lg',
+            theme === 'light' ? 'bg-gray-800' : 'bg-gray-300'
+          )}
           data-fade="3"
         />
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-fade="4">
@@ -80,3 +74,19 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 
 export default LibraryPage;
+const openGraph = {
+  type: 'website',
+  locale: 'en_IE',
+  url: 'https://ruslan-useinov.com',
+  siteName: 'ruslan-useinov.com',
+  images: [
+    {
+      url: 'https://ruslan-useinov.com/favicon/og-library.png',
+      width: 1200,
+      height: 630,
+      alt: 'Og Image Alt',
+      type: 'image/png',
+    },
+  ],
+};
+const twitter = { cardType: 'summary_large_image' };

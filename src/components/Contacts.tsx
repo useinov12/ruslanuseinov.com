@@ -3,18 +3,24 @@ import clsx from 'clsx';
 import Tooltip from 'src/components/Tooltip';
 import UnstyledLink from 'src/components/UnstyledLink';
 import Accent from 'src/components/Accent';
-import {
-  SiGmail,
-  SiGithub,
-  SiLinkedin,
-} from 'react-icons/si';
+import { SiGmail, SiGithub, SiLinkedin } from 'react-icons/si';
 import copyToClipboard from 'src/utils/clipboard';
+import { ThemeContext } from 'src/context/ThemeProvider';
 
 const Contacts = () => {
+  const { theme } = React.useContext(ThemeContext);
   return (
     <ul className="inline-flex gap-2">
       {contacts.map(({ type, Icon, tooltip }) => (
-        <li className="list-none py-2 mx-1" key={type}>
+        <li
+          className={clsx(
+            'list-none py-2 mx-1',
+            theme === 'light'
+              ? 'text-gray-800 hover:text-primary-500'
+              : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300'
+          )}
+          key={type}
+        >
           <Tooltip interactive hideOnClick={false} content={<p>{tooltip}</p>}>
             {Icon}
           </Tooltip>
@@ -23,11 +29,7 @@ const Contacts = () => {
     </ul>
   );
 };
-const iconStyle = clsx(
-  'h-8 w-8 md:h-12 md:w-12',
-  'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
-  'transition-colors'
-);
+const iconStyle = 'h-8 w-8 md:h-12 md:w-12 transition-colors'
 const contacts = [
   {
     type: 'gmail',

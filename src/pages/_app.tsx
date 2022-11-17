@@ -11,13 +11,14 @@ import 'react-tippy/dist/tippy.css';
 import '../../next-seo.config';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
+import ThemeProvider from 'src/context/ThemeProvider';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <>
+    <ThemeProvider>
       <DefaultSeo {...SEO}/>
-      <Component {...pageProps} />;
-    </>
+      <Component {...pageProps} />
+    </ThemeProvider>
   );
 };
 

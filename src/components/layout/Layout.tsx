@@ -4,7 +4,6 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-import { PreloadProvider } from 'src/context/PreloadContext';
 import { ThemeContext } from 'src/context/ThemeProvider';
 
 const Layout: React.FC<{
@@ -16,17 +15,15 @@ const Layout: React.FC<{
     <>
       <div
         className={clsx(
-          'w-screen h-full',
-          theme === 'light' ? 'bg-gray-300 text-dark' : 'bg-dark text-white'
+          'w-screen min-h-screen h-full relative',
+          theme === 'light' ? 'bg-gray-300 text-gray-800' : 'bg-dark text-white'
         )}
       >
-        {/* <PreloadProvider> */}
           <Header />
-          <div className={clsx('mx-auto max-w-screen-lg')}>
-            <div className="min-h-[90vh]">{children}</div>
+          <div className='mx-auto max-w-screen-lg px-5'>
+            <div className=''>{children}</div>
             <Footer />
           </div>
-        {/* </PreloadProvider> */}
       </div>
     </>
   );

@@ -45,14 +45,13 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           'justify-center',
           'm-auto p-2',
           'max-w-screen-lg',
-          'text-white'
         )}
       >
         <Link href="/library">
           <h3
             className={clsx(
               'inline-flex items-center gap-1 cursor-pointer',
-              'group my-6 text-gray-300 hover:text-white'
+              'group my-6'
             )}
           >
             <BiArrowBack
