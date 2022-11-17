@@ -30,7 +30,7 @@ const ProjectPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <Layout>
       <NextSeo openGraph={openGraph} twitter={twitter} />
-      <main className={clsx(isLoaded && 'fade-in-start')}>
+      <main className={clsx(isLoaded && 'fade-in-start', 'h-screen')}>
         <h1
           className={clsx(
             'my-4 text-primary-500"',

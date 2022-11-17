@@ -33,7 +33,7 @@ const BlogPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <Layout>
       <NextSeo openGraph={opennGraph} twitter={twitter} />
-      <main className={clsx(isLoaded && 'fade-in-start', 'min-h-[90vh]')}>
+      <main className={clsx(isLoaded && 'fade-in-start', 'h-screen')}>
         <h1 className={clsx(
           'my-4 text-primary-500"',
           theme === 'light' ? 'text-gray-800' :'text-primary-500"'
