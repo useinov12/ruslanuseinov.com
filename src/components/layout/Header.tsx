@@ -227,7 +227,7 @@ const MobileNav = ({
         'transition-all duration-150',
         isMobileNavOpen ?  'opacity-1' : 'opacity-0',
         isMobileNavOpen
-          ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 scroll-y-none'
+          ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-50 scroll-y-none'
           : 'pointer-events-none',
       )}
     >
@@ -254,7 +254,7 @@ const MobileNav = ({
             </li>
           ))}
         </ul>
-        <ThemeSwitch className="absolute bottom-20 right-20 text-4xl" />
+        <ThemeSwitch className="absolute top-40 right-14 text-5xl" />
       </div>
     </div>
   );
