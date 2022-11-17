@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           <h1 className="text-4xl md:text-6xl tracking-tight font-extrabold drop-shadow-2xl">
              {theme === 'light' ? 'Front End Developer' : <Accent>Front End Developer</Accent>}
           </h1>
-          <p className="text-xl md:text-xl my-3 cursor-default drop-shadow-2xl" data-fade="2">
+          <p className="text-xl md:text-xl my-3 cursor-default" data-fade="2">
             I love to create beautiful and performant web with delightful user
             experiences
           </p>
