@@ -25,7 +25,7 @@ const PostCard: React.FC<{
 
         'drop-shadow hover:drop-shadow-xl',
         'motion-reduce:hover:scale-100 motion-safe:transform-gpu',
-        // 'scale-100 hover:scale-[1.005] active:scale-[0.995] ',
+        'scale-100 hover:scale-[1.005] active:scale-[0.995] ',
         theme === 'light' ? 'bg-dark/70' : 'bg-white',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
 
