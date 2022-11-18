@@ -1,6 +1,6 @@
 <div align="center">
   <h1>ruslan-useinov.com</h1>
-  <h5>💠 Personal website and blog made using Next.js, TypeScript, Tailwind CSS, Contentlayer SDK</h5>
+  <h5>🧩 Personal website and blog made using Next.js, TypeScript, Tailwind CSS, Contentlayer SDK</h5>
 </div>
 
 
