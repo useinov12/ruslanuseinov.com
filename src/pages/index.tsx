@@ -1,6 +1,9 @@
 import React from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
+import {
+  type GetStaticProps,
+  type InferGetStaticPropsType,
+  NextPage,
+} from 'next';
 import Layout from '../components/layout/Layout';
 import clsx from 'clsx';
 import Accent from '../components/Accent';
@@ -13,8 +16,33 @@ import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
 import { NextSeo } from 'next-seo';
 import { ThemeContext } from 'src/context/ThemeProvider';
+import { allPosts, type Post } from 'contentlayer/generated';
+import PostCard from 'src/components/content/PostCard';
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+  const posts = allPosts.filter((post) =>
+    new RegExp(/^(blog\/)/).exec(post._id)
+  );
+  const projects = allPosts.filter((post) =>
+    new RegExp(/^(projects\/)/).exec(post._id)
+  );
+  const snippets = allPosts.filter((post) =>
+    new RegExp(/^(library\/)/).exec(post._id)
+  );
+  return {
+    props: {
+      posts: posts,
+      projects:projects,
+      snippets:snippets
+    },
+  };
+}
+
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  posts,
+  projects,
+  snippets,
+}) => {
   const isLoaded = useLoaded();
   const { theme } = React.useContext(ThemeContext);
   return (
@@ -24,14 +52,21 @@ const Home: NextPage = () => {
         className={clsx(
           'max-w-screen-lg',
           'flex flex-col justify-center',
-          'w-full h-screen',
-          'relative',
+          'w-full h-full',
+          // 'relative',
           isLoaded && 'fade-in-start'
         )}
       >
-        <div className="p-2 lg:p-0" data-fade="1">
+        <section
+          className="p-2 lg:p-0 relative h-[95vh] flex flex-col justify-center"
+          data-fade="1"
+        >
           <h1 className="text-4xl md:text-6xl tracking-tight font-extrabold">
-             {theme === 'light' ? 'Front End Developer' : <Accent>Front End Developer</Accent>}
+            {theme === 'light' ? (
+              'Front End Developer'
+            ) : (
+              <Accent>Front End Developer</Accent>
+            )}
           </h1>
           <p className="text-xl md:text-xl my-3 cursor-default" data-fade="2">
             I love to create beautiful and performant web with delightful user
@@ -48,14 +83,14 @@ const Home: NextPage = () => {
 
           <div className="inline-flex gap-3" data-fade="4">
             <Link href="/blog">
-              <Button className='text-lg'>Read Blog</Button>
+              <Button className="text-lg">Read Blog</Button>
             </Link>
             <Link href="/about">
-              <Button className='text-lg'>About</Button>
+              <Button className="text-lg">About</Button>
             </Link>
           </div>
 
-          <div className="flex flex-wrap w-full gap-5 my-4" data-fade="5">
+          <div className="flex flex-wrap w-full gap-5 my-4 z-10" data-fade="5">
             {linkList.map(({ text, path, Icon }) => (
               <li key={text} className="list-none">
                 <UnstyledLink
@@ -77,13 +112,145 @@ const Home: NextPage = () => {
               </li>
             ))}
           </div>
-        </div>
+          <div data-fade="6">
+            <Polkadots className="hidden md:block md:absolute -bottom-20 right-0 -z-10 w-2/5" />
+          </div>
+        </section>
+        {/* <BlogPosts posts={posts}/>
+        <Projects projects={projects}/>
+        <Library snippets={snippets}/> */}
       </main>
     </Layout>
   );
 };
 
 export default Home;
+
+const BlogPosts: NextPage<{posts:Post[]}> = ({
+  posts,
+}) => {
+  return (
+    <section className="p-2 lg:p-0 h-[80vh] flex flex-col relative my-8">
+      <h2 className="text-3xl md:text-5xl tracking-tight font-extrabold">
+        Featured Posts
+      </h2>
+      <ul
+        className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 my-8"
+        data-fade="4"
+      >
+        {posts.map((postSummary) => {
+          return (
+            <Link
+              href={`/blog/${postSummary.slug}`}
+              passHref
+              key={postSummary.slug}
+            >
+              <a>
+                <PostCard postSummary={postSummary} />
+              </a>
+            </Link>
+          );
+        })}
+      </ul>
+
+      <Polkadots className="absolute bottom-10 left-0 w-2/5" />
+    </section>
+  );
+};
+
+const Projects: NextPage<{projects:Post[]}> = ({
+  projects,
+}) => {
+  return (
+    <section className="p-2 lg:p-0 h-[80vh] flex flex-col relative my-8">
+      <h2 className="text-3xl md:text-5xl tracking-tight font-extrabold">
+        Featured Projects
+      </h2>
+      <ul
+        className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 my-8 z-10"
+        data-fade="4"
+      >
+        {projects.map((postSummary) => {
+          return (
+            <Link
+              href={`/blog/${postSummary.slug}`}
+              passHref
+              key={postSummary.slug}
+            >
+              <a>
+                <PostCard postSummary={postSummary} />
+              </a>
+            </Link>
+          );
+        })}
+      </ul>
+
+      <Polkadots className="absolute bottom-10 right-0 w-2/5 z-0" />
+    </section>
+  );
+};
+
+const Library: NextPage<{snippets:Post[]}> = ({
+  snippets,
+}) => {
+  return (
+    <section className="p-2 lg:p-0 h-[80vh] flex flex-col relative my-8">
+      <h2 className="text-3xl md:text-5xl tracking-tight font-extrabold">
+        Featured Code Snippets
+      </h2>
+      <ul
+        className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 my-8"
+        data-fade="4"
+      >
+        {snippets.map((postSummary) => {
+          return (
+            <Link
+              href={`/blog/${postSummary.slug}`}
+              passHref
+              key={postSummary.slug}
+            >
+              <a>
+                <PostCard postSummary={postSummary} />
+              </a>
+            </Link>
+          );
+        })}
+      </ul>
+
+      <Polkadots className="absolute bottom-20 left-0 w-2/5" />
+    </section>
+  );
+};
+
+const Polkadots = ({ className }: { className?: string }) => {
+  return (
+    <svg className={clsx(className)}>
+      <defs>
+        <pattern
+          id="myPattern"
+          x="24"
+          y="24"
+          width="25"
+          height="25"
+          patternUnits="userSpaceOnUse"
+        >
+          <circle
+            cx="10"
+            cy="10"
+            r="4"
+            style={{
+              stroke: 'none',
+              fill: '#3b82f6',
+              filter: 'drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))',
+            }}
+          />
+        </pattern>
+      </defs>
+
+      <rect width="600" height="200" style={{ fill: 'url(#myPattern)' }} />
+    </svg>
+  );
+};
 
 const linkList = [
   {
