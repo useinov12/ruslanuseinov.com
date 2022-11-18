@@ -14,7 +14,7 @@ const PostContent: React.FC<{
 }> = ({ post, MDXContent }) => {
   const { theme } = React.useContext(ThemeContext);
   return (
-    <>
+    <main>
       <h1 className="text-3xl my-2">{post.title}</h1>
       <div className="inline-flex items-center gap-8 my-2">
         <div className="inline-flex gap-1 items-center">
@@ -59,7 +59,7 @@ const PostContent: React.FC<{
           <TableOfContents post={post} />
         </aside>
       </section>
-    </>
+    </main>
   );
 };
 

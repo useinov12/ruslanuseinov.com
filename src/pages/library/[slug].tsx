@@ -12,6 +12,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import { allPosts, type Post } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import PostContent from 'src/components/content/PostContent';
+import useLoaded from 'src/hooks/useLoaded';
 
 export const getStaticPaths = () => {
   return {
@@ -37,14 +38,16 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
 }) => {
   const MDXContent = useMDXComponent(post.body.code);
+  const isLoaded = useLoaded();
   return (
     <Layout>
-      <div
+      <main
         className={clsx(
           'flex flex-col',
           'justify-center',
           'm-auto p-2',
           'max-w-screen-lg',
+          isLoaded && 'fade-in-start',
         )}
       >
         <Link href="/library">
@@ -53,6 +56,7 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               'inline-flex items-center gap-1 cursor-pointer',
               'group my-6'
             )}
+            data-fade="1"
           >
             <BiArrowBack
               className={clsx(
@@ -63,8 +67,10 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <span>Back to Library </span>
           </h3>
         </Link>
-        <PostContent post={post} MDXContent={MDXContent} />
-      </div>
+        <div data-fade="2">
+          <PostContent post={post} MDXContent={MDXContent} />
+        </div>
+      </main>
     </Layout>
   );
 };
