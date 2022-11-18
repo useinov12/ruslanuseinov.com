@@ -17,6 +17,8 @@ import {
   SiSass,
   SiTailwindcss,
   SiTypescript,
+  SiCss3,
+  SiJest
 } from 'react-icons/si';
 import Image from 'next/image';
 
@@ -135,5 +137,13 @@ const techList = {
   notion: {
     icon: SiNotion,
     name: 'Notion API',
+  },
+  css: {
+    icon: SiCss3,
+    name: 'CSS3',
+  },
+  jest: {
+    icon: SiJest,
+    name: 'Jest',
   },
 };
