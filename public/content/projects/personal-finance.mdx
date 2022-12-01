@@ -1,0 +1,198 @@
+---
+title: 'PersonalFinance'
+publishedAt: '2022-10-20'
+description: 'Track and analyze bank data with Plaid API'
+coverImage: '/assets/pf.png'
+---
+
+# Project
+
+An App for tracking and analazyng data from all your banks using Plaid API.\
+[Live version]()\
+[Client Repo](https://github.com/useinov12/pf-client) | [Backend Repo](https://github.com/kalinchenko23/personal_finance_tracker)
+
+### Features
+* Landing page
+* Auth and protected routes
+* Plaid API
+* Custom charts and analytics
+* Finance page
+* Banks page
+* Transactions page
+ 
+### Current Status
+
+✅ Landing Page\
+✅ Auth and protected routes\
+🟨 Plaid Link API currently in developement\
+🟨 Finance overview/summary page\
+🟨 Banks overview/summary page\
+🟨 Transactions overview/summary page\
+
+
+### Challenge
+Learn to work in team.\
+Build an app using Next JS and Tailwind CSS.\
+Designe well-defined API for internal use.\
+Structure middle-size project that is scalable.
+
+
+### Stack used
+
+<blockquote className="with-icons">
+  <div className="not-prose mt-2 text-4xl">
+    <TechIcons techs={['react', 'nextjs', 'typescript', 'tailwind']} />
+  </div>
+</blockquote>
+
+### Description
+Front end code deployed on Vercel.
+
+### Fetching and cashing
+
+App fetching and cashing data patterns
+
+ - every API call that does not have an effect on cached entity data is expressed as an 'action'
+
+ - every API call that influences a cached entity in-app is a custom hook that wraps a react-query hook
+ OR React Context method, that calls a react-query hook
+
+Context has a custom hook that provides access to its value
+
+
+
+### Authentification 
+
+The app is using JWT with Refresh Tokens.
+
+Login pattern:
+    1. `login`(action) posts user credentials and receives JWT
+    2. JWT is being stored in Cookies and being sent with each API call
+    3. On successful `login` `getMe`(action) return the current user
+    4. if `getMe` is succesfull -> setUser in UserContext
+
+
+Page Auth protection: 
+
+    Each protected page has `requireAuth:boolean` property. 
+
+    1. In _app.tsx we check if Component requires Auth
+    2. If Component.requireAuth === true -> we render `Component` wrapped in AuthGuard
+    3. if auth is note required -> render just `Component`
+
+
+```typescript:_app.tsx
+    ...
+    <UserProvider>
+        {/* if requireAuth property is present - protect the page */}
+        { Component.requireAuth ? (
+        <AuthGuard>
+            <Component {...pageProps} />
+        </AuthGuard>
+        ) : (
+        // public page
+        <Component {...pageProps} />
+        )}
+    </UserProvider>
+    ...
+```
+
+
+
+#### AuthGuard 
+
+In `AuthGuard`, we are rendering `children` conditionally:
+
+ 1. If user already exists in Context -> render `children`
+ 2. If no user in Context -> render `WithUserQuery({children})`
+
+ Additional conditional render inside `AuthGuard` is needed to avoid conflicts with UserContext,
+ as it is a single point or truth for User State.
+
+  `WithUserQuery` component holds `react-query` that gets the user
+ and performs conditional render using react-query fetch state:
+ - if `isLoading` returns `<Loading/>`
+ - if `!isLoading && !data` redirects to landing page
+ - if `isSuccess && data` returns `{children}`
+
+
+To satisfy React rule using React hooks only at the top level of a component, we are 
+isolating the logic of protected page conditional render in `WithUserQuery` component.
+
+So, instead of
+
+```typescript
+export function AuthGuard({children}:{children:JSX.Element}){
+    const {user} = useUser()
+
+
+    // ❌ Will cause an error during deployment  
+    // because useQueryCurrentUser and useEffect
+    // are not at the top level of component
+    if(!user){
+        const { data, isLoading, isSuccess } = useQueryCurrentUser();
+        React.useEffect(() => {
+        if (!isLoading) {
+            if (!data) {
+                router.push('/');
+            }
+        }
+        }, [isLoading, router, data]);
+    
+        if (isLoading) {
+            return <Loading />;
+        }
+    
+        if (!isLoading && isSuccess && data) {
+            handleSetUser(data);
+        return <>{children}</>;
+        }
+    } 
+    else {
+        return <>{children}</>;
+    }
+}
+```
+
+We are isolating conditional render in `WithUsesrQuery`
+
+
+```typescript:AuthGuard.tsx
+export function AuthGuard({ children }: { children: JSX.Element }) {
+  const { user } = useUser();
+  return user ? <>{children}</> : WithUserQuery({children})
+}
+```
+
+```typescript:WithUserQuery.tsx
+const WithUserQuery = ({children}:{children:JSX.Element}) => {
+  const router = useRouter();
+  const { data, isLoading, isSuccess } = useQueryCurrentUser();
+  const { handleSetUser } = useUser();
+    
+    useEffect(() => {
+      if (!isLoading) {
+        //auth is initialized and there is no user
+        if (!data) {
+          // remember the page that user tried to access
+          // setRedirect(router.route)
+          router.push('/');
+        }
+      }
+    }, [isLoading, router, data]);
+  
+    if (isLoading) {
+      return <Loading />;
+    }
+  
+    if (!isLoading && isSuccess && data) {
+      handleSetUser(data);
+      return <>{children}</>;
+    }
+  
+    return <Loading />;
+}
+```
+
+
+{/* ### What I learned */}
