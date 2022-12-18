@@ -47,7 +47,7 @@ const Header: React.FC = () => {
       >
         <div
           className={clsx(
-            'max-w-screen-lg mx-auto',
+            'max-w-screen-md mx-auto',
             'py-1 px-5',
             'flex items-center justify-between',
           )}

@@ -20,7 +20,7 @@ const Layout: React.FC<{
         )}
       >
           <Header />
-          <div className='mx-auto max-w-screen-lg px-5'>
+          <div className='mx-auto max-w-screen-md px-5'>
             <div className=''>{children}</div>
             <Footer />
           </div>

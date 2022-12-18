@@ -43,7 +43,7 @@ const PostCard: React.FC<{
         {coverImage && (
           <div
             className={clsx(
-              'w-full h-2/4 border-b-2 border-b-white',
+              'w-full h-2/5 border-b-2 border-b-white',
               'group-hover:border-b-primary-500 p-1',
               'overflow-hidden',
               'relative'
@@ -69,7 +69,7 @@ const PostCard: React.FC<{
             {readingTime}
           </p>
           <p className="py-2 drop-shadow">{description}</p>
-          <p className="self-end px-3 text-primary-500">
+          <p className="fixed bottom-2 right-4 text-primary-500">
             {dayjs(publishedAt).format('MMMM D, YYYY')}
           </p>
         </div>
