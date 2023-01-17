@@ -46,6 +46,7 @@ const PostContent: React.FC<{
             'prose-blockquote:border-4 prose-blockquote:border-transparent',
             'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
             'prose-code:text-primary-500',
+            'prose-code:text-sm',
             'prose-li:list-disc',
             'prose-a:text-primary-500',
             'md:w-9/12',

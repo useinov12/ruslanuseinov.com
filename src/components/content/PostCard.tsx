@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import Accent from '../Accent';
 import dayjs from 'dayjs';
 import { type Post } from 'contentlayer/generated';
 import Image from 'next/image';
@@ -29,8 +28,8 @@ const PostCard: React.FC<{
         theme === 'light' ? 'bg-dark/70' : 'bg-white',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
 
-        coverImage ? 'min-h-[22rem]' : 'min-h-[13rem]',
-        'w-full h-full min-w-[15rem] rounded-md'
+        coverImage ? 'min-h-[20rem]' : 'min-h-[13rem]',
+        'w-full h-full min-w-[12rem] rounded-md'
       )}
     >
       <div
@@ -64,7 +63,7 @@ const PostCard: React.FC<{
           </div>
         )}
         <div className="p-2 flex flex-col h-full">
-          <h4 className="font-mono drop-shadow">{title}</h4>
+          <h4 className="font-mono drop-shadow min-h-[4rem]">{title}</h4>
           <p className="my-2 font-medium text-md text-primary-500">
             {readingTime}
           </p>
