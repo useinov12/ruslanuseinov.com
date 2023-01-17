@@ -5,10 +5,10 @@ import UnstyledLink from '../UnstyledLink';
 import Accent from '../Accent';
 import Tooltip from '../Tooltip';
 import { ThemeContext } from 'src/context/ThemeProvider';
-
+import copyToClipboard from 'src/utils/clipboard';
 
 const Footer: React.FC = () => {
-  const {theme} = React.useContext(ThemeContext)
+  const { theme } = React.useContext(ThemeContext);
   return (
     <footer
       className={clsx(
@@ -40,7 +40,18 @@ const Footer: React.FC = () => {
             content={
               <div className="text-lg font-bold">
                 <p id="email-tooltip-text-footer">Click to copy</p>
-                <Accent className="font-bold">me@ruslan-useinov.com</Accent>
+                <button
+                  onClick={() =>
+                    copyToClipboard({
+                      text: 'me@ruslan-useinov.com',
+                      id: 'email-tooltip-text-footer',
+                    })
+                  }
+                >
+                  <Accent className="font-bold cursor-pointer">
+                    me@ruslan-useinov.com
+                  </Accent>
+                </button>
               </div>
             }
           >
@@ -60,11 +71,7 @@ const Footer: React.FC = () => {
         <li>
           <UnstyledLink
             href="https://github.com/useinov12"
-            className={clsx(
-              
-              'focus:outline-none',
-              'cursor-alias'
-            )}
+            className={clsx('focus:outline-none', 'cursor-alias')}
           >
             <h4>Github</h4>
           </UnstyledLink>
@@ -72,22 +79,13 @@ const Footer: React.FC = () => {
         <li>
           <UnstyledLink
             href="https://www.linkedin.com/in/ruslan-useinov-330b5a23a"
-            className={clsx(
-             
-              'focus:outline-none',
-              'cursor-alias'
-            )}
+            className={clsx('focus:outline-none', 'cursor-alias')}
           >
             <h4>LinkedIn</h4>
           </UnstyledLink>
         </li>
       </ul>
-      <h6
-        className={clsx(
-          'font-semibold my-2',
-          'cursor-default'
-        )}
-      >
+      <h6 className={clsx('font-semibold my-2', 'cursor-default')}>
         Ruslan Useinov 2022
       </h6>
     </footer>
@@ -95,27 +93,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
-function copyToClipboard({ text, id }: { text: string; id: string }) {
-  const htmlMessage = document.querySelector(`#${id}`);
-  const initialMessage:string |null = htmlMessage!.textContent;
-
-  navigator.clipboard.writeText(text).then(
-    () => {
-      if (htmlMessage) {
-        htmlMessage.textContent = 'Copied!';
-        setTimeout(() => {
-          htmlMessage.textContent = initialMessage;
-        }, 1500);
-      }
-    },
-    () => {
-      if (htmlMessage) {
-        htmlMessage.textContent = 'Something happened... try to copy again';
-        setTimeout(() => {
-          htmlMessage.textContent = initialMessage;
-        }, 1500);
-      }
-    }
-  );
-}

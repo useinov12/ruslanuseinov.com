@@ -9,7 +9,7 @@ export default function copyToClipboard({
   navigator.clipboard.writeText(text).then(
     () => {
       if (htmlMessage) {
-        htmlMessage.textContent = 'Copied!';
+        htmlMessage.textContent = 'Copied! ✨';
         setTimeout(() => {
           htmlMessage.textContent = 'Click on icon to copy';
         }, 1500);
