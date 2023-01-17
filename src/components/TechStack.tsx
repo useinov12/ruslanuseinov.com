@@ -10,6 +10,7 @@ import {
 import UnstyledLink from './UnstyledLink';
 import Tooltip from './Tooltip';
 import { ThemeContext } from 'src/context/ThemeProvider';
+import Accent from './Accent';
 
 const TechStack = () => {
   const { theme } = React.useContext(ThemeContext);
@@ -40,10 +41,13 @@ const stacks = [
     icon: SiTypescript,
     tooltip: (
       <div className="font-bold text-lg">
-        <UnstyledLink href="https://www.typescriptlang.org/">
-          TypeScript
+        <UnstyledLink
+          href="https://www.typescriptlang.org/"
+          className="text-primary-500 hover:border-b-2 border-primary-500"
+        >
+          <Accent className="cursor-pointer">TypeScript</Accent>
         </UnstyledLink>{' '}
-        is the best way to write Javascript!
+        the best way to write Javascript
       </div>
     ),
   },
@@ -52,8 +56,13 @@ const stacks = [
     icon: SiNextdotjs,
     tooltip: (
       <div className="font-bold text-lg">
-        <UnstyledLink href="https://nextjs.org"> Next.js</UnstyledLink> -
-        flexible, scalable, fullstack.
+        <UnstyledLink
+          href="https://nextjs.org"
+          className="text-primary-500 hover:border-b-2 border-primary-500"
+        >
+          <Accent className="cursor-pointer">Next.JS</Accent>
+        </UnstyledLink>{' '}
+        - flexible, scalable, brings Server and Client closer
       </div>
     ),
   },
@@ -62,8 +71,11 @@ const stacks = [
     icon: SiTailwindcss,
     tooltip: (
       <div className="font-bold text-lg">
-        <UnstyledLink href="https://tailwindcss.com/">
-          Tailwind CSS
+        <UnstyledLink
+          href="https://tailwindcss.com/"
+          className="text-primary-500 hover:border-b-2 border-primary-500"
+        >
+          <Accent className="cursor-pointer">Tailwind CSS</Accent>
         </UnstyledLink>{' '}
         is amazing ✨ Seamless and fast to write. Addictive.
       </div>
@@ -74,8 +86,13 @@ const stacks = [
     icon: SiNodedotjs,
     tooltip: (
       <div className="font-bold text-lg">
-        <UnstyledLink href="https://nodejs.org/">Node.js</UnstyledLink>, for
-        backend ⚡
+        <UnstyledLink
+          href="https://nodejs.org/"
+          className="hover:border-b-2 border-primary-500"
+        >
+          <Accent className="cursor-pointer">Node.js</Accent>
+        </UnstyledLink>{' '}
+        for backend ⚡
       </div>
     ),
   },
