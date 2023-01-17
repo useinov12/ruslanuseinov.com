@@ -41,11 +41,11 @@ const AboutPage = () => {
             <h4 className="mb-1">Front end developer</h4>
             <p className="">Creating beautiful and performant web</p>
           </div>
-          <div className="w-32 h-32 relative rounded-full">
+          <div className="w-36 h-36 relative rounded-full">
             <Image
               src={'/assets/me-sq.jpg'}
-              width="110"
-              height="110"
+              width="125"
+              height="130"
               className="rounded-full"
             />
           </div>
@@ -56,13 +56,12 @@ const AboutPage = () => {
           data-fade="4"
         >
           <section className="py-1 font-normal text-lg md:flex md:flex-col md:items-start tracking-tight">
+            <p className="py-2">Hi! I&apos;m Ruslan</p>
             <p className="py-2">
-              Hi! I&apos;m Ruslan. I started learning web development in 2021.
-            </p>
-            <p className="py-2">
-              I have always been interested in how the Internet works, but I
-              never considered myself a tech person enough to figure things out.
-              Until I actually started reading and practicing with Javascript!
+              I started learning web development in 2021. I have always been
+              interested in how the Internet works, but I never considered
+              myself a tech person enough to figure things out. Until I actually
+              started reading and practicing with Javascript!
             </p>
             <p className="py-2">
               At the time I start realizing that I want to have a career, but I
