@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { RiMoonClearLine, RiSunFill } from 'react-icons/ri';
 import { ThemeContext } from 'src/context/ThemeProvider';
+import { inArticle } from './Layout';
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -31,9 +32,7 @@ const Header: React.FC = () => {
   }, [router.asPath]);
 
   return (
-    <div
-      className='sticky top-0 z-50'
-    >
+    <div className="sticky top-0 z-50">
       <HorizontalBar />
       <nav
         className={clsx(
@@ -42,22 +41,24 @@ const Header: React.FC = () => {
           'overflow-y-hidden',
           !onTop &&
             !isMobileNavOpen &&
-            'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 ',
+            'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 '
         )}
       >
         <div
           className={clsx(
-            'max-w-screen-md mx-auto',
+            ' mx-auto',
             'py-1 px-5',
             'flex items-center justify-between',
+            'transition-all duration-200',
+            inArticle(router.pathname) ? 'max-w-screen-lg' : 'max-w-screen-md'
           )}
         >
-          <Logo className="z-50"/>
+          <Logo className="z-50" />
           <DesktopNav currentPage={currentPage} />
 
           <MobileNavButton
-              isMobileNavOpen={isMobileNavOpen}
-              setMobileNavOpen={setMobileNavOpen}
+            isMobileNavOpen={isMobileNavOpen}
+            setMobileNavOpen={setMobileNavOpen}
           />
         </div>
 
@@ -110,7 +111,7 @@ const HorizontalBar = () => {
   );
 };
 
-const Logo = ({className}:{className?:string}) => {
+const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href={'/'}>
       <Image
@@ -132,12 +133,10 @@ const MobileNavButton = ({
 }) => {
   const { theme } = React.useContext(ThemeContext);
   return (
-    <div
-      className='z-50 md:hidden md:z-0'
-    >
+    <div className="z-50 md:hidden md:z-0">
       <button
         onClick={() => setMobileNavOpen((p: boolean) => !p)}
-        className='w-8 h-4 flex flex-col justify-between'
+        className="w-8 h-4 flex flex-col justify-between"
       >
         <div
           className={clsx(
@@ -158,7 +157,7 @@ const MobileNavButton = ({
   );
 };
 
-const ThemeSwitch = ({className}:{className?:string}) => {
+const ThemeSwitch = ({ className }: { className?: string }) => {
   const { theme, handleTheme } = React.useContext(ThemeContext);
   return (
     <>
@@ -225,14 +224,14 @@ const MobileNav = ({
         'z-40 overflow-y-hidden',
         'flex items-center justify-start px-8',
         'transition-all duration-150',
-        isMobileNavOpen ?  'opacity-1' : 'opacity-0',
+        isMobileNavOpen ? 'opacity-1' : 'opacity-0',
         isMobileNavOpen
           ? 'pointer-events-auto bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-50 scroll-y-none'
-          : 'pointer-events-none',
+          : 'pointer-events-none'
       )}
     >
       <div className="flex items-center justify-center">
-        <ul className='md:hidden flex flex-col'>
+        <ul className="md:hidden flex flex-col">
           {links.map(({ text, path }) => (
             <li
               key={text}

@@ -113,7 +113,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             ))}
           </div>
           <div data-fade="6">
-            <Polkadots className="hidden md:block md:absolute -bottom-20 right-0 -z-10 w-2/5" />
+            <Polkadots className="hidden md:block md:absolute -bottom-36 right-0 -z-10 w-2/5" />
           </div>
         </section>
         {/* <BlogPosts posts={posts}/>

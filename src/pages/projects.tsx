@@ -50,7 +50,7 @@ const ProjectPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           )}
           data-fade="3"
         />
-        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-fade="4">
+        <ul className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-3" data-fade="4">
           {posts.map((postSummary) => {
             return (
               <Link
