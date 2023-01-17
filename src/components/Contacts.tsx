@@ -29,7 +29,7 @@ const Contacts = () => {
     </ul>
   );
 };
-const iconStyle = 'h-8 w-8 md:h-12 md:w-12 transition-colors'
+const iconStyle = 'h-8 w-8 md:h-12 md:w-12 transition-colors';
 const contacts = [
   {
     type: 'gmail',
@@ -38,7 +38,7 @@ const contacts = [
         onClick={() =>
           copyToClipboard({
             text: 'me@ruslan-useinov.com',
-            id: 'email-tooltip-text',
+            id: 'email-tooltip-text-about',
           })
         }
         className={clsx(iconStyle, 'cursor-pointer')}
@@ -46,8 +46,19 @@ const contacts = [
     ),
     tooltip: (
       <div className="text-lg font-bold">
-        <p id="email-tooltip-text">Click on icon to copy</p>
-        <Accent className="font-bold">me@ruslan-useinov.com</Accent>
+        <p id="email-tooltip-text-about">Click to copy</p>
+        <button
+          onClick={() =>
+            copyToClipboard({
+              text: 'me@ruslan-useinov.com',
+              id: 'email-tooltip-text-about',
+            })
+          }
+        >
+          <Accent className="font-bold cursor-pointer">
+            me@ruslan-useinov.com
+          </Accent>
+        </button>
       </div>
     ),
   },
@@ -64,10 +75,7 @@ const contacts = [
     tooltip: (
       <div className="text-lg font-bold">
         <p>Check my projects on</p>
-        <UnstyledLink
-          href="https://github.com/useinov12"
-          className="cursor-alias"
-        >
+        <UnstyledLink href="https://github.com/useinov12">
           <Accent className="font-bold">Github</Accent>
         </UnstyledLink>
       </div>
@@ -78,7 +86,7 @@ const contacts = [
     Icon: (
       <UnstyledLink
         href="https://www.linkedin.com/in/ruslan-useinov-330b5a23a"
-        className="cursor-alias"
+        className="cursor-alias "
       >
         <SiLinkedin className={iconStyle} />
       </UnstyledLink>
@@ -86,10 +94,7 @@ const contacts = [
     tooltip: (
       <div className="text-lg font-bold">
         <p>Reach me on</p>
-        <UnstyledLink
-          href="https://www.linkedin.com/in/ruslan-useinov-330b5a23a"
-          className="cursor-alias"
-        >
+        <UnstyledLink href="https://www.linkedin.com/in/ruslan-useinov-330b5a23a">
           <Accent className="font-bold">LinkedIn</Accent>
         </UnstyledLink>
       </div>
