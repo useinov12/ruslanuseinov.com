@@ -1,18 +1,18 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 import { usePreloadState } from 'src/context/PreloadProvider';
 
 export default function useLoaded() {
   const preloaded = usePreloadState();
-  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (preloaded) {
       setIsLoaded(true);
     } else {
       setTimeout(() => {
         setIsLoaded(true);
-      }, 200);
+      }, 400);
     }
   }, [preloaded]);
 
