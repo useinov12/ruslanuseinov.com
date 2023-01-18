@@ -1,16 +1,16 @@
-import React from 'react';
+import { FC } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { type Post } from 'contentlayer/generated';
 import Image from 'next/image';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
-const PostCard: React.FC<{
+const PostCard: FC<{
   postSummary: Post;
 }> = ({
   postSummary: { title, readingTime, description, publishedAt, coverImage },
 }) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <div
       className={clsx(

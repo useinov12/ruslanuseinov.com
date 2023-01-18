@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   type GetStaticProps,
   type InferGetStaticPropsType,
@@ -12,7 +11,7 @@ import { allPosts, type Post } from 'contentlayer/generated';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
 import { NextSeo } from 'next-seo';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
 export async function getStaticProps() {
   const posts = allPosts.filter((post) =>
@@ -29,7 +28,7 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
 }) => {
   const isLoaded = useLoaded();
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <Layout>
       <NextSeo openGraph={openGraph} twitter={twitter} />

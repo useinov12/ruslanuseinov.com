@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, ComponentType } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { BiTimeFive } from 'react-icons/bi';
@@ -6,13 +6,13 @@ import Accent from '../Accent';
 
 import MDXComponents from './MDXComponents';
 import TableOfContents from 'src/components/TableOfContent';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
-const PostContent: React.FC<{
+const PostContent: FC<{
   post: any;
-  MDXContent: React.ComponentType<any>;
+  MDXContent: ComponentType<any>;
 }> = ({ post, MDXContent }) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <main>
       <h1 className="text-3xl my-2">{post.title}</h1>

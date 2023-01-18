@@ -1,4 +1,3 @@
-import React from 'react';
 import Layout from '../components/layout/Layout';
 import clsx from 'clsx';
 import Accent from '../components/Accent';
@@ -10,11 +9,11 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
 import { NextSeo } from 'next-seo';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
 export default function HomePage() {
   const isLoaded = useLoaded();
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <Layout>
       <NextSeo openGraph={openGraph} twitter={twitter} />

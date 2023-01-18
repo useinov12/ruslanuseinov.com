@@ -1,18 +1,18 @@
-import React, { ReactNode } from 'react';
+import { ReactNode, FC } from 'react';
 import clsx from 'clsx';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
-const Button: React.FC<{
+const Button: FC<{
   className?: string;
   onClick?: () => void;
   children: ReactNode;
 }> = ({ children, className, onClick }) => {
-  const {theme} = React.useContext(ThemeContext)
+  const { theme } = useTheme();
 
   return (
     <div
       className={clsx(
-        theme === 'light' ? 'bg-dark/70' :'bg-white',
+        theme === 'light' ? 'bg-dark/70' : 'bg-white',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
         'p-[2px] rounded-lg flex justify-center items-center',
         'hover:border-primary-500 transition-all duration-200',
@@ -26,8 +26,9 @@ const Button: React.FC<{
       <button
         onClick={onClick}
         className={clsx(
-        'px-5 py-1 rounded-lg', 
-        theme === 'light' ? 'bg-gray-100' :'bg-dark')}
+          'px-5 py-1 rounded-lg',
+          theme === 'light' ? 'bg-gray-100' : 'bg-dark'
+        )}
       >
         {children}
       </button>

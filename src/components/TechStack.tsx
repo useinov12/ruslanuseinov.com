@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import * as React from 'react';
 import {
   SiNextdotjs,
   SiNodedotjs,
@@ -9,11 +8,11 @@ import {
 
 import UnstyledLink from './UnstyledLink';
 import Tooltip from './Tooltip';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 import Accent from './Accent';
 
 const TechStack = () => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme()
   return (
     <ul className="flex space-x-2 md:space-x-4 my-2">
       {stacks.map((tech) => (

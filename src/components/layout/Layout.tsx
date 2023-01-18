@@ -1,24 +1,24 @@
 import clsx from 'clsx';
-import React from 'react';
+import { FC, ReactNode } from 'react';
 
 import Header from './Header';
 import Footer from './Footer';
 
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 import { useRouter } from 'next/router';
 
-const Layout: React.FC<{
-  children: React.ReactNode;
+const Layout: FC<{
+  children: ReactNode;
 }> = ({ children }) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   const router = useRouter();
-
 
   return (
     <>
       <div
         className={clsx(
           'w-screen min-h-screen h-full relative',
+          'overflow-x-hidden',
           theme === 'light' ? 'bg-gray-300 text-gray-800' : 'bg-dark text-white'
         )}
       >
@@ -38,7 +38,6 @@ const Layout: React.FC<{
 };
 
 export default Layout;
-
 
 export function inArticle(path: string): boolean {
   const list = [/(blog\/(.+))/, /(library\/(.+))/, /(projects\/(.+))/];

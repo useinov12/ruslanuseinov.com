@@ -1,14 +1,14 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
-import React from 'react';
+import { FC } from 'react';
 import clsx from 'clsx';
 import UnstyledLink from '../UnstyledLink';
 import Accent from '../Accent';
 import Tooltip from '../Tooltip';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 import copyToClipboard from 'src/utils/clipboard';
 
-const Footer: React.FC = () => {
-  const { theme } = React.useContext(ThemeContext);
+const Footer: FC = () => {
+  const { theme } = useTheme();
   return (
     <footer
       className={clsx(
@@ -24,7 +24,6 @@ const Footer: React.FC = () => {
           <UnstyledLink
             href="https://github.com/useinov12/ruslanuseinov.com"
             className={clsx(
-              // 'text-gray-300 hover:text-white',
               'focus:outline-none',
               'transition-colors',
               'cursor-alias'

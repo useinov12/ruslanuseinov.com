@@ -1,19 +1,19 @@
-import React from 'react';
+import { FC, useEffect, useState, Dispatch } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { RiMoonClearLine, RiSunFill } from 'react-icons/ri';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 import { inArticle } from './Layout';
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const router = useRouter();
-  const [isMobileNavOpen, setMobileNavOpen] = React.useState(false);
-  const [onTop, setOnTop] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState('/');
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  const [onTop, setOnTop] = useState(true);
+  const [currentPage, setCurrentPage] = useState('/');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setOnTop(window.pageYOffset === 0);
     };
@@ -23,11 +23,11 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isMobileNavOpen) setMobileNavOpen(false);
   }, [router.asPath]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentPage(router.asPath);
   }, [router.asPath]);
 
@@ -129,9 +129,9 @@ const MobileNavButton = ({
   setMobileNavOpen,
 }: {
   isMobileNavOpen: boolean;
-  setMobileNavOpen: React.Dispatch<any>;
+  setMobileNavOpen: Dispatch<any>;
 }) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <div className="z-50 md:hidden md:z-0">
       <button
@@ -158,7 +158,7 @@ const MobileNavButton = ({
 };
 
 const ThemeSwitch = ({ className }: { className?: string }) => {
-  const { theme, handleTheme } = React.useContext(ThemeContext);
+  const { theme, handleTheme } = useTheme();
   return (
     <>
       <button

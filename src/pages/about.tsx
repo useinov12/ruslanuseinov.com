@@ -1,4 +1,3 @@
-import React from 'react';
 import Layout from '../components/layout/Layout';
 import Image from 'next/image';
 import clsx from 'clsx';
@@ -6,11 +5,11 @@ import useLoaded from 'src/hooks/useLoaded';
 import TechStack from 'src/components/TechStack';
 import Contacts from 'src/components/Contacts';
 import { NextSeo } from 'next-seo';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
 const AboutPage = () => {
   const isLoaded = useLoaded();
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme()
   return (
     <Layout>
       <NextSeo openGraph={openGraph} twitter={twitter} />

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import * as React from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
   SiFirebase,
@@ -18,21 +18,21 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiCss3,
-  SiJest
+  SiJest,
 } from 'react-icons/si';
 import Image from 'next/image';
 
 import Tooltip from '../Tooltip';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
 export type TechListType = keyof typeof techList;
 
 export type TechIconsProps = {
   techs: Array<TechListType>;
-} & React.ComponentPropsWithoutRef<'ul'>;
+} & ComponentPropsWithoutRef<'ul'>;
 
 const TechIcons = ({ className, techs }: TechIconsProps) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <ul className={clsx(className, 'flex gap-2')}>
       {techs.map((tech) => {

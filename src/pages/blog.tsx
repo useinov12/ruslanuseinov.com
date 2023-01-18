@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   type GetStaticProps,
   type InferGetStaticPropsType,
@@ -12,7 +11,7 @@ import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
 
 import { NextSeo } from 'next-seo';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
 export async function getStaticProps() {
   const posts = allPosts.filter((post) =>
@@ -29,15 +28,18 @@ const BlogPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
 }) => {
   const isLoaded = useLoaded();
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <Layout>
       <NextSeo openGraph={opennGraph} twitter={twitter} />
       <main className={clsx(isLoaded && 'fade-in-start', 'h-screen')}>
-        <h1 className={clsx(
-          'my-4 text-primary-500"',
-          theme === 'light' ? 'text-gray-800' :'text-primary-500"'
-        )} data-fade="1">
+        <h1
+          className={clsx(
+            'my-4 text-primary-500"',
+            theme === 'light' ? 'text-gray-800' : 'text-primary-500"'
+          )}
+          data-fade="1"
+        >
           Blog
         </h1>
         <h6 className="font-semibold text-xl" data-fade="2">

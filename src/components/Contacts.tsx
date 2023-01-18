@@ -5,10 +5,10 @@ import UnstyledLink from 'src/components/UnstyledLink';
 import Accent from 'src/components/Accent';
 import { SiGmail, SiGithub, SiLinkedin } from 'react-icons/si';
 import copyToClipboard from 'src/utils/clipboard';
-import { ThemeContext } from 'src/context/ThemeProvider';
+import { useTheme } from 'src/context/ThemeProvider';
 
 const Contacts = () => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <ul className="inline-flex gap-2">
       {contacts.map(({ type, Icon, tooltip }) => (
