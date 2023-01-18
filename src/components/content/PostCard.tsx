@@ -28,7 +28,7 @@ const PostCard: React.FC<{
         theme === 'light' ? 'bg-dark/70' : 'bg-white',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
 
-        coverImage ? 'min-h-[20rem]' : 'min-h-[13rem]',
+        coverImage ? 'min-h-[23rem]' : 'min-h-[14rem]',
         'w-full h-full min-w-[12rem] rounded-md'
       )}
     >
