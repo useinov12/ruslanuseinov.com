@@ -30,18 +30,19 @@ const PostContent: FC<{
             className={clsx(
               'h-[90vh] overflow-y-scroll',
               'prose-sm',
-              'pt-3 pb-8 pr-2',
+              'pb-8 pr-2',
               'prose-blockquote:border-4 prose-blockquote:border-transparent',
               'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
               'prose-code:text-primary-500',
-              // 'prose-code:text-sm',
               'prose-li:list-disc',
               'prose-a:text-primary-500',
               theme === 'light' && 'text-dark'
             )}
           >
             <ArticleHeader post={post} />
-            <MDXContent components={MDXComponents} />
+            <div className="py-5">
+              <MDXContent components={MDXComponents} />
+            </div>
           </article>
         </div>
       </section>
