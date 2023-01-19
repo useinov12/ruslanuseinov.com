@@ -1,21 +1,21 @@
-import clsx from 'clsx';
-import * as React from 'react';
+import {
+  createContext,
+  ReactNode,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 
-const PreloadContext = React.createContext<boolean>(false);
+const PreloadContext = createContext<boolean>(false);
 
-export default  function PreloadProvider({ children }: { children: React.ReactNode }) {
+export default function PreloadProvider({ children }: { children: ReactNode }) {
+  const [preloaded, setIsPreloaded] = useState<boolean>(false);
+
   /** If the dom is loaded */
-  const [preloaded, setIsPreloaded] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    // setTimeout(() => {
-      
-    // }, 100);
-
+  useEffect(() => {
     document.addEventListener('DOMContentLoaded', (event) => {
       setIsPreloaded(true);
     });
-
   }, []);
 
   return (
@@ -25,4 +25,4 @@ export default  function PreloadProvider({ children }: { children: React.ReactNo
   );
 }
 
-export const usePreloadState = () => React.useContext(PreloadContext);
+export const usePreloadState = () => useContext(PreloadContext);
