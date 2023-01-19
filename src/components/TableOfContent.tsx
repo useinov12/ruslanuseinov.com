@@ -17,13 +17,12 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
 
     /* count pound signs in heading */
     const headerSize = new RegExp(/^#*/, '');
-    const match = headerSize.exec(raw)?.[0]
-      ? headerSize.exec(raw)?.[0].length
-      : 2;
 
+    const match = headerSize.exec(raw);
+    const level = match ? match[0].length : 2;
     return {
       text,
-      level: match,
+      level,
       id: slugger.slug(text),
     };
   });
