@@ -19,11 +19,15 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
     const headerSize = new RegExp(/^#*/, '');
 
     const match = headerSize.exec(raw);
-    const level = match && match[0].length;
+
+    let level = 2;
+    if (match) {
+      level = match[0].length;
+    }
 
     return {
       text,
-      level: level ? level : 2,
+      level,
       id: slugger.slug(text),
     };
   });
