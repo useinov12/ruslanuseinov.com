@@ -20,14 +20,9 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
 
     const match = headerSize.exec(raw);
 
-    let level = 2;
-    if (match) {
-      level = match[0].length;
-    }
-
     return {
       text,
-      level,
+      level: (match && match[0].length) ?? 2,
       id: slugger.slug(text),
     };
   });
