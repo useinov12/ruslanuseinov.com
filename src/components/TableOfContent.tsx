@@ -16,13 +16,11 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
     const slugger = new GithubSlugger();
 
     /* count pound signs in heading */
-    const headerSize = new RegExp(/^#*/, '');
-
-    const match = headerSize.exec(raw);
+    const match: string = raw.match(/^#*/);
 
     return {
       text,
-      level: (match && match[0].length) ?? 2,
+      level: match.length,
       id: slugger.slug(text),
     };
   });
