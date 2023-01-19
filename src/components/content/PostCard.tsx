@@ -28,7 +28,7 @@ const PostCard: FC<{
         theme === 'light' ? 'bg-dark/70' : 'bg-white',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
 
-        coverImage ? 'min-h-[23rem]' : 'min-h-[14rem]',
+        coverImage ? 'min-h-[22rem]' : 'min-h-[14rem]',
         'w-full h-full min-w-[12rem] rounded-md'
       )}
     >
@@ -42,8 +42,8 @@ const PostCard: FC<{
         {coverImage && (
           <div
             className={clsx(
-              'w-full h-2/5 border-b-2 border-b-white',
-              'group-hover:border-b-primary-500 p-1',
+              'w-full h-1/2 border-b-2 border-b-white',
+              'group-hover:border-b-primary-500',
               'overflow-hidden',
               'relative'
             )}
@@ -52,23 +52,22 @@ const PostCard: FC<{
               src={coverImage}
               alt={title}
               layout={'fill'}
-              objectFit={'cover'}
               className={clsx(
                 'scale-100 motion-reduce:hover:scale-100 ',
-                'group-hover:scale-[1.01]',
-                'transition duration-25',
+                'group-hover:scale-[1.05]',
+                'transition duration-75',
                 'drop-shadow'
               )}
             />
           </div>
         )}
-        <div className="p-2 flex flex-col h-full">
-          <h4 className="font-mono drop-shadow min-h-[4rem]">{title}</h4>
+        <div className="p-2 flex flex-col h-1/2">
+          <h4 className="font-mono drop-shadow">{title}</h4>
           <p className="my-2 font-medium text-md text-primary-500">
             {readingTime}
           </p>
           <p className="py-2 drop-shadow">{description}</p>
-          <p className="fixed bottom-2 right-4 text-primary-500">
+          <p className="text-primary-500 text-right">
             {dayjs(publishedAt).format('MMMM D, YYYY')}
           </p>
         </div>
