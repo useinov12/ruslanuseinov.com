@@ -50,7 +50,8 @@ const Header: FC = () => {
             'py-1 px-5',
             'flex items-center justify-between',
             'transition-all duration-200',
-            inArticle(router.pathname) ? 'max-w-screen-lg' : 'max-w-screen-md'
+            'max-w-screen-lg'
+            // inArticle(router.pathname) ? 'max-w-screen-lg' : 'max-w-screen-md'
           )}
         >
           <Logo className="z-50" />

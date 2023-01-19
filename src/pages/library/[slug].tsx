@@ -6,8 +6,6 @@ import {
 } from 'next';
 import clsx from 'clsx';
 import Layout from '../../components/layout/Layout';
-import Link from 'next/link';
-import { BiArrowBack } from 'react-icons/bi';
 
 import { allPosts, type Post } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
@@ -47,26 +45,9 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           'justify-center',
           'm-auto p-2',
           'max-w-screen-lg',
-          isLoaded && 'fade-in-start',
+          isLoaded && 'fade-in-start'
         )}
       >
-        <Link href="/library">
-          <h3
-            className={clsx(
-              'inline-flex items-center gap-1 cursor-pointer',
-              'group my-6'
-            )}
-            data-fade="1"
-          >
-            <BiArrowBack
-              className={clsx(
-                'text-md scale-100 group-hover:translate-x-[-4px] active:translate-x-0',
-                'transition-all duration-75'
-              )}
-            />
-            <span>Back to Library </span>
-          </h3>
-        </Link>
         <div data-fade="2">
           <PostContent post={post} MDXContent={MDXContent} />
         </div>

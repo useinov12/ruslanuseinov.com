@@ -5,21 +5,17 @@
  * https://github.com/PrismJS/prism-themes
  */
 
-
-
-
 pre {
   overflow-x: auto;
   background-color: rgb(17, 16, 26);
   padding: 1rem;
-  border-radius: .25rem;
-
+  border-radius: 0.25rem;
   margin-bottom: 1rem;
 }
 
 /* Code title styles */
 .rehype-code-title {
-  @apply rounded-t border border-gray-200 bg-gray-100 py-3 pb-2 pl-6 font-mono font-medium text-sm italic text-gray-700;
+  @apply rounded-t border border-gray-200 bg-gray-100 py-3 pb-2 pl-6 font-mono font-medium italic text-gray-700;
 }
 
 .rehype-code-title + div > pre {
@@ -28,11 +24,11 @@ pre {
 
 /* Code block styles */
 .code-highlight {
-  @apply float-left min-w-full text-sm;
+  @apply float-left min-w-full;
 }
 
 .code-line {
-  @apply -mx-4 block border-l-4 border-transparent border-opacity-0 pl-4 pr-4;
+  @apply -mx-4 block border-l-4 border-transparent border-opacity-0 pl-4 pr-4 text-[.7rem];
 }
 
 .code-line.inserted {
@@ -60,6 +56,10 @@ pre {
    * Ported by Sara vieria [@SaraVieira]
    * Added by Souvik Mandal [@SimpleIndian]
    */
+
+.token {
+  /* font-size:small; */
+}
 .token.comment,
 .token.prolog,
 .token.cdata {

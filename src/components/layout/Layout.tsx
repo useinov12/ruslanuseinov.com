@@ -26,7 +26,8 @@ const Layout: FC<{
         <div
           className={clsx(
             'mx-auto  px-5',
-            inArticle(router.pathname) ? 'max-w-screen-lg' : 'max-w-screen-md'
+            'max-w-screen-lg'
+            // inArticle(router.pathname) ? 'max-w-screen-lg' : 'max-w-screen-md'
           )}
         >
           <div className="">{children}</div>

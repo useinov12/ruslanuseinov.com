@@ -17,7 +17,7 @@
 }
 
 body {
-  /* background-color: #22232b; */
+  /* background-color: #3b82f6; */
 }
 
 @layer base {
@@ -142,7 +142,6 @@ body {
 .yt-lite::before {
   content: none !important;
 }
-
 
 /* =========== Fade In =========== */
 [data-fade] {
