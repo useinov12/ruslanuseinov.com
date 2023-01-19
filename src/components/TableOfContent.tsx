@@ -6,40 +6,53 @@ import { type Post } from 'contentlayer/generated';
 const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
   const [activeId, setActiveId] = React.useState<string>();
 
+  /* find heading lines */
   const headingLines = post.body.raw
     .split('\n')
     .filter((line: string) => line.match(/^##*\s/));
 
   const headings = headingLines.map((raw: any) => {
     const text = raw.replace(/^#*\s/, '').trim();
-    const level = raw.slice(0, 3) === '#' ? 3 : 2;
     const slugger = new GithubSlugger();
+
+    /* count pound signs in heading */
+    const headerSize = new RegExp(/^#*/, '');
+    const match = headerSize.exec(raw)?.[0]
+      ? headerSize.exec(raw)?.[0].length
+      : 2;
 
     return {
       text,
-      level,
+      level: match,
       id: slugger.slug(text),
     };
   });
 
   return (
-    <div className="flex flex-col items-start mt-4 mb-0 lg:ml-4 cursor-pointer">
-      <h3 className="mb-4 font-mono text-md">Page Content</h3>
+    <div className="flex flex-col items-start mt-2 mb-0 cursor-pointer">
+      <h4 className="mb-4 text-md">Page Content</h4>
       {headings.map((heading, index) => {
         return (
           <button
             key={index}
             type="button"
             className={clsx(
-              `w-full mb-1`,
-              'text-left pl-2',
+              `w-full mb-1 py-1`,
+              'text-left',
               'sm:text-sm font-mono',
               'whitespace-nowrap',
               'hover:bg-primary-500/20',
+              'border-l-4',
               heading.id === activeId
-                ? 'border-l-4 border-primary-500 bg-primary-500/20'
-                : ' border-l-4 border-transparent'
-              // heading.level === 2 ? '' : 'hidden'
+                ? 'border-primary-500 bg-primary-500/20'
+                : 'border-transparent',
+              heading.level === 1
+                ? 'pl-2'
+                : heading.level === 2
+                ? 'pl-4'
+                : heading.level === 3
+                ? 'pl-6'
+                : 'pl-8'
             )}
             onClick={(e) => {
               e.preventDefault();
