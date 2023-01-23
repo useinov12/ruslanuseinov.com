@@ -1,24 +1,24 @@
 ---
-title: 'Handaling Auth in Personal Finance project'
+title: 'Auth in my PersonalFinance project'
 publishedAt: '2023-01-12'
-description: 'Fetching, cahing and protecting routes '
+description: 'Fetching, cahing and protecting routes'
 coverImage: ''
 ---
 
-# structure
+# Approach
 
 Our backend using JWT tokens as an **access token** with rotation of **refresh tokens**
 
-On the clinet side I use (Tanstack React Query )[https://react-query-v3.tanstack.com/] to
-fetch and cashe User and session information.
+On the clinet side I use [Tanstack React Query](https://react-query-v3.tanstack.com) to
+fetch and cashe user session data
 
 React Query library provides an abstraction layer for handaling everething that
-related to an API call from api state(loading/fetching, isSuccess, isError, etc) to esaly handaling database mutations.
-It can fullfill all our needs for **authentification**
+related to an API call from api state(loading/fetching, isSuccess, isError, etc) to easily handaling database mutations.\
+Everething that is fetched with React Query is stored in cashe layer provided by library.\
+It can fulfill all our needs for **authentification**
 Everething is super simple and handaled with a very little amount of code.
-Quick example from the docs:
 
-Everething that is fetched with React Query is stored in cashe layer provided by library.
+Quick example from the docs:
 
 ```typescript showLineNumbers
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -73,7 +73,7 @@ Login pattern:
    in custom hook `useAuth()` that requests current user session
 4. Each component that dependent on the user session will be updated based on `useAuth()` query result
 
-#### How does it look like in code?
+####  Code examples
 
 **Login action**
 
