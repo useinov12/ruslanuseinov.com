@@ -9,7 +9,7 @@ import { useTheme } from 'src/context/ThemeProvider';
 
 const AboutPage = () => {
   const isLoaded = useLoaded();
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <Layout>
       <NextSeo openGraph={openGraph} twitter={twitter} />
@@ -43,8 +43,8 @@ const AboutPage = () => {
           <div className="w-36 h-36 relative rounded-full">
             <Image
               src={'/assets/me-sq.jpg'}
-              width="125"
-              height="130"
+              width="135"
+              height="140"
               className="rounded-full"
             />
           </div>
