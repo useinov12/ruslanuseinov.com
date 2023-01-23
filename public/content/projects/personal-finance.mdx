@@ -1,8 +1,8 @@
 ---
 title: 'PersonalFinance'
 publishedAt: '2022-10-20'
-description: 'Track and analyze bank data with Plaid API'
-coverImage: '/assets/pf.png'
+description: 'Personal banking app. Track and analyze bank data with Plaid API'
+coverImage: '/assets/pf1.png'
 ---
 
 # Project
@@ -11,23 +11,24 @@ An App for tracking and analazyng data from all your banks using Plaid API.\
 [Live version]()\
 [Client Repo](https://github.com/useinov12/pf-client) | [Backend Repo](https://github.com/kalinchenko23/personal_finance_tracker)
 
-### Features
+{/* ### Features
 * Landing page
 * Auth and protected routes
 * Plaid API
 * Custom charts and analytics
 * Finance page
 * Banks page
-* Transactions page
+* Transactions page */}
  
 ### Current Status
 
 ✅ Landing Page\
 ✅ Auth and protected routes\
-🟨 Plaid Link API currently in developement\
-🟨 Finance overview/summary page\
-🟨 Banks overview/summary page\
+✅ Plaid Link API currently in developement\
+✅ Finance overview/summary page\
+✅ Banks overview/summary page\
 🟨 Transactions overview/summary page\
+🟨 Accounts overview/summary page
 
 
 ### Challenge
@@ -41,7 +42,7 @@ Structure middle-size project that is scalable.
 
 <blockquote className="with-icons">
   <div className="not-prose mt-2 text-4xl">
-    <TechIcons techs={['react', 'nextjs', 'typescript', 'tailwind']} />
+    <TechIcons techs={['react', 'nextjs', 'typescript', 'tailwindcss']} />
   </div>
 </blockquote>
 
@@ -50,15 +51,11 @@ Front end code deployed on Vercel.
 
 ### Fetching and cashing
 
-App fetching and cashing data patterns
+App fetching and cashing data pattern
 
- - every API call that does not have an effect on cached entity data is expressed as an 'action'
+ - every API call that does not have an effect on cached entity data is expressed as an 'action' function
 
  - every API call that influences a cached entity in-app is a custom hook that wraps a react-query hook
- OR React Context method, that calls a react-query hook
-
-Context has a custom hook that provides access to its value
-
 
 
 ### Authentification 
