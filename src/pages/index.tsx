@@ -121,7 +121,7 @@ const Polkadots = ({ className }: { className?: string }) => {
 
 const linkList = [
   {
-    path: '/',
+    path: 'https://ruslan-useinov.com/content/useinov_resume.pdf',
     text: 'Resume',
     Icon: IoNewspaperSharp,
   },
