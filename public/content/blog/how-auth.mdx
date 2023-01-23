@@ -1,0 +1,155 @@
+---
+title: 'Handaling Auth in Personal Finance project'
+publishedAt: '2023-01-12'
+description: 'Fetching, cahing and protecting routes '
+coverImage: ''
+---
+
+# structure
+
+Our backend using JWT tokens as an **access token** with rotation of **refresh tokens**
+
+On the clinet side I use (Tanstack React Query )[https://react-query-v3.tanstack.com/] to
+fetch and cashe User and session information.
+
+React Query library provides an abstraction layer for handaling everething that
+related to an API call from api state(loading/fetching, isSuccess, isError, etc) to esaly handaling database mutations.
+It can fullfill all our needs for **authentification**
+Everething is super simple and handaled with a very little amount of code.
+Quick example from the docs:
+
+Everething that is fetched with React Query is stored in cashe layer provided by library.
+
+```typescript showLineNumbers
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+
+const queryClient = new QueryClient();
+
+export default function App() {
+  return (
+    /* React Query Client instance wraps component */
+    <QueryClientProvider client={queryClient}>
+      <Example />
+    </QueryClientProvider>
+  );
+}
+
+function Example() {
+  const fetcher = fetch(
+    'https://api.github.com/repos/tannerlinsley/react-query'
+  ).then((res) => res.json());
+
+  const { isLoading, error, data } = useQuery('repoData', fetcher);
+
+  if (isLoading) return 'Loading...';
+
+  if (error) return 'An error has occurred: ' + error.message;
+
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.description}</p>
+    </div>
+  );
+}
+```
+
+To fetch and cashe session information, I use the following approach:
+
+- every API call that does not have an effect on cached entity data is expressed as an 'action' function -
+  wraper that handles api call and response
+
+- every API call that influences a cached entity in-app is a custom hook that wraps a react-query hook -
+  custom hook that wraps a react-query hook.
+  That way we define all query perferences once and don't repeat ourselves.
+  All `useQuery` states and methods remain exposed thru our custom hook.
+
+Login pattern:
+
+1. `login`(action) `POST` user credentials and receives JWT
+2. Short-lived JWT is being encoded, stored in localStorage
+   and being sent with each protected API call
+3. On successful `login`, we invalidate ['user'] query and trigger re-fetching
+   in custom hook `useAuth()` that requests current user session
+4. Each component that dependent on the user session will be updated based on `useAuth()` query result
+
+#### How does it look like in code?
+
+**Login action**
+
+```typescript:authActions.ts showLineNumbers
+export async function login(
+  credentials
+){
+  try {
+    const { data, status } = await apiLoginUser(credentials);
+    Storage.set('accessToken', data.access_token);
+    Storage.set('refreshToken', data.refresh_token);
+    return { status: status };
+  } catch (error) {
+    error.response.status === 404
+      ? toast.error(error.response.data.detail.message)
+      : toast.error('An unexpected error occurred :(  Try again.');
+    return { status: error.response.status };
+  }
+}
+```
+
+---
+
+**Login.tsx**
+
+```typescript
+function Login(){
+    ...
+    const queryClient = useCashedClient();
+
+    async function onLoginSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const { status } = await login({ username, password });
+
+        if (status === 200) {
+        /* invalidate query to trigger update cashed user */
+        queryClient.invalidateQueries(['user']);
+        refetch();
+        }
+    }
+
+    return (
+        <form onSubmit={onLoginSubmit}>
+            ...
+        </form>
+    )
+}
+```
+
+**useAuth.tsx**
+
+```typescript
+export const useAuth = () => {
+  return useQuery('user', getSession, {
+    enabled: false, // needed to handle refetchs manually
+    retry: false,
+    onSuccess: (data) => {
+      /* success callback */
+    },
+    onError: () => {
+      /* error callback */
+    },
+    select: (data) => formatResponse(data), // will return in const { data } = useAuth()
+  });
+};
+```
+
+```typescript:Navbar.tsx
+function Navbar() {
+  const { data: user, isLoading } = useAuth();
+
+  if (isLoading) return <Loading />;
+
+  if (error) return <LoginButton />;
+
+  return <UserAvatar />;
+}
+```
