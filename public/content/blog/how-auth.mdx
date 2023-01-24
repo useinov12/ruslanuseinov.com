@@ -12,11 +12,11 @@ Our backend using JWT tokens as an **access token** with rotation of **refresh t
 On the clinet side I use [Tanstack React Query](https://react-query-v3.tanstack.com) to
 fetch and cashe user session data
 
-React Query library provides an abstraction layer for handaling everething that
-related to an API call from api state(loading/fetching, isSuccess, isError, etc) to easily handaling database mutations.\
-Everething that is fetched with React Query is stored in cashe layer provided by library.\
+React Query library provides an abstraction layer for handling everything that
+related to an API call from API state(loading/fetching, isSuccess, isError, etc) to easily handle database mutations.\
+Everything that is fetched with React Query is stored in the cache layer provided by the library.\
 It can fulfill all our needs for **authentification**
-Everething is super simple and handaled with a very little amount of code.
+Everything is super simple and handled with a very little amount of code.
 
 Quick example from the docs:
 
@@ -54,26 +54,26 @@ function Example() {
 }
 ```
 
-To fetch and cashe session information, I use the following approach:
+To fetch and cache session information, I use the following approach:
 
 - every API call that does not have an effect on cached entity data is expressed as an 'action' function -
-  wraper that handles api call and response
+  wrapper that handles API call and response
 
 - every API call that influences a cached entity in-app is a custom hook that wraps a react-query hook -
   custom hook that wraps a react-query hook.
-  That way we define all query perferences once and don't repeat ourselves.
+  That way we define all query preferences once and don't repeat ourselves.
   All `useQuery` states and methods remain exposed thru our custom hook.
 
 Login pattern:
 
 1. `login`(action) `POST` user credentials and receives JWT
-2. Short-lived JWT is being encoded, stored in localStorage
+2. Short-lived JWT is being encoded and stored in localStorage
    and being sent with each protected API call
 3. On successful `login`, we invalidate ['user'] query and trigger re-fetching
    in custom hook `useAuth()` that requests current user session
-4. Each component that dependent on the user session will be updated based on `useAuth()` query result
+4. Each component that depends on the user session will be updated based on `useAuth()` query result
 
-####  Code examples
+#### Code examples
 
 **Login action**
 
