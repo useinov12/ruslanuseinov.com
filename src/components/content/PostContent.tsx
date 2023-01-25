@@ -29,13 +29,18 @@ const PostContent: FC<{
           <article
             className={clsx(
               'h-[90vh] overflow-y-scroll',
-              'prose-sm',
-              'pb-8 pr-2',
+              'prose-lg',
+              'pb-8 pr-6',
               'prose-blockquote:border-4 prose-blockquote:border-transparent',
               'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
               'prose-code:text-primary-500',
-              'prose-li:list-disc',
+              'prose-li:list-disc prose-li:p-0 prose-li:m-0',
               'prose-a:text-primary-500',
+              // 'prose-p:font-semibold',
+              'prose-headings:my-2',
+              'prose-p:my-0',
+              'prose-h1:my-4',
+              'prose-ul:m-0',
               theme === 'light' && 'text-dark'
             )}
           >
