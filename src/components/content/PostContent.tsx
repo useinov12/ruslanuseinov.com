@@ -7,9 +7,11 @@ import Accent from '../Accent';
 import MDXComponents from './MDXComponents';
 import TableOfContents from 'src/components/TableOfContent';
 import { useTheme } from 'src/context/ThemeProvider';
+import { allPosts, type Post } from 'contentlayer/generated';
+import Image from 'next/image';
 
 const PostContent: FC<{
-  post: any;
+  post: Post;
   MDXContent: ComponentType<any>;
 }> = ({ post, MDXContent }) => {
   const { theme } = useTheme();
@@ -46,6 +48,14 @@ const PostContent: FC<{
           >
             <ArticleHeader post={post} />
             <div className="py-5">
+            <Image
+              src={post.coverImage}
+              width="900"
+              height="500"
+              objectFit="cover"
+              objectPosition="left top"
+              className='rounded'
+            />
               <MDXContent components={MDXComponents} />
             </div>
           </article>
