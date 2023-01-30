@@ -48,14 +48,16 @@ const PostContent: FC<{
           >
             <ArticleHeader post={post} />
             <div className="py-5">
-            <Image
-              src={post.coverImage}
-              width="900"
-              height="500"
-              objectFit="contain"
-              objectPosition="left top"
-              className='rounded'
-            />
+              {post.coverImage && (
+                <Image
+                  src={post.coverImage}
+                  width="900"
+                  height="500"
+                  objectFit="contain"
+                  objectPosition="left top"
+                  className="rounded"
+                />
+              )}
               <MDXContent components={MDXComponents} />
             </div>
           </article>
