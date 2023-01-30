@@ -12,6 +12,8 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import PostContent from 'src/components/content/PostContent';
 import useLoaded from 'src/hooks/useLoaded';
+import Seo from 'src/components/Seo';
+import { useRouter } from 'next/router';
 
 export const getStaticPaths = () => {
   return {
@@ -36,11 +38,18 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
 const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
 }) => {
+  const { pathname } = useRouter();
   const MDXContent = useMDXComponent(post.body.code);
   const isLoaded = useLoaded();
 
   return (
     <Layout>
+      <Seo
+        url={pathname}
+        title={post.title}
+        description={post.description}
+        imageUrl={post.coverImage}
+      />
       <main
         className={clsx(
           'flex flex-col justify-center m-auto p-2',
