@@ -4,15 +4,21 @@ import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
 import TechStack from 'src/components/TechStack';
 import Contacts from 'src/components/Contacts';
-import { NextSeo } from 'next-seo';
 import { useTheme } from 'src/context/ThemeProvider';
+import Seo from 'src/components/Seo';
+import { useRouter } from 'next/router';
 
 const AboutPage = () => {
+  const { pathname } = useRouter();
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
     <Layout>
-      <NextSeo openGraph={openGraph} twitter={twitter} />
+      <Seo
+        url={pathname}
+        description={'A few words about myself'}
+        imageUrl={'/assets/banners/about_banner.png'}
+      />
 
       <main className={clsx(isLoaded && 'fade-in-start')}>
         <h1
@@ -107,20 +113,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
-const openGraph = {
-  type: 'website',
-  locale: 'en_IE',
-  url: 'https://ruslan-useinov.com',
-  siteName: 'ruslan-useinov.com',
-  images: [
-    {
-      url: 'https://ruslan-useinov.com/favicon/og-about.png',
-      width: 1200,
-      height: 630,
-      alt: 'Og Image Alt',
-      type: 'image/png',
-    },
-  ],
-};
-const twitter = { cardType: 'summary_large_image' };

@@ -8,15 +8,22 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Link from 'next/link';
 import useLoaded from 'src/hooks/useLoaded';
-import { NextSeo } from 'next-seo';
 import { useTheme } from 'src/context/ThemeProvider';
+import Seo from 'src/components/Seo';
+import { useRouter } from 'next/router';
 
 export default function HomePage() {
+  const { pathname } = useRouter();
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
     <Layout>
-      <NextSeo openGraph={openGraph} twitter={twitter} />
+      <Seo
+        url={pathname}
+        title="Online Portfolio"
+        description='An online portfolio and blog by Ruslan Useinov'
+        imageUrl={'/assets/banners/pw_banner.png'}
+      />
       <main
         className={clsx(
           'max-w-screen-lg',
@@ -136,21 +143,3 @@ const linkList = [
     Icon: SiGithub,
   },
 ];
-
-const openGraph = {
-  type: 'website',
-  locale: 'en_IE',
-  url: 'https://ruslan-useinov.com',
-  siteName: 'ruslan-useinov.com',
-  images: [
-    {
-      url: 'https://ruslan-useinov.com/favicon/og-default.png',
-      width: 1200,
-      height: 630,
-      alt: 'Og Image Alt',
-      type: 'image/png',
-    },
-  ],
-};
-
-const twitter = { cardType: 'summary_large_image' };

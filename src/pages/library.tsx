@@ -10,8 +10,9 @@ import PostCard from 'src/components/content/PostCard';
 import { allPosts, type Post } from 'contentlayer/generated';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
-import { NextSeo } from 'next-seo';
 import { useTheme } from 'src/context/ThemeProvider';
+import Seo from 'src/components/Seo';
+import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
   const posts = allPosts.filter((post) =>
@@ -27,11 +28,16 @@ export async function getStaticProps() {
 const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
 }) => {
+  const { pathname } = useRouter();
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
     <Layout>
-      <NextSeo openGraph={openGraph} twitter={twitter} />
+      <Seo
+        url={pathname}
+        description={'Library of useful code snippets'} 
+        imageUrl={'/assets/banners/library_banner.png'}
+      />
       <main className={clsx(isLoaded && 'fade-in-start', 'h-screen')}>
         <h1
           className={clsx(
@@ -73,19 +79,3 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 
 export default LibraryPage;
-const openGraph = {
-  type: 'website',
-  locale: 'en_IE',
-  url: 'https://ruslan-useinov.com',
-  siteName: 'ruslan-useinov.com',
-  images: [
-    {
-      url: 'https://ruslan-useinov.com/favicon/og-library.png',
-      width: 1200,
-      height: 630,
-      alt: 'Og Image Alt',
-      type: 'image/png',
-    },
-  ],
-};
-const twitter = { cardType: 'summary_large_image' };
