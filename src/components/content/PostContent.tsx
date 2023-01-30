@@ -52,7 +52,7 @@ const PostContent: FC<{
               src={post.coverImage}
               width="900"
               height="500"
-              objectFit="cover"
+              objectFit="contain"
               objectPosition="left top"
               className='rounded'
             />
