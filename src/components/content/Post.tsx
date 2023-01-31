@@ -1,4 +1,3 @@
-import { FC, ComponentType, ReactNode } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { BiTimeFive } from 'react-icons/bi';
@@ -7,20 +6,12 @@ import Accent from '../Accent';
 import MDXComponents from '../content/MDXComponents';
 import TableOfContents from 'src/components/TableOfContent';
 import { useTheme } from 'src/context/ThemeProvider';
-import { allPosts, type Post } from 'contentlayer/generated';
+import { type Post } from 'contentlayer/generated';
 import Image from 'next/image';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import useLoaded from 'src/hooks/useLoaded';
 
-export default function Post({
-  post,
-  children,
-}: {
-  post: Post;
-  children?: ReactNode;
-}) {
-  const MDXContent = useMDXComponent(post.body.code);
-
+export default function Post({ post }: { post: Post }) {
   const isLoaded = useLoaded();
 
   return (
@@ -41,23 +32,17 @@ export default function Post({
           data-fade="2"
           className={clsx('h-full w-9/12', 'space-y-56  p-4')}
         >
-          <Article post={post} MDXContent={MDXContent} className="md:w-9/12" />
+          <Article post={post} className="md:w-9/12" />
         </main>
       </div>
     </main>
   );
 }
 
-function Article({
-  post,
-  MDXContent,
-  className,
-}: {
-  post: Post;
-  MDXContent: ComponentType<any>;
-  className?: string;
-}) {
+function Article({ post, className }: { post: Post; className?: string }) {
   const { theme } = useTheme();
+  const MDXContent = useMDXComponent(post.body.code);
+
   return (
     <article
       className={clsx(
