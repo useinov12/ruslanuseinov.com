@@ -5,7 +5,7 @@ import {
   type InferGetStaticPropsType,
 } from 'next';
 import clsx from 'clsx';
-import Layout from '../../components/layout/Layout';
+import Layout from '../../components/layout/PageLayout';
 
 import { allPosts, type Post } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
@@ -52,8 +52,8 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         className={clsx(
           'flex flex-col',
           'justify-center',
-          'm-auto p-2',
-          'max-w-screen-lg',
+          // 'm-auto p-2',
+          // 'max-w-screen-lg',
           isLoaded && 'fade-in-start'
         )}
       >

@@ -1,4 +1,4 @@
-import Layout from '../components/layout/Layout';
+import Layout from '../components/layout/PageLayout';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { allPosts, type Post } from 'contentlayer/generated';

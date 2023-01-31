@@ -5,7 +5,7 @@ import {
   type InferGetStaticPropsType,
 } from 'next';
 import clsx from 'clsx';
-import Layout from '../../components/layout/Layout';
+import Layout from '../../components/layout/PageLayout';
 
 import { allPosts, type Post } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';

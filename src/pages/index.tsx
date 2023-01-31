@@ -1,4 +1,4 @@
-import Layout from '../components/layout/Layout';
+import Layout from '../components/layout/PageLayout';
 import clsx from 'clsx';
 import Accent from '../components/Accent';
 import Button from '../components/Button';
