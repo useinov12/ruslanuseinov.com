@@ -22,7 +22,10 @@ const PageLayout: FC<{
         )}
       >
         <Navbar />
-        <div className={clsx('mx-auto  px-5', 'max-w-screen-lg')}>
+        <div className={clsx(
+          // 'mx-auto  px-5', 
+        // 'max-w-screen-lg'
+        )}>
           <div className="">{children}</div>
           <Footer />
         </div>
