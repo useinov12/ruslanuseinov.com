@@ -10,6 +10,7 @@ import { useTheme } from 'src/context/ThemeProvider';
 import { allPosts, type Post } from 'contentlayer/generated';
 import Image from 'next/image';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import useLoaded from 'src/hooks/useLoaded';
 
 export default function Post({
   post,
@@ -19,60 +20,33 @@ export default function Post({
   children?: ReactNode;
 }) {
   const MDXContent = useMDXComponent(post.body.code);
+
+  const isLoaded = useLoaded();
+
   return (
-    <main className={clsx('h-screen', 'overflow-auto')}>
+    <main
+      className={clsx('h-screen', 'overflow-auto', isLoaded && 'fade-in-start')}
+    >
       <div
         className={clsx(
-          // 'container',
           'relative',
           'flex space-x-4 mx-auto',
           'max-w-screen-lg'
-          // 'border border-red-500'
         )}
       >
-        <aside
-          className={clsx(
-            'col-span-3 w-3/12'
-            // 'border border-blue-500'
-          )}
-        >
-          <TableOfContents
-            post={post}
-            className={clsx(
-              'sticky top-44'
-              // 'border border-purple-500'
-            )}
-          />
+        <aside data-fade="3" className={clsx('col-span-3 w-3/12')}>
+          <TableOfContents post={post} className={clsx('sticky top-44')} />
         </aside>
         <main
-          className={clsx(
-            'h-full w-9/12',
-            'space-y-56  p-4'
-            // ' border border-green-500'
-          )}
+          data-fade="2"
+          className={clsx('h-full w-9/12', 'space-y-56  p-4')}
         >
           <Article post={post} MDXContent={MDXContent} className="md:w-9/12" />
         </main>
       </div>
-
-      <section className="grid h-screen w-screen place-items-center">
-        {children}
-      </section>
     </main>
   );
 }
-
-      {/* <main
-        className={clsx(
-          'flex flex-col',
-          'justify-center',
-          isLoaded && 'fade-in-start'
-        )}
-      >
-        <div data-fade="2"> */}
-          {/* <PostLayout post={post} MDXContent={MDXContent} /> */}
-        {/* </div>
-      </main> */}
 
 function Article({
   post,
