@@ -1,9 +1,9 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
 import { FC } from 'react';
 import clsx from 'clsx';
-import UnstyledLink from '../UnstyledLink';
-import Accent from '../Accent';
-import Tooltip from '../Tooltip';
+import UnstyledLink from '../../UnstyledLink';
+import Accent from '../../Accent';
+import Tooltip from '../../Tooltip';
 import { useTheme } from 'src/context/ThemeProvider';
 import copyToClipboard from 'src/utils/clipboard';
 

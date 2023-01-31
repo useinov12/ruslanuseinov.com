@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { RiMoonClearLine, RiSunFill } from 'react-icons/ri';
 import { useTheme } from 'src/context/ThemeProvider';
-import { inArticle } from './Layout';
+import { inArticle } from '../Layout';
 
 const Header: FC = () => {
   const router = useRouter();
