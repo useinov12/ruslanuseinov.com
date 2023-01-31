@@ -58,7 +58,6 @@
     "autoprefixer": "^10.4.12",
     "eslint": "8.22.0",
     "eslint-config-next": "12.3.1",
-    "husky": "^8.0.1",
     "postcss": "^8.4.16",
     "prisma": "^4.3.1",
     "rehype-accessible-emojis": "^0.3.2",
