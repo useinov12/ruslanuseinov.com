@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import Footer from '../layout/Footer';
+import Footer from '../layout/sharedUI/Footer';
 import TechIcons from './TechIcons';
 
 const MDXComponents = {
