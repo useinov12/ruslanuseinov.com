@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { RiMoonClearLine, RiSunFill } from 'react-icons/ri';
 import { useTheme } from 'src/context/ThemeProvider';
-import { inArticle } from '../Layout';
 
 const Header: FC = () => {
   const router = useRouter();
@@ -51,7 +50,6 @@ const Header: FC = () => {
             'flex items-center justify-between',
             'transition-all duration-200',
             'max-w-screen-lg'
-            // inArticle(router.pathname) ? 'max-w-screen-lg' : 'max-w-screen-md'
           )}
         >
           <Logo className="z-50" />
