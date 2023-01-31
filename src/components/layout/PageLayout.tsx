@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
 
-import Header from './sharedUI/Header';
+import Navbar from './sharedUI/Navbar';
 import Footer from './sharedUI/Footer';
 
 import { useTheme } from 'src/context/ThemeProvider';
@@ -11,7 +11,6 @@ const PageLayout: FC<{
   children: ReactNode;
 }> = ({ children }) => {
   const { theme } = useTheme();
-  const router = useRouter();
 
   return (
     <>
@@ -22,7 +21,7 @@ const PageLayout: FC<{
           theme === 'light' ? 'bg-gray-300 text-gray-800' : 'bg-dark text-white'
         )}
       >
-        <Header />
+        <Navbar />
         <div className={clsx('mx-auto  px-5', 'max-w-screen-lg')}>
           <div className="">{children}</div>
           <Footer />
