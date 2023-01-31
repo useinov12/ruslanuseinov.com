@@ -1,4 +1,4 @@
-import PageLayout from '../components/PageLayout/PageLayout';
+import PageLayout from '../components/layout/PageLayout';
 import Image from 'next/image';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';

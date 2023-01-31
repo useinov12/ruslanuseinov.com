@@ -3,7 +3,7 @@ import {
   type InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import PageLayout from 'src/components/PageLayout/PageLayout';
+import PageLayout from 'src/components/layout/PageLayout';
 import Link from 'next/link';
 import PostCard from 'src/components/content/PostCard';
 

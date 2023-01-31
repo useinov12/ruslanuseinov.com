@@ -5,12 +5,12 @@ import {
   type InferGetStaticPropsType,
 } from 'next';
 import clsx from 'clsx';
-import PageLayout from '../../components/PageLayout/PageLayout';
+import PageLayout from '../../components/layout/PageLayout';
 
 import { allPosts, type Post } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import PostLayout from 'src/components/PageLayout/PostLayout';
+import PostLayout from 'src/components/layout/PostLayout';
 import useLoaded from 'src/hooks/useLoaded';
 import Seo from 'src/components/Seo';
 import { useRouter } from 'next/router';
