@@ -7,7 +7,7 @@ import Footer from './sharedUI/Footer';
 import { useTheme } from 'src/context/ThemeProvider';
 import { useRouter } from 'next/router';
 
-const Layout: FC<{
+const PageLayout: FC<{
   children: ReactNode;
 }> = ({ children }) => {
   const { theme } = useTheme();
@@ -32,4 +32,4 @@ const Layout: FC<{
   );
 };
 
-export default Layout;
+export default PageLayout;

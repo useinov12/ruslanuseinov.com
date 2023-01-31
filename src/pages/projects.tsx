@@ -1,4 +1,4 @@
-import Layout from '../components/layout/PageLayout';
+import PageLayout from '../components/PageLayout/PageLayout';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { allPosts, type Post } from 'contentlayer/generated';
@@ -27,7 +27,7 @@ const ProjectPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
-    <Layout>
+    <PageLayout>
       <Seo
         url={pathname}
         description={'Showcase of my web development projects'}
@@ -69,7 +69,7 @@ const ProjectPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           })}
         </ul>
       </main>
-    </Layout>
+    </PageLayout>
   );
 };
 

@@ -1,4 +1,4 @@
-import Layout from '../components/layout/PageLayout';
+import PageLayout from '../components/PageLayout/PageLayout';
 import clsx from 'clsx';
 import Accent from '../components/Accent';
 import Button from '../components/Button';
@@ -17,7 +17,7 @@ export default function HomePage() {
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
-    <Layout>
+    <PageLayout>
       <Seo
         url={pathname}
         title="Online Portfolio"
@@ -92,7 +92,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-    </Layout>
+    </PageLayout>
   );
 }
 

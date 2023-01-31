@@ -3,7 +3,7 @@ import {
   type InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import Layout from 'src/components/layout/PageLayout';
+import PageLayout from 'src/components/PageLayout/PageLayout';
 import Link from 'next/link';
 import PostCard from 'src/components/content/PostCard';
 
@@ -32,7 +32,7 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
-    <Layout>
+    <PageLayout>
       <Seo
         url={pathname}
         description={'Library of useful code snippets'} 
@@ -74,7 +74,7 @@ const LibraryPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           })}
         </ul>
       </main>
-    </Layout>
+    </PageLayout>
   );
 };
 
