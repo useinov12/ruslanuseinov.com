@@ -1,18 +1,11 @@
-import React from 'react';
-import {
-  NextPage,
-  type GetStaticProps,
-  type InferGetStaticPropsType,
-} from 'next';
-import clsx from 'clsx';
-import PageLayout from '../../components/layout/PageLayout';
+import React, { ReactNode } from 'react';
+import { type GetStaticProps } from 'next';
 
-import { allPosts, type Post } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import PostLayout from 'src/components/layout/PostLayout';
-import useLoaded from 'src/hooks/useLoaded';
+import { allPosts, type Post as PostType } from 'contentlayer/generated';
+
 import Seo from 'src/components/Seo';
-import { useRouter } from 'next/router';
+import Layout from 'src/components/layout/Layout';
+import Post from 'src/components/content/Post';
 
 export const getStaticPaths = () => {
   return {
@@ -26,7 +19,7 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
-  const post: Post = allPosts.find((post) => post.slug === params?.slug)!;
+  const post: PostType = allPosts.find((post) => post.slug === params?.slug)!;
   return {
     props: {
       post,
@@ -34,35 +27,17 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
   };
 };
 
-const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  post,
-}) => {
-  const { pathname } = useRouter();
-  const MDXContent = useMDXComponent(post.body.code);
-  const isLoaded = useLoaded();
+export default function ({ post }: { post: PostType; children: ReactNode }) {
   return (
-    <PageLayout>
+    <>
       <Seo
-        url={pathname}
         title={post.title}
         description={post.description}
         imageUrl={post.coverImage}
       />
-      <main
-        className={clsx(
-          'flex flex-col',
-          'justify-center',
-          // 'm-auto p-2',
-          // 'max-w-screen-lg',
-          isLoaded && 'fade-in-start'
-        )}
-      >
-        <div data-fade="2">
-          <PostLayout post={post} MDXContent={MDXContent} />
-        </div>
-      </main>
-    </PageLayout>
+      <Layout>
+        <Post post={post} />
+      </Layout>
+    </>
   );
-};
-
-export default PostPage;
+}
