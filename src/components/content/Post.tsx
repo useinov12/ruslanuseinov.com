@@ -1,4 +1,4 @@
-import { FC, ComponentType } from 'react';
+import { FC, ComponentType, ReactNode } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { BiTimeFive } from 'react-icons/bi';
@@ -9,14 +9,16 @@ import TableOfContents from 'src/components/TableOfContent';
 import { useTheme } from 'src/context/ThemeProvider';
 import { allPosts, type Post } from 'contentlayer/generated';
 import Image from 'next/image';
+import { useMDXComponent } from 'next-contentlayer/hooks';
 
-export default function PostLayout({
+export default function Post({
   post,
-  MDXContent,
+  children,
 }: {
   post: Post;
-  MDXContent: ComponentType<any>;
+  children?: ReactNode;
 }) {
+  const MDXContent = useMDXComponent(post.body.code);
   return (
     <main className={clsx('h-screen', 'overflow-auto')}>
       <div
@@ -53,12 +55,24 @@ export default function PostLayout({
         </main>
       </div>
 
-      <section className="grid h-screen w-screen place-items-center bg-teal-800 text-white">
-        More content here
+      <section className="grid h-screen w-screen place-items-center">
+        {children}
       </section>
     </main>
   );
 }
+
+      {/* <main
+        className={clsx(
+          'flex flex-col',
+          'justify-center',
+          isLoaded && 'fade-in-start'
+        )}
+      >
+        <div data-fade="2"> */}
+          {/* <PostLayout post={post} MDXContent={MDXContent} /> */}
+        {/* </div>
+      </main> */}
 
 function Article({
   post,
