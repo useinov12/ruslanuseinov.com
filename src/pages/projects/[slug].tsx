@@ -9,7 +9,7 @@ import Layout from '../../components/layout/PageLayout';
 
 import { allPosts, type Post } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import PostContent from 'src/components/content/PostContent';
+import PostLayout from 'src/components/layout/PostLayout';
 import useLoaded from 'src/hooks/useLoaded';
 import Seo from 'src/components/Seo';
 import { useRouter } from 'next/router';
@@ -58,7 +58,7 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         )}
       >
         <div data-fade="2">
-          <PostContent post={post} MDXContent={MDXContent} />
+          <PostLayout post={post} MDXContent={MDXContent} />
         </div>
       </main>
     </Layout>
