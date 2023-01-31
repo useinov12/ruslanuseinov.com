@@ -1,13 +1,14 @@
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 
 interface SeoProps {
   title?: string;
   description: string;
   imageUrl: string;
-  url: string;
 }
 
 export default function Seo(props: SeoProps) {
+  const { pathname } = useRouter();
   return (
     <NextSeo
       title={props.title}
@@ -17,7 +18,7 @@ export default function Seo(props: SeoProps) {
       openGraph={{
         type: 'website',
         locale: 'en_IE',
-        url: `https://ruslan-useinov.com${props.url}`,
+        url: `https://ruslan-useinov.com${pathname}`,
         siteName: 'ruslan-useinov.com',
         images: [
           {
