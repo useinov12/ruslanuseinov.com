@@ -3,7 +3,10 @@ import React from 'react';
 import GithubSlugger from 'github-slugger';
 import { type Post } from 'contentlayer/generated';
 
-const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
+const TableOfContents: React.FC<{ post: Post; className: string }> = ({
+  post,
+  className,
+}) => {
   const [activeId, setActiveId] = React.useState<string>();
 
   /* find heading lines */
@@ -26,7 +29,12 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
   });
 
   return (
-    <div className="flex flex-col items-start mt-2 mb-0 cursor-pointer">
+    <div
+      className={clsx(
+        'flex flex-col items-start mt-2 mb-0 cursor-pointer',
+        className
+      )}
+    >
       <h4 className="mb-4 text-md">Page Content</h4>
       {headings.map((heading, index) => {
         return (
@@ -61,7 +69,7 @@ const TableOfContents: React.FC<{ post: Post }> = ({ post }) => {
               setActiveId(heading.id);
             }}
           >
-            {heading.text}
+            <span className="w-4/5 h-fit">{heading.text}</span>
           </button>
         );
       })}
