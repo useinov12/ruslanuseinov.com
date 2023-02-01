@@ -50,7 +50,7 @@ const TechIcons = ({ className, techs }: TechIconsProps) => {
                 : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300'
             )}
           >
-            <Tooltip key={current.name} content={<p>{current.name}</p>}>
+            <Tooltip key={current.name} content={<p className='text-sm'>{current.name}</p>}>
               {current.name === 'ContentLayer' ? (
                 <Image
                   src={'/assets/contentlayerimg.png'}
