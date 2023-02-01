@@ -1,4 +1,4 @@
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import clsx from 'clsx';
 import Accent from '../components/Accent';
 import Button from '../components/Button';
@@ -17,9 +17,9 @@ export default function HomePage() {
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
-    <PageLayout>
+    <Layout>
       <Seo
-        url={pathname}
+        
         title="Online Portfolio"
         description='An online portfolio and blog by Ruslan Useinov'
         imageUrl={'/assets/banners/pw_banner.png'}
@@ -92,7 +92,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-    </PageLayout>
+    </Layout>
   );
 }
 

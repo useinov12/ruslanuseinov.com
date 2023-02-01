@@ -1,4 +1,4 @@
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import Image from 'next/image';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
@@ -13,9 +13,9 @@ const AboutPage = () => {
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
-    <PageLayout>
+    <Layout>
       <Seo
-        url={pathname}
+        
         description={'A few words about myself'}
         imageUrl={'/assets/banners/about_banner.png'}
       />
@@ -108,7 +108,7 @@ const AboutPage = () => {
           </section>
         </div>
       </main>
-    </PageLayout>
+    </Layout>
   );
 };
 

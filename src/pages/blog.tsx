@@ -4,7 +4,7 @@ import {
   NextPage,
 } from 'next';
 import Link from 'next/link';
-import PageLayout from 'src/components/layout/PageLayout';
+import Layout from 'src/components/layout/Layout';
 import PostCard from 'src/components/content/PostCard';
 import { allPosts, type Post } from 'contentlayer/generated';
 import clsx from 'clsx';
@@ -33,9 +33,9 @@ const BlogPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const isLoaded = useLoaded();
   const { theme } = useTheme();
   return (
-    <PageLayout>
+    <Layout>
       <Seo
-        url={pathname}
+        
         description={'Blog by Ruslan Useinov'}
         imageUrl={'/assets/banners/blog_banner.png'}
       />
@@ -75,7 +75,7 @@ const BlogPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           })}
         </ul>
       </main>
-    </PageLayout>
+    </Layout>
   );
 };
 export default BlogPage;

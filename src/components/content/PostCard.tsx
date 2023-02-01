@@ -51,7 +51,7 @@ const PostCard: FC<{
             <Image
               src={coverImage}
               alt={title}
-              PageLayout={'fill'}
+              Layout={'fill'}
               objectFit="cover"
               className={clsx(
                 'scale-100 motion-reduce:hover:scale-100 ',
