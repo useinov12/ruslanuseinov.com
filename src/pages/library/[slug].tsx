@@ -19,7 +19,9 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
-  const post: PostType = allPosts.find((post) => post.slug === params?.slug)!;
+  const post: PostType | undefined = allPosts.find(
+    (post) => post.slug === params?.slug
+  );
   return {
     props: {
       post,
