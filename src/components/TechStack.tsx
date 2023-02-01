@@ -21,7 +21,6 @@ const TechStack = () => {
             key={tech.id}
             className={clsx(
               'h-10 w-10 md:h-12 md:w-12',
-
               theme === 'light'
                 ? 'text-gray-800 hover:text-primary-500'
                 : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
@@ -47,7 +46,7 @@ const stacks = [
         >
           <Accent className="cursor-pointer">TypeScript</Accent>
         </UnstyledLink>{' '}
-         <span>{' '} - is the best way to write Javascript</span>
+        <span> - is the best way to write Javascript</span>
       </div>
     ),
   },
@@ -62,7 +61,7 @@ const stacks = [
         >
           <Accent className="cursor-pointer">Next.JS</Accent>
         </UnstyledLink>{' '}
-        - flexible, scalable, <br/>
+        - flexible, scalable, <br />
         brings Server and Client closer
       </div>
     ),

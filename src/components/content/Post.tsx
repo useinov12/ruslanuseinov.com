@@ -74,6 +74,7 @@ function Article({ post, className }: { post: Post; className?: string }) {
             objectFit="contain"
             objectPosition="left top"
             className="rounded"
+            alt={post.title}
           />
         )}
         <MDXContent components={MDXComponents} />
@@ -82,7 +83,7 @@ function Article({ post, className }: { post: Post; className?: string }) {
   );
 }
 
-function ArticleHeader({ post }: { post: any }) {
+function ArticleHeader({ post }: { post: Post }) {
   const { theme } = useTheme();
   return (
     <>
