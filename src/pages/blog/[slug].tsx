@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
   };
 };
 
-export default function ({ post }: { post: PostType; children: ReactNode }) {
+export default function BlogPage({ post }: { post: PostType; children: ReactNode }) {
   return (
     <>
       <Seo
