@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { Tooltip as ReactTooltip, TooltipProps } from 'react-tippy';
+import { Tooltip as ReactTooltip } from 'react-tippy';
 
 // type TooltipTextProps = {
 //   content?: React.ReactNode;
