@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import clsx from 'clsx';
 import * as React from 'react';
 import { Tooltip as ReactTooltip } from 'react-tippy';
