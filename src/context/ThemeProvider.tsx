@@ -1,25 +1,23 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-
-type theme = 'light' | 'dark';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 export const ThemeContext = createContext<{
-  theme: theme;
+  theme: 'light' | 'dark';
   handleTheme: () => void;
 }>({
   theme: 'light',
-  handleTheme: () => 1,
+  handleTheme: () => {},
 });
 
-export default function ThemeProvider(props: any) {
+export default function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   function handleTheme() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
 
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
-
-  return <ThemeContext.Provider value={{ theme, handleTheme }} {...props} />;
+  return (
+    <ThemeContext.Provider value={{ theme, handleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 export const useTheme = () => useContext(ThemeContext);
