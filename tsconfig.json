@@ -20,6 +20,6 @@
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs, .contentlayer/generated"],
+  "include": [".eslintrc.json", "next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs, .contentlayer/generated"],
   "exclude": ["node_modules"]
 }
