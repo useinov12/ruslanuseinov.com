@@ -6,8 +6,12 @@ import TechIcons from './TechIcons';
 const MDXComponents = {
   Image,
   Head,
-  // a:(props:any)=> <a href={props.href} target='_blank' rel="noreferrer" >{props.children}</a>,
-  TechIcons
+  a: ({ href, children }: { href: string; children: string }) => (
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  ),
+  TechIcons,
 };
 
 export default MDXComponents;

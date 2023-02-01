@@ -1,6 +1,6 @@
-// import clsx from 'clsx';
+import clsx from 'clsx';
 import * as React from 'react';
-import {  TooltipProps } from 'react-tippy';
+import { Tooltip as ReactTooltip, TooltipProps } from 'react-tippy';
 
 type TooltipTextProps = {
   content?: React.ReactNode;
@@ -11,33 +11,44 @@ type TooltipTextProps = {
 } & TooltipProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'className'>;
 
-export default function Tooltip(props: TooltipTextProps) {
-  return ( <></>
-    // <TippyTooltip
-    //   // trigger="mouseenter"
-    //   interactive
-    //   html={
-    //     <div
-    //       className={clsx(
-    //         className,
-    //         'inline-block rounded-md bg-white p-2 text-gray-600 shadow-md dark:bg-dark dark:text-gray-200',
-    //         'border dark:border-gray-600 '
-    //       )}
-    //     >
-    //       {content}
-    //     </div>
-    //   }
-    // >
-    //   {withUnderline ? (
-    //     <span
-    //       className={clsx(spanClassName, 'underline')}
-    //       style={{ textDecorationStyle: 'dotted' }}
-    //     >
-    //       {children}
-    //     </span>
-    //   ) : (
-    //     <>{children}</>
-    //   )}
-    // </TippyTooltip>
+const Tooltip = ({
+  content,
+  children,
+  className,
+  spanClassName,
+  withUnderline = false,
+  ...rest
+}: TooltipTextProps) => {
+  return (
+    // @ts-ignore
+    <ReactTooltip
+      trigger="mouseenter"
+      interactive
+      html={
+        <div
+          className={clsx(
+            className,
+            'inline-block rounded-md bg-white p-2 text-gray-600 shadow-md dark:bg-dark dark:text-gray-200',
+            'border dark:border-gray-600 '
+          )}
+        >
+          {content}
+        </div>
+      }
+      {...rest}
+    >
+      {withUnderline ? (
+        <span
+          className={clsx(spanClassName, 'underline')}
+          style={{ textDecorationStyle: 'dotted' }}
+        >
+          {children}
+        </span>
+      ) : (
+        <>{children}</>
+      )}
+    </ReactTooltip>
   );
-}
+};
+
+export default Tooltip;
