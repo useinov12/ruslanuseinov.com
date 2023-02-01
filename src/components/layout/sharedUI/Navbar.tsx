@@ -52,9 +52,9 @@ function Navigation() {
     if (isMobileNavOpen) setMobileNavOpen(false);
   }, [asPath]);
   return (
-    <>
       <div
         className={clsx(
+          'px-3 lg:px-0',
           'transition-shadow border border-transparent',
           'transition-all overflow-x-hidden',
           'overflow-y-hidden',
@@ -66,7 +66,7 @@ function Navigation() {
         <div
           className={clsx(
             'mx-auto',
-            'py-1 px-5 md:px-0',
+            'py-1',
             'flex items-center justify-between',
             'transition-all duration-200',
             'max-w-screen-lg'
@@ -83,7 +83,6 @@ function Navigation() {
 
         <MobileNavbar isMobileNavOpen={isMobileNavOpen} />
       </div>
-    </>
   );
 }
 

@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         )}
       >
         <Navbar />
-        {children}
+        <div className='px-3 lg:px-0'>{children}</div>
         <Footer />
       </div>
     </>
