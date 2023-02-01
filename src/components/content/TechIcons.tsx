@@ -42,6 +42,7 @@ const TechIcons = ({ className, techs }: TechIconsProps) => {
 
         return (
           <li
+            key={tech}
             className={clsx(
               'transition-colors',
               theme === 'light'
