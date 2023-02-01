@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import Navbar from './sharedUI/Navbar';
 import Footer from './sharedUI/Footer';
@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         )}
       >
         <Navbar />
-        <div className='px-3 lg:px-0'>{children}</div>
+        <div className="px-3 lg:px-0">{children}</div>
         <Footer />
       </div>
     </>
