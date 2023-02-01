@@ -1,13 +1,16 @@
 import clsx from 'clsx';
-import React from 'react';
+import { useState } from 'react';
 import GithubSlugger from 'github-slugger';
 import { type Post } from 'contentlayer/generated';
 
-const TableOfContents: React.FC<{ post: Post; className: string }> = ({
+export default function TableOfContents({
   post,
   className,
-}) => {
-  const [activeId, setActiveId] = React.useState<string>();
+}: {
+  post: Post;
+  className: string;
+}) {
+  const [activeId, setActiveId] = useState<string>('');
 
   /* find heading lines */
   const headingLines = post.body.raw
@@ -33,7 +36,7 @@ const TableOfContents: React.FC<{ post: Post; className: string }> = ({
   return (
     <div
       className={clsx(
-        'flex flex-col items-start mt-2 mb-0 cursor-pointer',
+        'flex flex-col items-start mt-2 mb-0 cursor-pointer font-poppins',
         className
       )}
     >
@@ -46,7 +49,7 @@ const TableOfContents: React.FC<{ post: Post; className: string }> = ({
             className={clsx(
               `w-full mb-1 py-1`,
               'text-left',
-              'sm:text-sm font-mono',
+              'sm:text-sm',
               'whitespace-nowrap',
               'hover:bg-primary-500/20',
               'border-l-4',
@@ -77,6 +80,4 @@ const TableOfContents: React.FC<{ post: Post; className: string }> = ({
       })}
     </div>
   );
-};
-
-export default TableOfContents;
+}
