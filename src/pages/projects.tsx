@@ -38,7 +38,7 @@ export default function ProjectPage({ posts }: { posts: Post[] }) {
             isLoaded && 'fade-in-start'
           )}
         >
-          <PageHeader title="PageHeader" heading="Showcase of my works" />
+          <PageHeader title="Projects" heading="Showcase of my works" />
           <ul
             className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
             data-fade="4"
