@@ -5,7 +5,6 @@ import useLoaded from 'src/hooks/useLoaded';
 import TechStack from 'src/components/TechStack';
 import Contacts from 'src/components/Contacts';
 import Seo from 'src/components/Seo';
-import PageHeader from 'src/components/PageHeader';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -20,10 +19,12 @@ export default function AboutPage() {
           className={clsx(
             'mx-auto',
             'max-w-screen-lg',
-            isLoaded && 'fade-in-start'
+            isLoaded && 'fade-in-start',
+            'md:max-w-screen-sm',
+            'flex flex-col items-center',
+            'py-10'
           )}
         >
-          <PageHeader title="About" heading="A few words about myself" />
           <AboutMeCard />
           <AboutMeText />
           <TechAndContacts />
@@ -36,22 +37,28 @@ export default function AboutPage() {
 function AboutMeCard() {
   return (
     <section
-      className="flex flex-col-reverse md:flex-row md:items-center md:justify-around mb-4"
+      className={clsx(
+        'flex flex-col-reverse ',
+        'gap-10 w-full py-5',
+        'md:flex-row md:items-center md:justify-start '
+      )}
       data-fade="3"
     >
-      <div className="py-2 md:py-0">
-        <h1 className="text-4xl font-bold">Ruslan Useinov</h1>
-        <h4 className="mb-1">Front end developer</h4>
-        <p className="">Creating beautiful and performant web</p>
+      <div>
+        <h3 className="text-3xl font-bolder font-poppins text-semibold">
+          Ruslan Useinov
+        </h3>
+        <h4 className="font-poppins">Front end developer</h4>
+        <p className="font-poppins">Creating beautiful and performant web</p>
       </div>
-      <div className="w-36 h-36 relative rounded-full">
-        <Image
-          src={'/assets/me-sq.jpg'}
-          width="135"
-          height="140"
-          className="rounded-full"
-        />
-      </div>
+      <Image
+        src={'/assets/me-sq.jpg'}
+        width="100"
+        height="101"
+        className="rounded-full"
+        objectFit="cover"
+        alt='me'
+      />
     </section>
   );
 }
@@ -59,21 +66,24 @@ function AboutMeCard() {
 function AboutMeText() {
   return (
     <div
-      className="flex flex-col-reverse md:flex-row justify-between "
+      className="flex flex-col-reverse md:flex-row justify-start"
       data-fade="4"
     >
-      <section className="py-1 font-normal text-lg md:flex md:flex-col md:items-start tracking-tight">
-        <p className="py-2">Hi! I&apos;m Ruslan</p>
+      <section
+        className={clsx(
+          'tracking-tight  md:text-justify',
+          'md:flex md:flex-col md:items-start'
+        )}
+      >
+        <p className="pt-5 ">Hey, I&apos;m Ruslan</p>
         <p className="py-2">
           I started learning web development in 2021. I have always been
-          interested in how the Internet works, but I never considered myself a
-          tech person enough to figure things out. Until I actually started
-          reading and practicing with Javascript!
+          interested in work of the web technologies, but I never considered
+          myself a tech person enough to figure things out. Until I actually
+          started reading and practicing with Javascript.
         </p>
-        <p className="py-2">
-          At the time I start realizing that I want to have a career, but I
-          didn&apos;t have any idea in what field.
-        </p>
+        
+
         <p className="py-2">
           And my practice with Javascript led me to dive deeper into web
           development and front end. I love the visual aspects of the web and
@@ -81,10 +91,10 @@ function AboutMeText() {
         </p>
         <p className=" py-2">
           Right now, I want to master my skills and be as fluent as possible
-          with modern frameworks and then invest more time in UI to learn how to
-          design interfaces quick, effective, and scalable.
+          with modern frameworks and concepts and then invest more time in UI to
+          learn how to design interfaces quick, effective, and scalable.
         </p>
-        <p className=" p-2">
+        <p className="py-2">
           Here I will be writing some notes and showcasing what I do. I believe
           that documenting is the best way to learn things, and I can share my
           knowledge along the way.
@@ -99,17 +109,18 @@ function TechAndContacts() {
     <div
       className={clsx(
         'flex flex-col justify-center my-4',
-        'sm:flex-row sm:justify-around'
+        'sm:flex-row sm:justify-around',
+        'w-full'
       )}
       data-fade="5"
     >
-      <section className=" my-2 flex flex-col justify-center  items-center">
-        <h2 className="p-0 mx-0">Favorite Tech Stack</h2>
+      <section className=" my-2 flex flex-col gap-1 justify-center  items-center">
+        <h3 className="p-0 mx-0">Favorite Tech Stack</h3>
         <TechStack />
       </section>
 
-      <section className="my-2 flex flex-col justify-center  items-center">
-        <h2 className="p-0  mx-0">Contacts</h2>
+      <section className="my-2 flex flex-col gap-1 justify-center  items-center">
+        <h3 className="p-0  mx-0">Contacts</h3>
         <Contacts />
       </section>
     </div>

@@ -44,21 +44,21 @@ function MainHero() {
       className="p-2 lg:p-0 relative h-[95vh] flex flex-col justify-center"
       data-fade="1"
     >
-      <h1 className="text-4xl md:text-6xl tracking-tight font-extrabold">
+      <h1 className="text-4xl md:text-5xl tracking-tight font-extrabold">
         Front End Developer
       </h1>
       <p className="text-xl md:text-xl my-3 cursor-default" data-fade="2">
-        I love to create beautiful and performant web with delightful user
+        Building beautiful and performant web with delightful user
         experiences
       </p>
 
-      <div
+      {/* <div
         className={clsx(
           'w-full h-[2px] my-4  rounded-lg',
           theme === 'light' ? 'bg-gray-700' : 'bg-gray-200'
         )}
         data-fade="3"
-      />
+      /> */}
 
       <div className="inline-flex gap-3" data-fade="4">
         <Link href="/blog">
@@ -113,7 +113,7 @@ const Polkadots = ({ className }: { className?: string }) => {
       <defs>
         <pattern
           id="myPattern"
-          x="24"
+          x="30"
           y="24"
           width="25"
           height="25"
@@ -125,14 +125,14 @@ const Polkadots = ({ className }: { className?: string }) => {
             r="4"
             style={{
               stroke: 'none',
-              fill: '#3b82f6',
+              fill: '#2563eb',
               filter: 'drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))',
             }}
           />
         </pattern>
       </defs>
 
-      <rect width="600" height="200" style={{ fill: 'url(#myPattern)' }} />
+      <rect width="400" height="200" style={{ fill: 'url(#myPattern)' }} />
     </svg>
   );
 };
