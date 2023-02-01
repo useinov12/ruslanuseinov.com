@@ -2,6 +2,13 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { Tooltip as ReactTooltip, TooltipProps } from 'react-tippy';
 
+// type TooltipTextProps = {
+//   content?: React.ReactNode;
+//   children?: React.ReactNode;
+//   className?: string;
+//   spanClassName?: string;
+//   withUnderline?: boolean;
+// }  & TooltipProps & Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'className'>;
 
 type TooltipTextProps = {
   content?: React.ReactNode;
@@ -9,7 +16,7 @@ type TooltipTextProps = {
   className?: string;
   spanClassName?: string;
   withUnderline?: boolean;
-}  & TooltipProps & Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'className'>;
+} & any;
 
 const Tooltip = ({
   content,
@@ -18,7 +25,7 @@ const Tooltip = ({
   spanClassName,
   withUnderline = false,
   ...rest
-}: any) => {
+}: TooltipTextProps) => {
   return (
     <ReactTooltip
       trigger="mouseenter"
