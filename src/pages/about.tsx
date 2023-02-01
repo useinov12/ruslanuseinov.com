@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
 import TechStack from 'src/components/TechStack';
 import Contacts from 'src/components/Contacts';
-import { useTheme } from 'src/context/ThemeProvider';
 import Seo from 'src/components/Seo';
+import PageHeader from 'src/components/PageHeader';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -23,36 +23,12 @@ export default function AboutPage() {
             isLoaded && 'fade-in-start'
           )}
         >
-          <PageHeader />
+          <PageHeader title="About" heading="A few words about myself" />
           <AboutMeCard />
           <AboutMeText />
           <TechAndContacts />
         </main>
       </Layout>
-    </>
-  );
-}
-
-function PageHeader() {
-  const { theme } = useTheme();
-  return (
-    <>
-      <h1
-        className={clsx(
-          'my-4 text-primary-500"',
-          theme === 'light' ? 'text-gray-800' : 'text-primary-500"'
-        )}
-        data-fade="1"
-      >
-        About
-      </h1>
-      <div
-        className={clsx(
-          'w-full h-[1px] mb-8 mt-4 rounded-lg',
-          theme === 'light' ? 'bg-gray-800' : 'bg-gray-300'
-        )}
-        data-fade="2"
-      />
     </>
   );
 }
