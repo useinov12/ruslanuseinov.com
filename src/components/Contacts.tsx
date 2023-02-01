@@ -28,7 +28,7 @@ const Contacts = () => {
     </ul>
   );
 };
-const iconStyle = 'h-8 w-8 md:h-12 md:w-12 transition-colors';
+const iconStyle = 'h-8 w-8 md:h-10 md:w-10 transition-colors';
 const contacts = [
   {
     type: 'gmail',
