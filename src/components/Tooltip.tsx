@@ -1,6 +1,6 @@
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import * as React from 'react';
-import { Tooltip as TippyTooltip, TooltipProps } from 'react-tippy';
+import {  TooltipProps } from 'react-tippy';
 
 type TooltipTextProps = {
   content?: React.ReactNode;
@@ -11,13 +11,7 @@ type TooltipTextProps = {
 } & TooltipProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'className'>;
 
-export default function Tooltip({
-  content,
-  children,
-  className,
-  spanClassName,
-  withUnderline = false,
-}: TooltipTextProps) {
+export default function Tooltip(props: TooltipTextProps) {
   return ( <></>
     // <TippyTooltip
     //   // trigger="mouseenter"
