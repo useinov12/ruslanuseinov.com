@@ -15,7 +15,7 @@ export default function Post({ post }: { post: Post }) {
   const isLoaded = useLoaded();
 
   return (
-    <main
+    <div
       className={clsx('h-screen', 'overflow-auto', isLoaded && 'fade-in-start')}
     >
       <div
@@ -35,7 +35,7 @@ export default function Post({ post }: { post: Post }) {
           <Article post={post} className="md:w-9/12" />
         </main>
       </div>
-    </main>
+    </div>
   );
 }
 
