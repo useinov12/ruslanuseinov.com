@@ -14,12 +14,14 @@ const TableOfContents: React.FC<{ post: Post; className: string }> = ({
     .split('\n')
     .filter((line: string) => line.match(/^##*\s/));
 
-  const headings = headingLines.map((raw: any) => {
+  const headings = headingLines.map((raw: string) => {
     const text = raw.replace(/^#*\s/, '').trim();
     const slugger = new GithubSlugger();
 
     /* count pound signs in heading */
-    const level: number = raw.match(/^#*/)[0].length;
+    const match = raw.match(/^#*/);
+
+    const level = match ? match[0]?.length : 0;
 
     return {
       text,
