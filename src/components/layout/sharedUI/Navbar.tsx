@@ -1,4 +1,4 @@
-import { useEffect, useState, Dispatch } from 'react';
+import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
@@ -19,7 +19,7 @@ function HorizontalBar() {
   return (
     <div
       className={clsx(
-        'h-1 w-full bg-primary-500',
+        'h-[5px] w-full bg-blue-600',
         'relative',
         'before:absolute before:inset-0',
         'before:-translate-x-full',
@@ -52,37 +52,37 @@ function Navigation() {
     if (isMobileNavOpen) setMobileNavOpen(false);
   }, [asPath]);
   return (
+    <div
+      className={clsx(
+        'px-3 lg:px-0',
+        'transition-shadow border border-transparent',
+        'transition-all overflow-x-hidden',
+        'overflow-y-hidden',
+        !onTop &&
+          !isMobileNavOpen &&
+          'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 '
+      )}
+    >
       <div
         className={clsx(
-          'px-3 lg:px-0',
-          'transition-shadow border border-transparent',
-          'transition-all overflow-x-hidden',
-          'overflow-y-hidden',
-          !onTop &&
-            !isMobileNavOpen &&
-            'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 '
+          'mx-auto',
+          'py-1',
+          'flex items-center justify-between',
+          'transition-all duration-200',
+          'max-w-screen-lg'
         )}
       >
-        <div
-          className={clsx(
-            'mx-auto',
-            'py-1',
-            'flex items-center justify-between',
-            'transition-all duration-200',
-            'max-w-screen-lg'
-          )}
-        >
-          <Logo className="z-50" />
-          <DesktopNavbar />
+        <Logo className="z-50" />
+        <DesktopNavbar />
 
-          <MobileNavButton
-            isMobileNavOpen={isMobileNavOpen}
-            setMobileNavOpen={setMobileNavOpen}
-          />
-        </div>
-
-        <MobileNavbar isMobileNavOpen={isMobileNavOpen} />
+        <MobileNavButton
+          isMobileNavOpen={isMobileNavOpen}
+          setMobileNavOpen={setMobileNavOpen}
+        />
       </div>
+
+      <MobileNavbar isMobileNavOpen={isMobileNavOpen} />
+    </div>
   );
 }
 
@@ -94,6 +94,7 @@ function Logo({ className }: { className?: string }) {
         width={55}
         height={55}
         className={clsx('cursor-pointer', className)}
+        alt={'logo'}
       />
     </Link>
   );
@@ -104,7 +105,7 @@ function MobileNavButton({
   setMobileNavOpen,
 }: {
   isMobileNavOpen: boolean;
-  setMobileNavOpen: Dispatch<any>;
+  setMobileNavOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const { theme } = useTheme();
   return (
@@ -163,15 +164,15 @@ const DesktopNavbar = () => {
           <li
             key={text}
             className={clsx(
-              'text-lg hover:text-primary-500',
-              'transition-all duration-100 hover:cursor-pointer hover:animate-pulse'
+              'text-lg ',
+              ' hover:cursor-pointer hover:opacity-70'
             )}
           >
             <Link href={path}>
               <h4
                 className={clsx(
-                  'font-normal drop-shadow',
-                  asPath === path && 'text-primary-500'
+                  'font-semibold drop-shadow',
+                  asPath === path && 'text-blue-500'
                 )}
               >
                 {text}
@@ -215,7 +216,7 @@ const MobileNavbar = ({ isMobileNavOpen }: { isMobileNavOpen: boolean }) => {
                 <h1
                   className={clsx(
                     'font-mono text-4xl my-2',
-                    asPath === path && 'text-primary-500'
+                    asPath === path && 'text-blue-500'
                   )}
                 >
                   {text}
