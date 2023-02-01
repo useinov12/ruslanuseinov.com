@@ -15,7 +15,10 @@ export default function Layout({ children }: { children: ReactNode }) {
         className={clsx(
           'w-screen min-h-screen relative',
           'overflow-x-hidden',
-          theme === 'light' ? 'bg-gray-300 text-gray-800' : 'bg-dark text-white'
+          theme === 'light' ? ' text-gray-800' : ' text-gray-50',
+          theme === 'light'
+            ? 'bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-100 to-gray-300'
+            : 'bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 to-gray-900'
         )}
       >
         <Navbar />
