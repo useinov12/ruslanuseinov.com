@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, Dispatch } from 'react';
+import { useEffect, useState, Dispatch } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
@@ -6,95 +6,16 @@ import Image from 'next/image';
 import { RiMoonClearLine, RiSunFill } from 'react-icons/ri';
 import { useTheme } from 'src/context/ThemeProvider';
 
-const Header: FC = () => {
-  const router = useRouter();
-  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-  const [onTop, setOnTop] = useState(true);
-  const [currentPage, setCurrentPage] = useState('/');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOnTop(window.pageYOffset === 0);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isMobileNavOpen) setMobileNavOpen(false);
-  }, [router.asPath]);
-
-  useEffect(() => {
-    setCurrentPage(router.asPath);
-  }, [router.asPath]);
-
+export default function Navbar() {
   return (
     <div className="sticky top-0 z-50">
       <HorizontalBar />
-      <nav
-        className={clsx(
-          'transition-shadow border border-transparent',
-          'transition-all overflow-x-hidden',
-          'overflow-y-hidden',
-          !onTop &&
-            !isMobileNavOpen &&
-            'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 '
-        )}
-      >
-        <div
-          className={clsx(
-            ' mx-auto',
-            'py-1 px-5',
-            'flex items-center justify-between',
-            'transition-all duration-200',
-            'max-w-screen-lg'
-          )}
-        >
-          <Logo className="z-50" />
-          <DesktopNav currentPage={currentPage} />
-
-          <MobileNavButton
-            isMobileNavOpen={isMobileNavOpen}
-            setMobileNavOpen={setMobileNavOpen}
-          />
-        </div>
-
-        <MobileNav
-          isMobileNavOpen={isMobileNavOpen}
-          currentPage={currentPage}
-        />
-      </nav>
+      <Navigation />
     </div>
   );
-};
-export default Header;
+}
 
-const links = [
-  {
-    text: 'Home',
-    path: '/',
-  },
-  {
-    text: 'Blog',
-    path: '/blog',
-  },
-  {
-    text: 'Projects',
-    path: '/projects',
-  },
-  {
-    text: 'Library',
-    path: '/library',
-  },
-  {
-    text: 'About',
-    path: '/about',
-  },
-];
-
-const HorizontalBar = () => {
+function HorizontalBar() {
   return (
     <div
       className={clsx(
@@ -108,9 +29,65 @@ const HorizontalBar = () => {
       )}
     />
   );
-};
+}
 
-const Logo = ({ className }: { className?: string }) => {
+function Navigation() {
+  const { asPath } = useRouter();
+  const [onTop, setOnTop] = useState(true);
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
+  /* track page scroll */
+  useEffect(() => {
+    const handleScroll = () => {
+      setOnTop(window.pageYOffset === 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  /* close mobile navbar when when redirecting */
+  useEffect(() => {
+    if (isMobileNavOpen) setMobileNavOpen(false);
+  }, [asPath]);
+  return (
+    <>
+      <div
+        className={clsx(
+          'transition-shadow border border-transparent',
+          'transition-all overflow-x-hidden',
+          'overflow-y-hidden',
+          !onTop &&
+            !isMobileNavOpen &&
+            'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 '
+        )}
+      >
+        <div
+          className={clsx(
+            'mx-auto',
+            'py-1 px-5 md:px-0',
+            'flex items-center justify-between',
+            'transition-all duration-200',
+            'max-w-screen-lg'
+          )}
+        >
+          <Logo className="z-50" />
+          <DesktopNavbar />
+
+          <MobileNavButton
+            isMobileNavOpen={isMobileNavOpen}
+            setMobileNavOpen={setMobileNavOpen}
+          />
+        </div>
+
+        <MobileNavbar isMobileNavOpen={isMobileNavOpen} />
+      </div>
+    </>
+  );
+}
+
+function Logo({ className }: { className?: string }) {
   return (
     <Link href={'/'}>
       <Image
@@ -121,15 +98,15 @@ const Logo = ({ className }: { className?: string }) => {
       />
     </Link>
   );
-};
+}
 
-const MobileNavButton = ({
+function MobileNavButton({
   isMobileNavOpen,
   setMobileNavOpen,
 }: {
   isMobileNavOpen: boolean;
   setMobileNavOpen: Dispatch<any>;
-}) => {
+}) {
   const { theme } = useTheme();
   return (
     <div className="z-50 md:hidden md:z-0">
@@ -154,9 +131,9 @@ const MobileNavButton = ({
       </button>
     </div>
   );
-};
+}
 
-const ThemeSwitch = ({ className }: { className?: string }) => {
+function ThemeSwitch({ className }: { className?: string }) {
   const { theme, handleTheme } = useTheme();
   return (
     <>
@@ -176,9 +153,10 @@ const ThemeSwitch = ({ className }: { className?: string }) => {
       </button>
     </>
   );
-};
+}
 
-const DesktopNav = ({ currentPage }: { currentPage: string }) => {
+const DesktopNavbar = () => {
+  const { asPath } = useRouter();
   return (
     <>
       <ul className="hidden md:flex gap-3">
@@ -194,7 +172,7 @@ const DesktopNav = ({ currentPage }: { currentPage: string }) => {
               <h4
                 className={clsx(
                   'font-normal drop-shadow',
-                  currentPage === path && 'text-primary-500'
+                  asPath === path && 'text-primary-500'
                 )}
               >
                 {text}
@@ -208,13 +186,8 @@ const DesktopNav = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-const MobileNav = ({
-  isMobileNavOpen,
-  currentPage,
-}: {
-  isMobileNavOpen: boolean;
-  currentPage: string;
-}) => {
+const MobileNavbar = ({ isMobileNavOpen }: { isMobileNavOpen: boolean }) => {
+  const { asPath } = useRouter();
   return (
     <div
       className={clsx(
@@ -243,7 +216,7 @@ const MobileNav = ({
                 <h1
                   className={clsx(
                     'font-mono text-4xl my-2',
-                    currentPage === path && 'text-primary-500'
+                    asPath === path && 'text-primary-500'
                   )}
                 >
                   {text}
@@ -257,3 +230,26 @@ const MobileNav = ({
     </div>
   );
 };
+
+const links = [
+  {
+    text: 'Home',
+    path: '/',
+  },
+  {
+    text: 'Blog',
+    path: '/blog',
+  },
+  {
+    text: 'Projects',
+    path: '/projects',
+  },
+  {
+    text: 'Library',
+    path: '/library',
+  },
+  {
+    text: 'About',
+    path: '/about',
+  },
+];
