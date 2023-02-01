@@ -5,11 +5,8 @@ import Navbar from './sharedUI/Navbar';
 import Footer from './sharedUI/Footer';
 
 import { useTheme } from 'src/context/ThemeProvider';
-import { useRouter } from 'next/router';
 
-const Layout: FC<{
-  children: ReactNode;
-}> = ({ children }) => {
+export default function Layout({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
 
   return (
@@ -22,16 +19,9 @@ const Layout: FC<{
         )}
       >
         <Navbar />
-        <div className={clsx(
-          // 'mx-auto  px-5', 
-        // 'max-w-screen-lg'
-        )}>
-          <div className="">{children}</div>
-          <Footer />
-        </div>
+        {children}
+        <Footer />
       </div>
     </>
   );
-};
-
-export default Layout;
+}
