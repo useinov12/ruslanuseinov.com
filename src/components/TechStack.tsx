@@ -20,7 +20,7 @@ const TechStack = () => {
           <tech.icon
             key={tech.id}
             className={clsx(
-              'h-10 w-10 md:h-12 md:w-12',
+              'h-10 w-10 md:h-10 md:w-10',
               theme === 'light'
                 ? 'text-gray-800 hover:text-primary-500'
                 : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
