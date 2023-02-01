@@ -1,20 +1,15 @@
 <div align="center">
   <h1>ruslan-useinov.com</h1>
-  <h5>🧩 Personal website and blog made using Next.js, TypeScript, Tailwind CSS, Contentlayer SDK</h5>
+  <h5>🧩 Personal website and blog</h5>
 </div>
 
-
-***
-
-## Dedicated Pages
-
-
-### Projects 
-
-I write about projects I build, challenges I faced, and things I learned.
+- **Framework**: [Next.js](https://nextjs.org/)
+- **MdX content** : [Contentlayer](https://www.contentlayer.dev/)
+- **Deployment**: [Vercel](https://vercel.com)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
 
 
-### Blogs & Library
+## TODO
 
-I write about my jorney and things I build. 
+* refactore site to use Next.js 13
 
