@@ -12,13 +12,13 @@ const Button: FC<{
   return (
     <div
       className={clsx(
-        theme === 'light' ? 'bg-dark/70' : 'bg-white',
+        'group',
+        theme === 'light' ? 'bg-gray-700/20' : 'bg-transparent',
         'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
-        'p-[2px] rounded-lg flex justify-center items-center',
-        'hover:border-primary-500 transition-all duration-200',
-        'scale-100 hover:scale-[1.01] active:scale-[0.99] motion-safe:transform-gpu',
+        'p-[2px] rounded-lg flex justify-center items-center border',
+        'hover:border-primary-500 ',
         'transition duration-25',
-        'motion-reduce:hover:scale-100',
+        'hover:ring-4 ring-white',
         'drop-shadow hover:drop-shadow-xl',
         className
       )}
@@ -27,7 +27,8 @@ const Button: FC<{
         onClick={onClick}
         className={clsx(
           'px-5 py-1 rounded-lg',
-          theme === 'light' ? 'bg-gray-100' : 'bg-dark'
+          'font-poppins font-medium',
+          'group-hover:text-white'
         )}
       >
         {children}
