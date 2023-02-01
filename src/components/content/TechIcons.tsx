@@ -40,27 +40,27 @@ const TechIcons = ({ className, techs }: TechIconsProps) => {
 
         const current = techList[tech];
 
-        return (
-          <Tooltip key={current.name} content={<p>{current.name}</p>}>
-            <li
-              className={clsx(
-                'transition-colors',
-                theme === 'light'
-                  ? 'text-gray-800 hover:text-primary-500'
-                  : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300'
-              )}
-            >
-              {current.name === 'ContentLayer' ? (
-                <Image
-                  src={'/assets/contentlayerimg.png'}
-                  height={35}
-                  width={35}
-                />
-              ) : (
-                <current.icon />
-              )}
-            </li>
-          </Tooltip>
+        return ( <></>
+          // <Tooltip key={current.name} content={<p>{current.name}</p>}>
+          //   <li
+          //     className={clsx(
+          //       'transition-colors',
+          //       theme === 'light'
+          //         ? 'text-gray-800 hover:text-primary-500'
+          //         : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300'
+          //     )}
+          //   >
+          //     {current.name === 'ContentLayer' ? (
+          //       <Image
+          //         src={'/assets/contentlayerimg.png'}
+          //         height={35}
+          //         width={35}
+          //       />
+          //     ) : (
+          //       <current.icon />
+          //     )}
+          //   </li>
+          // </Tooltip>
         );
       })}
     </ul>

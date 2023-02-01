@@ -12,7 +12,7 @@ import { useTheme } from 'src/context/ThemeProvider';
 import Accent from './Accent';
 
 const TechStack = () => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <ul className="flex space-x-2 md:space-x-4 my-2">
       {stacks.map((tech) => (
@@ -21,6 +21,7 @@ const TechStack = () => {
             key={tech.id}
             className={clsx(
               'h-10 w-10 md:h-12 md:w-12',
+
               theme === 'light'
                 ? 'text-gray-800 hover:text-primary-500'
                 : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300',
@@ -39,14 +40,14 @@ const stacks = [
     id: 'typescript',
     icon: SiTypescript,
     tooltip: (
-      <div className="font-bold text-lg">
+      <div className="font-bold text-lg flex justify-center items-center whitespace-nowrap">
         <UnstyledLink
           href="https://www.typescriptlang.org/"
           className="text-primary-500 hover:border-b-2 border-primary-500"
         >
           <Accent className="cursor-pointer">TypeScript</Accent>
         </UnstyledLink>{' '}
-        the best way to write Javascript
+         <span>{' '} - is the best way to write Javascript</span>
       </div>
     ),
   },
@@ -61,7 +62,8 @@ const stacks = [
         >
           <Accent className="cursor-pointer">Next.JS</Accent>
         </UnstyledLink>{' '}
-        - flexible, scalable, brings Server and Client closer
+        - flexible, scalable, <br/>
+        brings Server and Client closer
       </div>
     ),
   },
@@ -76,7 +78,7 @@ const stacks = [
         >
           <Accent className="cursor-pointer">Tailwind CSS</Accent>
         </UnstyledLink>{' '}
-        is amazing ✨ Seamless and fast to write. Addictive.
+        is amazing ✨ <br /> Seamless and fast to write. Addictive.
       </div>
     ),
   },

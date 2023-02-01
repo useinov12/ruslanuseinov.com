@@ -33,39 +33,7 @@ const Footer: FC = () => {
           </UnstyledLink>
         </li>
         <li>
-          <Tooltip
-            interactive
-            hideOnClick={false}
-            content={
-              <div className="text-lg font-bold">
-                <p id="email-tooltip-text-footer">Click to copy</p>
-                <button
-                  onClick={() =>
-                    copyToClipboard({
-                      text: 'me@ruslan-useinov.com',
-                      id: 'email-tooltip-text-footer',
-                    })
-                  }
-                >
-                  <Accent className="font-bold cursor-pointer">
-                    me@ruslan-useinov.com
-                  </Accent>
-                </button>
-              </div>
-            }
-          >
-            <h4
-              className="cursor-pointer "
-              onClick={() =>
-                copyToClipboard({
-                  text: 'me@ruslan-useinov.com',
-                  id: 'email-tooltip-text-footer',
-                })
-              }
-            >
-              Email
-            </h4>
-          </Tooltip>
+          <EmailAddress />
         </li>
         <li>
           <UnstyledLink
@@ -92,3 +60,39 @@ const Footer: FC = () => {
 };
 
 export default Footer;
+
+function EmailAddress() {
+  return (
+    <Tooltip
+      content={
+        <div className="text-lg font-bold whitespace-nowrap flex flex-col justify-center items-center">
+          <p id="email-tooltip-text-footer">Click to copy</p>
+          <button
+            onClick={() =>
+              copyToClipboard({
+                text: 'me@ruslan-useinov.com',
+                id: 'email-tooltip-text-footer',
+              })
+            }
+          >
+            <Accent className="font-bold cursor-pointer">
+              me@ruslan-useinov.com
+            </Accent>
+          </button>
+        </div>
+      }
+    >
+      <h4
+        className="cursor-pointer "
+        onClick={() =>
+          copyToClipboard({
+            text: 'me@ruslan-useinov.com',
+            id: 'email-tooltip-text-footer',
+          })
+        }
+      >
+        Email
+      </h4>
+    </Tooltip>
+  );
+}

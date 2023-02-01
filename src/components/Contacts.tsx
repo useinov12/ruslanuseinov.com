@@ -15,15 +15,14 @@ const Contacts = () => {
         <li
           className={clsx(
             'list-none py-2 mx-1',
+            'flex flex-col justify-center items-center whitespace-nowrap',
             theme === 'light'
               ? 'text-gray-800 hover:text-primary-500'
               : 'text-gray-300 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-300'
           )}
           key={type}
         >
-          <Tooltip interactive hideOnClick={false} content={<p>{tooltip}</p>}>
-            {Icon}
-          </Tooltip>
+          <Tooltip content={<p>{tooltip}</p>}>{Icon}</Tooltip>
         </li>
       ))}
     </ul>
@@ -45,7 +44,7 @@ const contacts = [
       />
     ),
     tooltip: (
-      <div className="text-lg font-bold">
+      <div className="text-lg font-bold whitespace-nowrap flex flex-col items-center justify-center">
         <p id="email-tooltip-text-about">Click to copy</p>
         <button
           onClick={() =>
@@ -73,7 +72,7 @@ const contacts = [
       </UnstyledLink>
     ),
     tooltip: (
-      <div className="text-lg font-bold">
+      <div className="text-lg font-bold whitespace-nowrap flex flex-col items-center justify-center">
         <p>Check my projects on</p>
         <UnstyledLink href="https://github.com/useinov12">
           <Accent className="font-bold">Github</Accent>
@@ -92,7 +91,7 @@ const contacts = [
       </UnstyledLink>
     ),
     tooltip: (
-      <div className="text-lg font-bold">
+      <div className="text-lg font-bold whitespace-nowrap flex flex-col items-center justify-center">
         <p>Reach me on</p>
         <UnstyledLink href="https://www.linkedin.com/in/ruslan-useinov-330b5a23a">
           <Accent className="font-bold">LinkedIn</Accent>
