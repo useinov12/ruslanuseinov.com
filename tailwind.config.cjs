@@ -30,6 +30,7 @@ module.exports = {
       },
       fontFamily: {
         primary: ['Inter', ...fontFamily.sans],
+        poppins: ['Poppins', ...fontFamily.sans],
       },
       colors: {
         primary: {
