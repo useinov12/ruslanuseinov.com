@@ -5,7 +5,7 @@ export const ThemeContext = createContext<{
   handleTheme: () => void;
 }>({
   theme: 'light',
-  handleTheme: () => {},
+  handleTheme: () => 1,
 });
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
