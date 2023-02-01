@@ -13,23 +13,16 @@ export default function PageHeader({
     <>
       <h1
         className={clsx(
-          'my-4 text-primary-500"',
+          'my-4 text-center',
           theme === 'light' ? 'text-gray-800' : 'text-primary-500"'
         )}
         data-fade="1"
       >
         {title}
       </h1>
-      <h6 className="font-semibold text-xl " data-fade="2">
+      <h6 className="font-semibold text-xl text-center mb-8" data-fade="2">
         {heading}
       </h6>
-      <div
-        className={clsx(
-          'w-full h-[1px] mb-8 mt-4 rounded-lg',
-          theme === 'light' ? 'bg-gray-800' : 'bg-gray-300'
-        )}
-        data-fade="3"
-      />
     </>
   );
 }
