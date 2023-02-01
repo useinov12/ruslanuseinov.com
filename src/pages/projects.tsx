@@ -30,7 +30,14 @@ export default function ProjectPage({ posts }: { posts: Post[] }) {
       />
 
       <Layout>
-        <main className={clsx(isLoaded && 'fade-in-start', 'h-screen')}>
+        <main
+          className={clsx(
+            'mx-auto',
+            'max-w-screen-lg',
+            'h-screen',
+            isLoaded && 'fade-in-start'
+          )}
+        >
           <PageHeader title="PageHeader" heading="Showcase of my works" />
           <ul
             className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
