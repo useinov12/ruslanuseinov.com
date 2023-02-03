@@ -1,12 +1,14 @@
 import clsx from 'clsx';
-import * as React from 'react';
+import { ReactNode } from 'react';
+import { useTheme } from 'src/context/ThemeProvider';
 
 interface TooltipTextProps {
-  content: React.ReactNode;
-  children: React.ReactNode;
+  content: ReactNode;
+  children: ReactNode;
 }
 
 export default function Tooltip({ content, children }: TooltipTextProps) {
+  const { theme } = useTheme();
   return (
     <div className="relative group h-full">
       <div
@@ -15,8 +17,9 @@ export default function Tooltip({ content, children }: TooltipTextProps) {
           'absolute -translate-y-[110%] -translate-x-1/3 ',
           'scale-0 group-hover:scale-100 ',
           'transition-all duration-150 ease',
-          'inline-block rounded-md bg-white p-2 text-gray-600 shadow-md dark:bg-dark dark:text-gray-200',
-          'border dark:border-gray-600 '
+          'inline-block rounded-md  p-1  ',
+          'border-2 border-gray-600 ',
+          theme === 'light' ? 'bg-gray-200' : 'bg-gray-700'
         )}
       >
         {content}
