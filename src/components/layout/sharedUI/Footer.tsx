@@ -6,20 +6,21 @@ import Accent from '../../Accent';
 import Tooltip from '../../Tooltip';
 import { useTheme } from 'src/context/ThemeProvider';
 import copyToClipboard from 'src/utils/clipboard';
+import useLoaded from 'src/hooks/useLoaded';
 
 const Footer: FC = () => {
-  const { theme } = useTheme();
+  const isLoaded = useLoaded();
+
   return (
     <footer
       className={clsx(
         'max-w-screen-lg m-auto',
         'px-3 lg:px-0 pt-4 mt-12',
-        'border-t-2',
-        theme === 'light' ? 'border-t-gray-800' : 'border-t-gray-300',
-        'flex flex-col items-center'
+        'flex flex-col items-center',
+        isLoaded && 'fade-in-start'
       )}
     >
-      <ul className="inline-flex gap-4 ">
+      <ul className="inline-flex gap-4 " data-fade="6">
         <li>
           <UnstyledLink
             href="https://github.com/useinov12/ruslanuseinov.com"
@@ -52,8 +53,11 @@ const Footer: FC = () => {
           </UnstyledLink>
         </li>
       </ul>
-      <h6 className={clsx('font-semibold my-2', 'cursor-default')}>
-        Ruslan Useinov 2022
+      <h6
+        className={clsx('font-semibold my-2', 'cursor-default')}
+        data-fade="6"
+      >
+        Ruslan Useinov {new Date().getFullYear()}
       </h6>
     </footer>
   );

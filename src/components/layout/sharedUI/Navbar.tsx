@@ -171,7 +171,7 @@ const DesktopNavbar = () => {
             <Link href={path}>
               <h4
                 className={clsx(
-                  'font-semibold drop-shadow',
+                  'font-medium drop-shadow',
                   asPath === path && 'text-blue-500'
                 )}
               >
