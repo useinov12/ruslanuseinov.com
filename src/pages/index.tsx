@@ -1,6 +1,6 @@
 import Layout from '../components/layout/Layout';
 import clsx from 'clsx';
-import Button from '../components/Button';
+import Button from 'src/components/Button';
 import UnstyledLink from '../components/UnstyledLink';
 
 import { IoNewspaperSharp } from 'react-icons/io5';
@@ -113,16 +113,16 @@ const Polkadots = ({ className }: { className?: string }) => {
       <defs>
         <pattern
           id="myPattern"
-          x="30"
-          y="24"
+          x="28"
+          y="25"
           width="25"
           height="25"
           patternUnits="userSpaceOnUse"
         >
           <circle
-            cx="10"
-            cy="10"
-            r="4"
+            cx="8"
+            cy="8"
+            r="5"
             style={{
               stroke: 'none',
               fill: '#2563eb',

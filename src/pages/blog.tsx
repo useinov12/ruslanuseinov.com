@@ -1,12 +1,12 @@
-import Link from 'next/link';
 import Layout from 'src/components/layout/Layout';
-import PostCard from 'src/components/content/PostCard';
 import { allPosts, type Post } from 'contentlayer/generated';
 import clsx from 'clsx';
 import useLoaded from 'src/hooks/useLoaded';
-
 import Seo from 'src/components/Seo';
-import PageHeader from 'src/components/PageHeader';
+import { useState } from 'react';
+import Notes from 'src/components/sharedUI/Notes';
+import Categories from 'src/components/sharedUI/Categories';
+import PostList from 'src/components/sharedUI/PostList';
 
 export async function getStaticProps() {
   const posts = allPosts.filter((post) =>
@@ -21,43 +21,41 @@ export async function getStaticProps() {
 
 export default function BlogPage({ posts }: { posts: Post[] }) {
   const isLoaded = useLoaded();
+
+  const [hovered, setHovered] = useState<string | undefined>();
+
   return (
     <Layout>
       <Seo
         description={'Blog by Ruslan Useinov'}
         imageUrl={'/assets/banners/blog_banner.png'}
       />
-      <main
+      <div
         className={clsx(
-          'mx-auto',
-          'max-w-screen-lg',
           'h-screen',
+          'overflow-auto',
+          'mx-auto',
           isLoaded && 'fade-in-start'
         )}
       >
-        <PageHeader
-          title="Blog"
-          heading="For patterns, tutorials and my setups"
-        />
-        <ul
-          className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 justify-center"
-          data-fade="4"
-        >
-          {posts.map((postSummary) => {
-            return (
-              <Link
-                href={`/blog/${postSummary.slug}`}
-                passHref
-                key={postSummary.slug}
-              >
-                <a>
-                  <PostCard postSummary={postSummary} />
-                </a>
-              </Link>
-            );
-          })}
-        </ul>
-      </main>
+        <section className="relative flex max-w-screen-lg mx-auto">
+          <aside className="hidden sm:block w-1/2 ">
+            <div className="sticky top-12">
+              <h2 className="" data-fade="1">
+                Blog
+              </h2>
+              <h6 className="font-medium" data-fade="2">
+                For patterns, learning and setups
+              </h6>
+              <Categories />
+              <Notes hovered={hovered} posts={posts} />
+            </div>
+          </aside>
+          <main className="h-full w-full sm:w-1/2 pt-12">
+            <PostList posts={posts} setHovered={setHovered} />
+          </main>
+        </section>
+      </div>
     </Layout>
   );
 }

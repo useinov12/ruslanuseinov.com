@@ -21,13 +21,15 @@ export default function AboutPage() {
             'max-w-screen-lg',
             isLoaded && 'fade-in-start',
             'md:max-w-screen-sm',
-            'flex flex-col items-center',
-            'py-10'
+            'py-5',
+            'flex-col gap-5'
           )}
         >
-          <AboutMeCard />
-          <AboutMeText />
-          <TechAndContacts />
+          <div data-fade="3">
+            <AboutMeCard />
+            <Contacts />
+            <AboutMeText />
+          </div>
         </main>
       </Layout>
     </>
@@ -39,50 +41,50 @@ function AboutMeCard() {
     <section
       className={clsx(
         'flex flex-col-reverse ',
-        'gap-10 w-full py-5',
+        'md:gap-10 w-full py-5',
         'md:flex-row md:items-center md:justify-start '
       )}
-      data-fade="3"
     >
       <div>
         <h3 className="text-3xl font-bolder font-poppins text-semibold">
           Ruslan Useinov
         </h3>
-        <h4 className="font-poppins">Front end developer</h4>
-        <p className="font-poppins">Creating beautiful and performant web</p>
+        <h4 className="font-poppins font-semibold">Front end developer</h4>
+        <p className="font-poppins font-medium">
+          Creating beautiful and performant web
+        </p>
       </div>
-      <Image
-        src={'/assets/me-sq.jpg'}
-        width="100"
-        height="101"
-        className="rounded-full"
-        objectFit="cover"
-        alt='me'
-      />
+      <div className="w-32 h-32">
+        <Image
+          src={'/assets/me-sq.jpg'}
+          width="100"
+          height="101"
+          className="rounded-full"
+          objectFit="cover"
+          alt="me"
+        />
+      </div>
     </section>
   );
 }
 
 function AboutMeText() {
   return (
-    <div
-      className="flex flex-col-reverse md:flex-row justify-start"
-      data-fade="4"
-    >
+    <div className="flex flex-col-reverse md:flex-row  justify-start">
       <section
         className={clsx(
           'tracking-tight  md:text-justify',
-          'md:flex md:flex-col md:items-start'
+          'md:flex md:flex-col md:items-start',
+          'font-medium'
         )}
       >
-        <p className="pt-5 ">Hey, I&apos;m Ruslan</p>
+        <p className="pt-5 ">Hey, I&apos;m Ruslan.</p>
         <p className="py-2">
           I started learning web development in 2021. I have always been
           interested in work of the web technologies, but I never considered
           myself a tech person enough to figure things out. Until I actually
           started reading and practicing with Javascript.
         </p>
-        
 
         <p className="py-2">
           And my practice with Javascript led me to dive deeper into web
@@ -109,20 +111,19 @@ function TechAndContacts() {
     <div
       className={clsx(
         'flex flex-col justify-center my-4',
-        'sm:flex-row sm:justify-around',
+        'sm:flex-row sm:justify-between',
         'w-full'
       )}
-      data-fade="5"
     >
       <section className=" my-2 flex flex-col gap-1 justify-center  items-center">
         <h3 className="p-0 mx-0">Favorite Tech Stack</h3>
         <TechStack />
       </section>
 
-      <section className="my-2 flex flex-col gap-1 justify-center  items-center">
+      {/* <section className="my-2 flex flex-col gap-1 justify-center  items-center">
         <h3 className="p-0  mx-0">Contacts</h3>
         <Contacts />
-      </section>
+      </section> */}
     </div>
   );
 }
