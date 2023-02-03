@@ -21,8 +21,8 @@ export default function Post({ post }: { post: Post }) {
           'max-w-screen-lg'
         )}
       >
-        <aside data-fade="3" className={clsx('col-span-3 w-3/12')}>
-          <TableOfContents post={post} className={clsx('sticky top-44')} />
+        <aside data-fade="3" className=' w-3/12'>
+          <TableOfContents post={post} className='sticky top-44' />
         </aside>
         <main data-fade="2" className="h-full w-9/12 space-y-56  p-4 ">
           <Article post={post} />
@@ -39,24 +39,27 @@ function Article({ post, className }: { post: Post; className?: string }) {
   return (
     <article
       className={clsx(
-        'prose-lg',
-        'prose-blockquote:border-4 prose-blockquote:border-transparent',
+        'prose',
+        theme === 'light' ? 'prose-sky' : 'prose-invert',
+        // 'prose-blockquote:border-4 prose-blockquote:border-transparent',
         'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
-        'prose-code:text-primary-500',
+        // 'prose-code:text-primary-500',
         'prose-li:list-disc prose-li:p-0 prose-li:m-0',
         'prose-a:text-primary-500',
-        'prose-h1:my-4',
-        'prose-h2:my-3',
-        'prose-h3:my-2',
-        'prose-h4:my-1',
+        // 'prose-h1:my-4',
+        // 'prose-h2:my-3',
+        // 'prose-h3:my-2',
+        // 'prose-h4:my-1',
         'prose-ul:m-0',
-        'prose-p:tracking-tighter',
-        theme === 'light' && 'text-dark',
         'flex flex-col',
         'md:w-4/5',
-        'font-poppins',
+        'prose-h1:text-3xl',
+        // 'font-poppins',
+        // 'font-normal',
+        // 'prose-sky'
+        'tracking-tight',
+        'm-0 p-0 font-medium',
         className,
-        'font-medium'
       )}
     >
       <h2 className="text-center font-inter">{post.title}</h2>
