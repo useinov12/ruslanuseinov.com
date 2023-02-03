@@ -13,9 +13,10 @@ const Button: FC<{
     <div
       className={clsx(
         'group',
-        theme === 'light' ? 'bg-gray-700/20' : 'bg-transparent',
-        'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-400',
-        'p-[2px] rounded-lg flex justify-center items-center border',
+        'border',
+        theme === 'light' ? 'border-dark' : 'border-white',
+        'hover:bg-gradient-to-tr hover:from-primary-500 hover:via-primary-500 hover:to-primary-500',
+        'p-[2px] rounded-lg flex justify-center items-center ',
         'hover:border-primary-500 ',
         'transition duration-25',
         'hover:ring-4 ring-white',
