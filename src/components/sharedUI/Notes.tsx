@@ -9,8 +9,8 @@ export default function Notes({
   posts: Post[];
 }) {
   return (
-    <ul data-fade="4" className="pr-5 relative">
-      <li
+    <ul className="pr-5 relative">
+      {/* <li
         className={clsx(
           'absolute',
           'inset-0 pr-20',
@@ -25,20 +25,21 @@ export default function Notes({
             'Writing about wathever Im currently figuring out and what could be helpful to go in depth to nut frustrated me anymore'
           }
         </p>
-      </li>
+      </li> */}
       {posts.map((postSummary) => (
         <li
           key={postSummary.title}
           className={clsx(
             'absolute',
-            'inset-0 pr-20',
+            'inset-0 pr-20 pt-7',
             'transition-all duration-200 delay-75',
             hovered === postSummary.title
               ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-4'
+              : 'opacity-0 translate-y-4',
+            'tracking-tight'
           )}
         >
-          <strong>{postSummary.title}</strong>
+          <strong className=''>{postSummary.title}</strong>
           <p>{postSummary.description}</p>
         </li>
       ))}
