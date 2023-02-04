@@ -44,19 +44,19 @@ export default function ProjectPage({ posts }: { posts: Post[] }) {
           )}
         >
           <section className="relative flex max-w-screen-lg mx-auto">
-            <aside className="hidden sm:block w-1/2 ">
+            <aside className="hidden sm:block w-1/2 " data-fade="3">
               <div className="sticky top-12">
-                <h2 className="" data-fade="1">
-                  Projects
-                </h2>
-                <h6 className="font-medium" data-fade="2">
-                  Showcase of my works
-                </h6>
+                <h2 className="">Projects</h2>
+                <h6 className="font-medium">Showcase of my works</h6>
                 <Categories />
+                <p className="my-4 font-medium tracking-tight w-5/6">
+                  Things I build that improved my skills and expanded my
+                  knowledge base
+                </p>
                 <Notes hovered={hovered} posts={posts} />
               </div>
             </aside>
-            <main className="h-full w-full sm:w-1/2 pt-12">
+            <main className="h-full w-full sm:w-1/2 pt-12" data-fade="4">
               <PostList posts={posts} setHovered={setHovered} />
             </main>
           </section>
