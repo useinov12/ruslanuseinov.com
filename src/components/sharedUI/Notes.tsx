@@ -10,22 +10,6 @@ export default function Notes({
 }) {
   return (
     <ul className="pr-5 relative">
-      {/* <li
-        className={clsx(
-          'absolute',
-          'inset-0 pr-20',
-          'transition-all duration-200 delay-75',
-          hovered === undefined
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-4'
-        )}
-      >
-        <p>
-          {
-            'Writing about wathever Im currently figuring out and what could be helpful to go in depth to nut frustrated me anymore'
-          }
-        </p>
-      </li> */}
       {posts.map((postSummary) => (
         <li
           key={postSummary.title}
@@ -39,7 +23,7 @@ export default function Notes({
             'tracking-tight'
           )}
         >
-          <strong className=''>{postSummary.title}</strong>
+          <strong className="">{postSummary.title}</strong>
           <p>{postSummary.description}</p>
         </li>
       ))}
