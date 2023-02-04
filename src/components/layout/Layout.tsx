@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       <div
         className={clsx(
-          'w-screen min-h-screen relative',
+          'w-screen overflow-x-hidden min-h-screen relative',
           'overflow-x-hidden',
           theme === 'light' ? ' text-gray-800' : ' text-gray-50',
           theme === 'light'
