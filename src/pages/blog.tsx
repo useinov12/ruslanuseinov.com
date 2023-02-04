@@ -39,19 +39,21 @@ export default function BlogPage({ posts }: { posts: Post[] }) {
         )}
       >
         <section className="relative flex max-w-screen-lg mx-auto">
-          <aside className="hidden sm:block w-1/2 ">
+          <aside className="hidden sm:block w-1/2 " data-fade="3">
             <div className="sticky top-12">
-              <h2 className="" data-fade="1">
-                Blog
-              </h2>
-              <h6 className="font-medium" data-fade="2">
-                For patterns, learning and setups
+              <h2 className="">Blog</h2>
+              <h6 className="font-semibold">
+                My notes
               </h6>
               <Categories />
+              <p className="my-4 font-medium tracking-tight w-5/6">
+                Writing about things I&apos;m currently figuring out and what
+                could be helpful to go in depth
+              </p>
               <Notes hovered={hovered} posts={posts} />
             </div>
           </aside>
-          <main className="h-full w-full sm:w-1/2 pt-12">
+          <main className="h-full w-full sm:w-1/2 pt-12" data-fade="4">
             <PostList posts={posts} setHovered={setHovered} />
           </main>
         </section>
