@@ -1,22 +1,34 @@
 ---
-title: 'Auth in PF project'
+title: 'Auth in my PF project'
 publishedAt: '2023-01-12'
-description: 'Fetching, cashing and protecting routes. Using React use-Query, we can write clean and consistent way of handling Server data in our Client. Building solutions for data retrieving logic become enjoyable!'
+description: 'Fetching, cashing and protecting routes. Using React use-Query, we can write clean and consistent way of handling Server data in our Client.'
 coverImage: ''
+comment: 'Auth is an essential part of applications. Building it can be simple and satisfying.'
 ---
 
-# Approach
+## What do we working with?
 
-Our backend using JWT tokens as an **access token** with rotation of **refresh tokens**
+* Client - Next JS
+* Server - Pyhton FastApi
+
+Our backend using JWT tokens as an **access token**
+with rotation of **refresh tokens**
+
+
+## Libraries
+
 
 On the clinet side I use [Tanstack React Query](https://react-query-v3.tanstack.com) to
 fetch and cashe user session data
 
-React Query library provides an abstraction layer for handling everything that
-related to an API call from API state(loading/fetching, isSuccess, isError, etc) to easily handle database mutations.\
-Everything that is fetched with React Query is stored in the cache layer provided by the library.\
-It can fulfill all our needs for **authentification**
-Everything is super simple and handled with a very little amount of code.
+* [React-Query](https://react-query-v3.tanstack.com) - elegant layer for everething related to fetching and cashing
+Everything is intuitive and handled with a very little amount of code.
+
+* Axios for http requests - cleaner and nicely combines with React-useQuery
+
+
+## Approach
+
 
 To fetch and cache session information, I use the following approach:
 
@@ -25,18 +37,15 @@ To fetch and cache session information, I use the following approach:
 
 ```typescript:authActions.ts showLineNumbers
   async function login(credentials){
+    try {
+      const { data, status } = await apiLoginUser(credentials);
+      presistTokens(data.tokens)
+      return { status: status };
 
-  try {
-
-    const { data, status } = await apiLoginUser(credentials);
-    presistTokens(data.tokens)
-    return { status: status };
-
-  } catch (error) {
-
-    hanldeError(error.response.status )
-    return { status: error.response.status };
-  }
+    } catch (error) {
+      hanldeError(error.response.status )
+      return { status: error.response.status };
+    }
   }
 ```
 
@@ -57,7 +66,8 @@ function useAuth(){
     onError: () => {
       /* error callback */
     },
-    select: (data) => formatResponse(data), // will return in const { data } = useAuth()
+    /* `select` will be returned `data` when accessing query results */
+    select: (data) => formatResponse(data),
   });
 };
 ```
@@ -112,7 +122,7 @@ function Navbar() {
 }
 ```
 
-### Page protection
+## Page protection
 
 Each protected page has `requireAuth:boolean` property.
 

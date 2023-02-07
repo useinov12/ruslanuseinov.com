@@ -3,8 +3,8 @@ title: 'PersonalFinance'
 publishedAt: '2022-10-20'
 description: 'Personal banking app. Track and analyze bank data with Plaid API'
 coverImage: '/assets/banners/pf_banner.png'
+comment: 'Working on this project sharpened my awareness of the application architecture. I gained insights into how each component of the application is interconnected and serves its intended purpose.'
 ---
-
 
 # Overview
 
@@ -12,11 +12,9 @@ An App for tracking and analazyng data from all your banks using Plaid API.\
 [Live version](https://pf-bank.vercel.app/)\
 [Client Repo](https://github.com/useinov12/pf-client) | [Backend Repo](https://github.com/kalinchenko23/personal_finance_tracker)
 
-
-The project I build in pair with my friend. 
-I'm responsible for all UI and Front-end architecture, 
+The project I build in pair with my friend.
+I'm responsible for all UI and Front-end architecture,
 while my friend is building Database and Server
-
 
 ### Current Status
 
@@ -47,37 +45,40 @@ Here is the list of the blog posts that I wrote while doing the project:
 
 - [How I implemented Auth in PF project](https://ruslan-useinov.com/blog/how-auth)
 
-
 ---
+
 # Our approach
 
 We separated our work in three parts:
 
 1. Our internal API - user Authentification\
-  That includes user CRUD operations
+   That includes user CRUD operations
 
 2. User's bank connection - permitting access to user bank data with Plaid API\
-  That includes invoking Plaid UI and going throught it's workflow. 
-  The end goal of this workflow is to get access key and save it in our database for future use
+   That includes invoking Plaid UI and going throught it's workflow.
+   The end goal of this workflow is to get access key and save it in our database for future use
 
 3. Data fetching - requesting and displaing data using Plaid API\
-  Using PLAID keys that cerated during bank connection - 
-  make API calls for bank's data aggregate it and  display to our dashboards
-
+   Using PLAID keys that cerated during bank connection -
+   make API calls for bank's data aggregate it and display to our dashboards
 
 ## Authentification
 
-We have our own Authentification process handled by our Server. 
+We have our own Authentification process handled by our Server.
 
 On the Client I built the following pages:
- - Landing
- - Signup
- - Cabinet
+
+- Landing
+- Signup
+- Cabinet
+
 ---
 
 ## User flow
+
 Users can sign in on the landing page with a sign-in popup or on the dedicated `/signup` page
 
 If the user would access the protected page while not authenticated
-  * user will be redirected to `/signup` page
-  * after successful sign-in user will be redirected to the page that he/she tried to access
+
+- user will be redirected to `/signup` page
+- after successful sign-in user will be redirected to the page that he/she tried to access
