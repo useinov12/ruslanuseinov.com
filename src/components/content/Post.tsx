@@ -40,29 +40,26 @@ function Article({ post, className }: { post: Post; className?: string }) {
     <article
       className={clsx(
         'prose',
+        'm-0 p-0 pt-16 font-medium',
         theme === 'light' ? 'prose-sky' : 'prose-invert',
         // 'prose-blockquote:border-4 prose-blockquote:border-transparent',
         'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
         // 'prose-code:text-primary-500',
         'prose-li:list-disc prose-li:p-0 prose-li:m-0',
         'prose-a:text-primary-500',
-        // 'prose-h1:my-4',
-        // 'prose-h2:my-3',
-        // 'prose-h3:my-2',
-        // 'prose-h4:my-1',
+        'prose-h1:my-4',
+        'prose-h2:my-3',
+        'prose-h3:my-2',
+        'prose-h4:my-1',
         'prose-ul:m-0',
         'flex flex-col',
         'md:w-4/5',
         'prose-h1:text-3xl',
-        // 'font-poppins',
-        // 'font-normal',
-        // 'prose-sky'
         'tracking-tight',
-        'm-0 p-0 font-medium',
         className,
       )}
     >
-      <h2 className="text-center font-inter">{post.title}</h2>
+      <h1 className="text-center font-inter">{post.title}</h1>
       <div className="py-5">
         {post.coverImage && (
           <Image
