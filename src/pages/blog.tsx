@@ -42,13 +42,11 @@ export default function BlogPage({ posts }: { posts: Post[] }) {
           <aside className="hidden sm:block w-1/2 " data-fade="3">
             <div className="sticky top-12">
               <h2 className="">Blog</h2>
-              <h6 className="font-semibold">
-                My notes
-              </h6>
+              <h6 className="font-semibold opacity-75">My notes</h6>
               <Categories />
               <p className="my-4 font-medium tracking-tight w-5/6">
-                Writing about things I&apos;m currently figuring out and what
-                could be helpful to go in depth
+                Documenting my explorations and delving into topics that could
+                benefit from a deeper understanding
               </p>
               <Notes hovered={hovered} posts={posts} />
             </div>

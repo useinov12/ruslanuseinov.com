@@ -39,7 +39,7 @@ export default function LibraryPage({ posts }: { posts: Post[] }) {
           <h2 className="pt-12" data-fade="1">
             Library
           </h2>
-          <h6 className="font-medium" data-fade="2">
+          <h6 className="font-medium opacity-75" data-fade="2">
             Collection of code snippets, patterns, copy/paste solutions and
             setups
           </h6>

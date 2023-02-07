@@ -47,11 +47,11 @@ export default function ProjectPage({ posts }: { posts: Post[] }) {
             <aside className="hidden sm:block w-1/2 " data-fade="3">
               <div className="sticky top-12">
                 <h2 className="">Projects</h2>
-                <h6 className="font-medium">Showcase of my works</h6>
+                <h6 className="font-medium opacity-75">Showcase of my works</h6>
                 <Categories />
                 <p className="my-4 font-medium tracking-tight w-5/6">
-                  Things I build that improved my skills and expanded my
-                  knowledge base
+                  Things I build that have sharpened my skills and expanded my
+                  understanding of software developement
                 </p>
                 <Notes hovered={hovered} posts={posts} />
               </div>
