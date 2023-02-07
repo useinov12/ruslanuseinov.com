@@ -19,15 +19,19 @@ export const Post = defineDocumentType(() => ({
     },
     publishedAt: {
       type: 'string',
-      required: 'true',
+      required: true,
     },
     description: {
       type: 'string',
-      required: 'true',
+      required: true,
+    },
+    comment: {
+      type: 'string',
+      required: true,
     },
     coverImage: {
       type: 'string',
-      required: 'false',
+      required: false,
     },
   },
   computedFields: {
