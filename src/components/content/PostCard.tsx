@@ -14,12 +14,12 @@ const PostCard: FC<{
     <div
       className={clsx(
         'group',
-        'py-5',
+        'py-1',
         'cursor-pointer',
         'overflow-hidden',
         'transition duration-25',
         'hover:border-primary-500',
-        'flex flex-col justify-between',
+        'flex flex-col justify-between'
       )}
     >
       <div className={clsx('overflow-hidden', ' w-full h-full relative')}>
@@ -39,11 +39,13 @@ const PostCard: FC<{
             />
           </div>
         )}
-        <div className="px-2 py-5 flex flex-col h-full justify-between">
+        <div className="px-2 py-2 flex flex-col h-full justify-between">
           <div>
-            <h4 className="font-poppins group-hover:text-blue-500">{title}</h4>
-            <p className=" font-medium text-md ">{readingTime}</p>
-            <p className="py-1 font-medium tracking-tight w-5/6">{description}</p>
+            <h5 className="font-poppins text-xl font-semibold group-hover:text-blue-500">{title}</h5>
+            <p className="font-medium text-md opacity-75">{readingTime}</p>
+            <p className="font-medium tracking-tight w-5/6">
+              {description}
+            </p>
           </div>
           <div className="text-bottom self-start inline-flex gap-1 items-center group-hover:text-blue-600">
             <h4>Read</h4>
