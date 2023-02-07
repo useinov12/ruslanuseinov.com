@@ -13,7 +13,7 @@ export default function Seo(props: SeoProps) {
     <NextSeo
       title={props.title}
       description={props.description}
-      titleTemplate={'Ruslan Useinov | Web development | '}
+      titleTemplate={'Ruslan Useinov | Web development '}
       defaultTitle="Ruslan Useinov | Personal blog | Web development"
       openGraph={{
         type: 'website',
