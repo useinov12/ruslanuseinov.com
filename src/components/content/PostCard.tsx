@@ -1,15 +1,13 @@
-import { FC } from 'react';
 import clsx from 'clsx';
 import { type Post } from 'contentlayer/generated';
 import Image from 'next/image';
-import { useTheme } from 'src/context/ThemeProvider';
 import { BsArrowRightShort } from 'react-icons/bs';
 
-const PostCard: FC<{
+export default function PostCard({
+  postSummary: { title, readingTime, description, coverImage },
+}: {
   postSummary: Post;
-}> = ({
-  postSummary: { title, readingTime, description, publishedAt, coverImage },
-}) => {
+}) {
   return (
     <div
       className={clsx(
@@ -41,11 +39,11 @@ const PostCard: FC<{
         )}
         <div className="px-2 py-2 flex flex-col h-full justify-between">
           <div>
-            <h5 className="font-poppins text-xl font-semibold group-hover:text-blue-500">{title}</h5>
+            <h5 className="font-poppins text-xl font-semibold group-hover:text-blue-500">
+              {title}
+            </h5>
             <p className="font-medium text-md opacity-75">{readingTime}</p>
-            <p className="font-medium tracking-tight w-5/6">
-              {description}
-            </p>
+            <p className="font-medium tracking-tight">{description}</p>
           </div>
           <div className="text-bottom self-start inline-flex gap-1 items-center group-hover:text-blue-600">
             <h4>Read</h4>
@@ -55,6 +53,4 @@ const PostCard: FC<{
       </div>
     </div>
   );
-};
-
-export default PostCard;
+}
