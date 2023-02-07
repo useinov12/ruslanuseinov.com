@@ -20,11 +20,12 @@ export default function Notes({
             hovered === postSummary.title
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-4',
-            'tracking-tight'
+            'tracking-tight',
+            'font-medium'
           )}
         >
           <strong className="">{postSummary.title}</strong>
-          <p>{postSummary.description}</p>
+          <p>{postSummary.comment}</p>
         </li>
       ))}
     </ul>
