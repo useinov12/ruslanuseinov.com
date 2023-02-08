@@ -1,0 +1,102 @@
+---
+title: 'Git workflows and best practises'
+publishedAt: '2023-02-01'
+description: 'Improve the quality and reliability of your Git workflow, making it easier to manage and collaborate on your projects'
+coverImage: ''
+comment: 'Git is an essential tool of a software developmer. The version control system is critical for managing the source code and development history of software projects'
+---
+
+## Version control system(VCS)
+
+A tool for tracking and managing changes to source code and other
+files in a software development project
+
+**Git** is a standard for version control sysstem and essential tool for software development.
+
+Understanding Git allows developers to effectively manage their code
+and collaborate with others, which is crucial for the success
+of software development projects.
+
+## Why it is important?
+
+> Collaborate, experiment and enfotce quality
+
+By using a VCS, developers can ensure the quality and reliability of their code, and
+can easily track the progress of their projects over time.
+
+## How is it working?
+
+By creating the versions(**_branches_**) of the source code, where developers can work for
+isolated problem and integrating(**_merging_**) their changes to the source
+code(main branch that considered to be the source of the truth)
+
+## Common Git best practices
+
+1. Use descriptive and concise commit messages
+2. Avoid large commits
+3. Use branches for different features
+4. Regularly pull and merge changes
+5. Review changes before merging
+6. Use tags to mark important milestones
+
+## Workflow patterns
+
+> There are few Git workflow patterns that can be used by teams or by individual developers.
+> Each has its own advantages and disadvantages.
+
+<Image
+  src="/assets/blog/givenGit.png"
+  width="1000"
+  height="679"
+  className="rounded-lg"
+  alt="givenGit"
+/>
+
+### Rebasing Workflow
+
+A rebasing workflow is a Git workflow that is used by individual developers who prefer to keep
+their commits linear and avoid merge commits. In this workflow, changes are frequently rebased
+onto the main branch to keep the history of the project linear.
+
+<Image
+  src="/assets/blog/rebaseGit.png"
+  width="1000"
+  height="401"
+  className="rounded-lg"
+  alt="rebaseWorkflow"
+/>
+
+### Centralized Workflow
+
+A centralized workflow is a simple Git workflow that is well-suited to
+small teams or individual developers. In this workflow, all team members push their changes to
+a single central repository
+
+<Image
+  src="/assets/blog/centralizedGit.png"
+  width="1000"
+  height="459"
+  className="rounded-lg"
+  alt="centralizedGit"
+/>
+
+### Feature Branch Workflow
+
+A feature branch workflow is a more sophisticated Git workflow that is
+well-suited to larger teams. In this workflow, each feature is developed in its own branch, and
+changes are merged into the main branch when they are ready to be released.
+
+<Image
+  src="/assets/blog/mergeGit.png"
+  width="1000"
+  height="464"
+  className="rounded-lg"
+  alt="featureMergeWorkflow"
+/>
+
+### Forking Workflow
+
+A forking workflow is a Git workflow that is used in open-source projects.
+In this workflow, developers fork the main repository and make changes in their own forks.
+When their changes are ready, they submit a pull request to the main repository, and the changes
+are reviewed and merged if approved.
