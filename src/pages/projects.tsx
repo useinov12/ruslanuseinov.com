@@ -50,8 +50,8 @@ export default function ProjectPage({ posts }: { posts: Post[] }) {
                 <h6 className="font-medium opacity-75">Showcase of my works</h6>
                 <Categories />
                 <p className="my-4 font-medium tracking-tight w-5/6">
-                  Things I build that have sharpened my skills and expanded my
-                  understanding of software developement
+                  The projects I have built have helped me to sharpen my skills
+                  and expand my understanding of software development.
                 </p>
                 <Notes hovered={hovered} posts={posts} />
               </div>

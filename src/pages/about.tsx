@@ -80,26 +80,34 @@ function AboutMeText() {
       >
         <p className="pt-5 ">Hey, I&apos;m Ruslan.</p>
         <p className="py-2">
-          I started learning web development in 2021. I have always been
-          interested in work of the web technologies, but I never considered
-          myself a tech person enough to figure things out. Until I actually
-          started reading and practicing with Javascript.
+          I started learning web development in 2021. Despite feeling
+          intimidated at first, I quickly realized that with a little bit of
+          reading and hands-on practice with Javascript, HTML, and CSS, I could
+          actually build simple websites and understand the inner workings of
+          the web.
         </p>
 
         <p className="py-2">
-          And my practice with Javascript led me to dive deeper into web
-          development and front end. I love the visual aspects of the web and
-          I&apos;m motivated to learn as much as possible.
+          My practice with Javascript sparked my interest in delving deeper into
+          the realm of web development and front-end design. I love the visual
+          aspects of the web and I am constantly seeking opportunities to
+          improve and stay up-to-date with the latest advancements in the
+          industry.
         </p>
         <p className=" py-2">
-          Right now, I want to master my skills and be as fluent as possible
-          with modern frameworks and concepts and then invest more time in UI to
-          learn how to design interfaces quick, effective, and scalable.
+          At present, I am focused on mastering my technical skills and becoming
+          proficient in modern frameworks and concepts. Once I have achieved a
+          high level of proficiency, I plan to delve deeper into UI design to
+          learn how to create interfaces that are not only aesthetically
+          pleasing but also quick, effective, and scalable.
         </p>
         <p className="py-2">
-          Here I will be writing some notes and showcasing what I do. I believe
-          that documenting is the best way to learn things, and I can share my
-          knowledge along the way.
+          I will be keeping track of my learning journey by documenting my notes
+          and showcasing my work. I firmly believe that writing things down and
+          reflecting on my progress is an effective way to solidify my
+          understanding and retain new information. Additionally, by sharing my
+          knowledge and experiences, I hope to inspire others and contribute to
+          the broader web development community.
         </p>
       </section>
     </div>
