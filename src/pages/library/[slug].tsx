@@ -40,7 +40,11 @@ export default function LibraryPage({
       <Seo
         title={post.title}
         description={post.description}
-        imageUrl={post.coverImage}
+        imageUrl={
+          post.coverImage
+            ? post.coverImage
+            : '/assets/banners/library_banner.png'
+        }
       />
       <Layout>
         <Post post={post} />

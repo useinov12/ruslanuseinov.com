@@ -40,7 +40,9 @@ export default function BlogPage({
       <Seo
         title={post.title}
         description={post.description}
-        imageUrl={post.coverImage}
+        imageUrl={
+          post.coverImage ? post.coverImage : '/assets/banners/blog_banner.png'
+        }
       />
       <Layout>
         <Post post={post} />

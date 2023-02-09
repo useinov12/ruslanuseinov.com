@@ -19,7 +19,9 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
-  const post: PostType | undefined = allPosts.find((post) => post.slug === params?.slug);
+  const post: PostType | undefined = allPosts.find(
+    (post) => post.slug === params?.slug
+  );
   return {
     props: {
       post,
@@ -27,13 +29,22 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
   };
 };
 
-export default function ProjectsPage({ post }: { post: PostType; children: ReactNode }) {
+export default function ProjectsPage({
+  post,
+}: {
+  post: PostType;
+  children: ReactNode;
+}) {
   return (
     <>
       <Seo
         title={post.title}
         description={post.description}
-        imageUrl={post.coverImage}
+        imageUrl={
+          post.coverImage
+            ? post.coverImage
+            : '/assets/banners/projects_banner.png'
+        }
       />
       <Layout>
         <Post post={post} />
