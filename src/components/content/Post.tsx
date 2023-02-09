@@ -40,7 +40,7 @@ function Article({ post, className }: { post: Post; className?: string }) {
     <article
       className={clsx(
         'prose',
-        'm-0 p-0 pt-16 font-medium',
+        'p-0 pt-16 font-medium',
         theme === 'light' ? 'prose-sky' : 'prose-invert',
         // 'prose-blockquote:border-4 prose-blockquote:border-transparent',
         'prose-blockquote:border-l-primary-500 prose-blockquote:py-0',
