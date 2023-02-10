@@ -66,7 +66,7 @@ function Navigation() {
       <div
         className={clsx(
           'mx-auto',
-          'py-1',
+          'py-4',
           'flex items-center justify-between',
           'transition-all duration-200',
           'max-w-screen-lg'
@@ -90,9 +90,9 @@ function Logo({ className }: { className?: string }) {
   return (
     <Link href={'/'}>
       <Image
-        src={'/favicon/logo-2.png'}
-        width={55}
-        height={55}
+        src={'/assets/logo.png'}
+        width={78}
+        height={35}
         className={clsx('cursor-pointer', className)}
         alt={'logo'}
       />
