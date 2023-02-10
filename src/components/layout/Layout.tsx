@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         )}
       >
         <Navbar />
-        <div className="px-3 lg:px-0">{children}</div>
+        <div className="px-3 lg:px-0 w-screen overflow-x-hidden">{children}</div>
         <Footer />
       </div>
     </>
