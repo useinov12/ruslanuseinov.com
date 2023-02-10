@@ -40,6 +40,21 @@ module.exports = {
           400: 'rgb(var(--tw-clr-primary-400) / <alpha-value>)',
           500: 'rgb(var(--tw-clr-primary-500) / <alpha-value>)',
         },
+        attention: {
+          // Customize it on globals.css :root
+          200: 'rgb(var(--tw-clr-attention-200) / <alpha-value>)',
+          300: 'rgb(var(--tw-clr-attention-300) / <alpha-value>)',
+          400: 'rgb(var(--tw-clr-attention-400) / <alpha-value>)',
+          500: 'rgb(var(--tw-clr-attention-500) / <alpha-value>)',
+        },
+
+        danger: {
+          // Customize it on globals.css :root
+          200: 'rgba(var(--tw-clr-danger-200) / <alpha-value>)',
+          300: 'rgba(var(--tw-clr-danger-300) / <alpha-value>)',
+          400: 'rgba(var(--tw-clr-danger-400) / <alpha-value>)',
+          500: 'rgba(var(--tw-clr-danger-500) / <alpha-value>)',
+        },
         dark: 'rgb(34, 35, 43)',
       },
       keyframes: {

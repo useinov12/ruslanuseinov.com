@@ -2,18 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Customize these variable */
-  /* https://github.com/adamwathan/tailwind-css-variable-text-opacity-demo */
-  --tw-clr-primary-200: 219 255 0;
-  --tw-clr-primary-300: 0 232 135;
-  --tw-clr-primary-400: 0 224 243;
-  --tw-clr-primary-500: 59 130 246;
+@layer base {
+  /* custom colors */
+  /* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
+  :root {
+    --tw-clr-primary-200: 219 255 0;
+    --tw-clr-primary-300: 0 232 135;
+    --tw-clr-primary-400: 0 224 243;
+    --tw-clr-primary-500: 59 130 246;
 
-  --clr-primary-200: rgb(var(--tw-clr-primary-200)); /* #DBFF00 */
-  --clr-primary-300: rgb(var(--tw-clr-primary-300)); /* #00e887 */
-  --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* #00e0f3 */
-  --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #00c4fd */
+    --tw-clr-attention-200: 254 240 138;
+    --tw-clr-attention-300: 253 224 71;
+    --tw-clr-attention-400: 250 204 21;
+    --tw-clr-attention-500: 234 179 8;
+
+    --tw-clr-danger-200: 254 202 202;
+    --tw-clr-danger-300: 252 165 165;
+    --tw-clr-danger-400: 248 113 113;
+    --tw-clr-danger-500: 239 68 68;
+  }
 }
 
 body {
