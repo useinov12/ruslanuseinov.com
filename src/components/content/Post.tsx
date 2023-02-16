@@ -44,7 +44,7 @@ function Article({ post, className }: { post: Post; className?: string }) {
         'p-0 pt-16 font-medium',
         'prose-p:mx-12 prose-p:my-2',
         'prose-headings:mx-12 ',
-        'prose-blockquote:border-l-primary-500 prose-blockquote:p-0 prose-blockquote:mx-12',
+        'prose-blockquote:border-l-primary-500  prose-blockquote:mx-12',
         'prose-li:list-disc prose-li:p-0 prose-li:my-0 prose-li:mx-12',
         'prose-code:text-primary-500',
         'prose-a:text-primary-500',
