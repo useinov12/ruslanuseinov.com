@@ -39,7 +39,7 @@ function Article({ post, className }: { post: Post; className?: string }) {
   return (
     <article
       className={clsx(
-        'prose',
+        'prose-lg',
         theme === 'light' ? 'prose-sky' : 'prose-invert',
         'p-0 pt-16 font-medium',
         'prose-p:mx-12 prose-p:my-2',
