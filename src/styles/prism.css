@@ -10,12 +10,12 @@ pre {
   background-color: rgb(17, 16, 26);
   padding: 1rem;
   border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
 }
 
 /* Code title styles */
 .rehype-code-title {
-  @apply mt-10 text-sm rounded-t border border-gray-200 bg-gray-100 py-3 pb-2 pl-6 font-mono font-medium italic text-gray-700;
+  @apply text-sm rounded-t border border-gray-200 bg-gray-100 py-3 pb-2 pl-6 font-mono font-medium italic text-gray-700;
 }
 
 .rehype-code-title + div > pre {
