@@ -49,7 +49,7 @@ function AboutMeCard() {
         <h3 className="text-3xl font-bolder font-poppins text-semibold">
           Ruslan Useinov
         </h3>
-        <h4 className="font-poppins font-semibold">Front end developer</h4>
+        <h4 className="font-poppins font-semibold">Software developer</h4>
         <p className="font-poppins font-medium">
           Creating beautiful and performant web
         </p>
