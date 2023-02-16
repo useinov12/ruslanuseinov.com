@@ -38,14 +38,13 @@ export default function HomePage() {
 }
 
 function MainHero() {
-  const { theme } = useTheme();
   return (
     <section
       className="p-2 lg:p-0 relative h-[95vh] flex flex-col justify-center"
       data-fade="1"
     >
       <h1 className="text-4xl md:text-5xl tracking-tight font-extrabold">
-        Front End Developer
+        Software Developer
       </h1>
       <p className="text-xl md:text-xl my-3 cursor-default" data-fade="2">
         Building beautiful and performant web with delightful user
