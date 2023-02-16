@@ -1,10 +1,14 @@
 ---
-title: 'Auth in my PF project'
+title: 'PF project: Authentification'
 publishedAt: '2023-01-12'
 description: 'Fetching, cashing and protecting routes. Using React use-Query, we can write clean and consistent way of handling Server data in our Client.'
 coverImage: ''
 comment: 'Auth is an essential part of applications. Building it can be simple and satisfying.'
 ---
+
+
+***This post is a personal exploration of the different software patterns and not intended as a guide.***
+
 
 ## What do we working with?
 
@@ -12,7 +16,7 @@ comment: 'Auth is an essential part of applications. Building it can be simple a
 * Server - Pyhton FastApi
 
 Our backend using JWT tokens as an **access token**
-with rotation of **refresh tokens**
+with rotation of **refresh tokens**.
 
 
 ## Libraries
@@ -30,11 +34,14 @@ Everything is intuitive and handled with a very little amount of code.
 ## Approach
 
 
-To fetch and cache session information, I use the following approach:
+To fetch and cache session information, I divided API calls in 2 categories: 
 
-- every API call that does not have an effect on cached entity data is expressed as an 'action' function -
-  wrapper that handles API call and response
+1. `Actions`  - API calls that does not have an effect on cached entity data.
+2. `Custom hooks`  -  React-useQuery API calls that influences a cached entity in-app.
 
+
+
+### Action example
 ```typescript:authActions.ts showLineNumbers
   async function login(credentials){
     try {
@@ -49,15 +56,12 @@ To fetch and cache session information, I use the following approach:
   }
 ```
 
-- every API call that influences a cached entity in-app is a custom hook that wraps a react-query hook -
-  custom hook that wraps a react-query hook.
-  That way we define all query preferences once and don't repeat ourselves.
-  All `useQuery` states and methods remain exposed thru our custom hook.
+### Custom hook example
 
 ```typescript:useAuth.tsx showLineNumbers
 function useAuth(){
   return useQuery('user', getSession, {
-    enabled: false, // needed to handle refetchs manually
+    enabled: false, // needed to handle refetch manually
     retry: false,
     staleTime: 60 * (60 * 1000), // 60 min
     onSuccess: (data) => {
@@ -72,32 +76,31 @@ function useAuth(){
 };
 ```
 
+
+## Flow 
 Each time the Client will make a request for protected page/data - we do request on the Server.
 No need to store User data in React state.
 
 Login pattern:
-
-1. Our `login`(action) `POST` user credentials and receives JWT
-2. Short-lived JWT is encoded and stored and being sent with each protected API call
-3. On successful `login`, we invalidate ['user'] query and trigger re-fetching
-   in custom hook `useAuth()` that requests current user session
-4. Each component that depends on the user session will be updated based on `useAuth()` query result
+1. Our `login`(action) send user credentials and receives JWT.
+2. Short-lived JWT is encoded and stored and being sent with each protected API call.
+3. On successful `login`, we trigger re-fetching in custom hook `useAuth()`
+4. Each component that depends on the user session will be updated based on new `useAuth()` query result
 
 ## Components examples
 
 ```typescript:Login.tsx showLineNumbers
 function Login(){
     ...
-    const queryClient = useCashedClient();
-
+    const { refetch } = useAuth()
+ 
     async function onLoginSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const { status } = await login({ username, password });
 
         if (status === 200) {
-          /* invalidate query cashe and trigger and refetch */
-          queryClient.invalidateQueries(['user']);
+          /* trigger user refetch to update cashed user */
           refetch();
         }
     }
@@ -114,79 +117,12 @@ function Login(){
 function Navbar() {
   const { data: user, isLoading } = useAuth();
 
-  if (isLoading) return <Loading />;
-
-  if (error) return <LoginButton />;
-
-  return <UserAvatar />;
-}
-```
-
-## Page protection
-
-Each protected page has `requireAuth:boolean` property.
-
-```typescript:cabinet.tsx showLineNumbers
-export default function CabinetPage() {
   return (
-      <CabinetPageProvider>
-        <Cabinet />
-      </CabinetPageProvider>
+    <nav >
+      ...
+      { user ? <AppLink /> : <LoginButton />}
+      ...
+    </nav>
   );
-}
-/* setting  requireAuth to check in _app.tsx*/
-CabinetPage.requireAuth = true;
-```
-
-1. In \_app.tsx we check if Component requires Auth
-
-```typescript:_app.tsx
-  ...
-  <>
-      {/* if requireAuth property is present - protect the page */}
-      { Component.requireAuth ? (
-      <AuthGuard>
-        <Component {...pageProps} />
-      </AuthGuard>
-      ) : (
-      /* public page */
-      <LoginFormProvider>
-        <Component {...pageProps} />
-      </LoginFormProvider>
-      )}
-  </>
-  ...
-```
-
-2. If Component.requireAuth === true -> we render `Component` wrapped in AuthGuard
-   `AuthGuard` is wrapper, where we are isolatated page protection logic:
-
-- Checking if user is logged in
-- Showing loading state when user is fetching
-- Retirecting to `/signup` when user is not logged in
-
-That way we drop necessity to check if user is logged on each protected page
-
-```typescript:AuthGuard.tsx showLineNumbers
-export function AuthGuard({ children }: { children: JSX.Element }) {
-  const { data: user, isLoading, isFetching } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if(!isLoading && !isFetching) return;
-    if (!user) {
-      setRedirect(router.route);
-      router.push('/signup');
-    }
-  }, [isLoading, user, isFetching]);
-
-  /* show loading indicator while the auth provider is still isLoading */
-  if (isLoading || isFetching) return <Loading />;
-
-  /* if auth initialized with a valid user show protected page  */
-  if (user) return <>{children}</>;
-
-  /* otherwise don't return anything, will do a redirect from useEffect */
-  return null;
 }
 ```
