@@ -7,10 +7,27 @@ import { RiMoonClearLine, RiSunFill } from 'react-icons/ri';
 import { useTheme } from 'src/context/ThemeProvider';
 
 export default function Navbar() {
+  const { asPath } = useRouter();
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
+  /* close mobile navbar when when redirecting */
+  useEffect(() => {
+    if (isMobileNavOpen) setMobileNavOpen(false);
+  }, [asPath]);
+
   return (
-    <div className="sticky top-0 z-50 w-full overflow-hidden">
+    <div
+      className={clsx(
+        'sticky top-0 w-full overflow-hidden',
+        isMobileNavOpen && 'h-screen w-screen'
+      )}
+    >
       <HorizontalBar />
-      <Navigation />
+      <Navigation
+        isMobileNavOpen={isMobileNavOpen}
+        setMobileNavOpen={setMobileNavOpen}
+      />
+      <MobileNavScreen isMobileNavOpen={isMobileNavOpen} />
     </div>
   );
 }
@@ -19,6 +36,7 @@ function HorizontalBar() {
   return (
     <div
       className={clsx(
+        'z-50',
         'h-[5px] w-full bg-blue-600',
         'relative',
         'before:absolute before:inset-0',
@@ -31,10 +49,14 @@ function HorizontalBar() {
   );
 }
 
-function Navigation() {
-  const { asPath } = useRouter();
+function Navigation({
+  isMobileNavOpen,
+  setMobileNavOpen,
+}: {
+  isMobileNavOpen: boolean;
+  setMobileNavOpen: Dispatch<SetStateAction<boolean>>;
+}) {
   const [onTop, setOnTop] = useState(true);
-  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
   /* track page scroll */
   useEffect(() => {
@@ -47,10 +69,6 @@ function Navigation() {
     };
   }, []);
 
-  /* close mobile navbar when when redirecting */
-  useEffect(() => {
-    if (isMobileNavOpen) setMobileNavOpen(false);
-  }, [asPath]);
   return (
     <div
       className={clsx(
@@ -59,8 +77,7 @@ function Navigation() {
         'transition-all overflow-x-hidden',
         'overflow-y-hidden',
         !onTop &&
-          !isMobileNavOpen &&
-          'bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-80 '
+          'md:bg-clip-padding md:backdrop-filter md:backdrop-blur-2xl md:bg-opacity-80 '
       )}
     >
       <div
@@ -73,15 +90,13 @@ function Navigation() {
         )}
       >
         <Logo className="z-50" />
-        <DesktopNavbar />
+        <DesktopNavLinks />
 
         <MobileNavButton
           isMobileNavOpen={isMobileNavOpen}
           setMobileNavOpen={setMobileNavOpen}
         />
       </div>
-
-      <MobileNavbar isMobileNavOpen={isMobileNavOpen} />
     </div>
   );
 }
@@ -155,7 +170,7 @@ function ThemeSwitch({ className }: { className?: string }) {
   );
 }
 
-const DesktopNavbar = () => {
+function DesktopNavLinks() {
   const { asPath } = useRouter();
   return (
     <>
@@ -163,10 +178,7 @@ const DesktopNavbar = () => {
         {links.map(({ text, path }) => (
           <li
             key={text}
-            className={clsx(
-              'text-lg ',
-              ' hover:cursor-pointer hover:opacity-70'
-            )}
+            className={clsx('text-lg ', 'cursor-pointer hover:opacity-70')}
           >
             <Link href={path}>
               <h4
@@ -184,9 +196,9 @@ const DesktopNavbar = () => {
       </ul>
     </>
   );
-};
+}
 
-const MobileNavbar = ({ isMobileNavOpen }: { isMobileNavOpen: boolean }) => {
+function MobileNavScreen({ isMobileNavOpen }: { isMobileNavOpen: boolean }) {
   const { asPath } = useRouter();
   return (
     <div
@@ -229,7 +241,7 @@ const MobileNavbar = ({ isMobileNavOpen }: { isMobileNavOpen: boolean }) => {
       </div>
     </div>
   );
-};
+}
 
 const links = [
   {
