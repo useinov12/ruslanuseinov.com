@@ -21,10 +21,10 @@ while my friend is building Database and Server
 ✅ Landing Page\
 ✅ Auth and protected routes\
 ✅ Plaid Link API currently in developement\
-✅ Finance overview/summary page\
-✅ Banks overview/summary page\
-🟨 Transactions overview/summary page\
-🟨 Accounts overview/summary page
+✅ Overview page\
+✅ Banks page\
+🟨 Activity page\
+🟨 Accounts page
 
 ### Challenge
 
@@ -68,9 +68,11 @@ We have our own Authentification process handled by our Server.
 
 On the Client I built the following pages:
 
-- Landing
-- Signup
-- Cabinet
+- landing
+- sign-up
+- app/cabinet
+- app/overview
+- app/banks
 
 ---
 
@@ -78,7 +80,5 @@ On the Client I built the following pages:
 
 Users can sign in on the landing page with a sign-in popup or on the dedicated `/signup` page
 
-If the user would access the protected page while not authenticated
-
-- user will be redirected to `/signup` page
-- after successful sign-in user will be redirected to the page that he/she tried to access
+Without login user will see public -  demo version of the app.
+With login user can access private version of the app.
